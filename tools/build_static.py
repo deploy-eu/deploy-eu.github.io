@@ -64,11 +64,18 @@ for fn in sorted(os.listdir(mdir)) if os.path.isdir(mdir) else []:
     url = f"{SITE}/members/{fn[:-3]}.html"
     open(out, "w", encoding="utf-8").write(PAGE.format(title=html.escape(f.get("name", fn)), desc=html.escape(f.get("headline", "")), url=url, site=SITE, back="members", backlabel="Members", body=h, src=REPO + "members/" + fn))
     urls.append(url); members.append((f.get("name", fn), url, f.get("headline", "")))
+tools = []
+tdir = os.path.join(lib, "tools")
+for dirpath, _, files in os.walk(tdir):
+    for fn in sorted(files):
+        if not fn.endswith(".md") or fn.startswith("_") or fn.lower() == "readme.md" or dirpath == tdir: continue
+        f, _b = front(open(os.path.join(dirpath, fn), encoding="utf-8").read())
+        tools.append((f.get("name", fn), f.get("repo", ""), ", ".join(f.get("authors", [])) if isinstance(f.get("authors"), list) else str(f.get("authors", "")), f.get("summary", ""), ", ".join(f.get("walls", [])) if isinstance(f.get("walls"), list) else ""))
 today = datetime.date.today().isoformat()
 open(os.path.join(root, "sitemap.xml"), "w").write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "".join(f"<url><loc>{u}</loc><lastmod>{today}</lastmod></url>\n" for u in urls + [f"{SITE}/llms.txt"]) + "</urlset>\n")
 open(os.path.join(root, "robots.txt"), "w").write(f"User-agent: *\nAllow: /\nSitemap: {SITE}/sitemap.xml\n")
 p = os.path.join(root, "llms.txt"); t = open(p, encoding="utf-8").read()
-auto = f"<!-- AUTO:START (generated {today} from the case library; do not edit by hand) -->\n## Cases ({len(cases)})\n" + "".join(f"- [{c[0]}]({c[1]}) by {c[2]}: {c[3]}\n" for c in cases) + f"\n## Member profiles ({len(members)})\n" + "".join(f"- [{m[0]}]({m[1]}): {m[2]}\n" for m in members) + "<!-- AUTO:END -->"
+auto = f"<!-- AUTO:START (generated {today} from the case library; do not edit by hand) -->\n## Cases ({len(cases)})\n" + "".join(f"- [{c[0]}]({c[1]}) by {c[2]}: {c[3]}\n" for c in cases) + f"\n## Tools ({len(tools)})\n" + "".join(f"- [{x[0]}]({x[1]}) by {x[2]}: {x[3]} (walls: {x[4]})\n" for x in tools) + f"\n## Member profiles ({len(members)})\n" + "".join(f"- [{m[0]}]({m[1]}): {m[2]}\n" for m in members) + "<!-- AUTO:END -->"
 t = re.sub(r"<!-- AUTO:START.*?AUTO:END -->", auto, t, flags=re.S) if "AUTO:START" in t else t.rstrip() + "\n\n" + auto + "\n"
 open(p, "w", encoding="utf-8").write(t)
 print(f"{len(cases)} cases, {len(members)} members, {len(urls)} urls")
