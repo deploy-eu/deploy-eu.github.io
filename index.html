@@ -428,6 +428,8 @@ d("ab.who","The community is run by a small management team. Being on it is a re
 d("ab.full","Read the full principles","看完整的社区准则","Alle Grundsätze lesen","Lire tous les principes","Leggi tutti i principi","Leer todos los principios");
 d("read_mission","Why we exist →","为什么做这件事 →","Warum es uns gibt →","Pourquoi nous existons →","Perché esistiamo →","Por qué existimos →");
 d("example_case","What a case looks like","案例长什么样","So sieht ein Fall aus","À quoi ressemble un cas","Come si presenta un caso","Cómo es un caso");
+d("by","by {a}","作者：{a}","von {a}","par {a}","di {a}","por {a}");
+d("review_pending","· peer review pending","· 同行审核中","· Prüfung ausstehend","· relecture en attente","· revisione in corso","· revisión pendiente");
 d("chat_title","Lobby chat","大厅聊天","Lobby-Chat","Chat du hall","Chat della lobby","Chat de la sala");
 d("chat_ph","Say hello…","打个招呼…","Sag hallo…","Dites bonjour…","Saluta…","Di hola…");
 d("local_note","Preview: messages stay in your browser. Translating new messages switches on with the backend.","预览版：消息只留在你的浏览器里。新消息的自动翻译要等后台接上才生效。","Vorschau: Nachrichten bleiben in deinem Browser. Die Übersetzung neuer Nachrichten startet mit dem Backend.","Aperçu : les messages restent dans votre navigateur. La traduction des nouveaux messages arrivera avec le backend.","Anteprima: i messaggi restano nel tuo browser. La traduzione dei nuovi messaggi arriva con il backend.","Vista previa: los mensajes se quedan en tu navegador. La traducción de mensajes nuevos llega con el backend.");
@@ -545,8 +547,26 @@ const B=Object.fromEntries(BADGES.map(b=>[b[0],b]));
 const MEMBERS=[];  // real profiles are added with each member's consent
 const ME_EARNED=["first","author","speaker","host","bridge","scout","writer"];
 
-const CASES=[{id:"example",fictional:true,title:"Drafting replies to price inquiries for a small importer",date:"2026-01",status:"pilot",country:"Germany",industry:"wholesale / trade",size:"10–49",systems:["Outlook","Excel price list","on-premise ERP without API"],tools:["Claude","Python"],walls:["legacy-desktop","no-api","data-quality"],summary:"A kitchen-appliance importer received about 40 price inquiries a week by email. An AI assistant now reads each inquiry, checks stock in an Excel export of the ERP, and drafts a quote for the salesperson to check and send.",url:"https://github.com/deploy-eu/case-library/blob/main/cases/_EXAMPLE_fictional.md"}];
-const REAL_CASES=CASES.filter(c=>!c.fictional);
+const EXAMPLE={id:"example",fictional:true,title:"Drafting replies to price inquiries for a small importer",date:"2026-01",status:"pilot",country:"Germany",industry:"wholesale / trade",size:"10–49",systems:["Outlook","Excel price list","on-premise ERP without API"],tools:["Claude","Python"],walls:["legacy-desktop","no-api","data-quality"],summary:"A kitchen-appliance importer received about 40 price inquiries a week by email. An AI assistant now reads each inquiry, checks stock in an Excel export of the ERP, and drafts a quote for the salesperson to check and send.",url:"https://github.com/deploy-eu/case-library/blob/main/cases/_EXAMPLE_fictional.md"};
+let CASES=[{"id": "payroll-checks", "title": "Monthly payroll checks for client companies", "date": "", "status": "live", "country": "Germany", "industry": "business services / payroll", "size": "not disclosed", "walls": ["no-api", "gdpr", "data-quality", "change-management"], "summary": "A service provider runs monthly payroll for client companies. The chain around the tax advisor's payslips (reminders, filing, two-way reconciliation, cost breakdown, draft payment instruction) now runs automatically; staff approve two drafts per client.", "by": "DATONG AI", "url": "https://github.com/deploy-eu/case-library/blob/main/cases/datong-ai/2026-11_payroll-checks.md", "author": "DATONG AI", "folder": "datong-ai", "pending": true}, {"id": "jewellery-back-office", "title": "AI back office for a small pearl jewellery brand", "date": "", "status": "live", "country": "not disclosed", "industry": "jewellery / direct sales via social media", "size": "1–9 employees", "walls": ["data-quality", "change-management"], "summary": "The owner sells in live streams and chats. She now forwards a screenshot after each sale; an assistant records order, payment, shipping and stock, and asks whenever an amount is unclear.", "by": "DATONG AI", "url": "https://github.com/deploy-eu/case-library/blob/main/cases/datong-ai/2026-11_jewellery-back-office.md", "author": "DATONG AI", "folder": "datong-ai", "pending": true}, {"id": "sales-ai-setup", "title": "A key account manager's AI setup with a second-agent check", "date": "", "status": "live", "country": "not disclosed", "industry": "manufacturing / B2B sales", "size": "not disclosed", "walls": ["reliability", "data-quality"], "summary": "One key account manager runs customer files, email drafts, reports and CRM preparation through an AI assistant. A second agent checks every draft before he sees it; he sends, saves and sets prices himself.", "by": "DATONG AI", "url": "https://github.com/deploy-eu/case-library/blob/main/cases/datong-ai/2026-11_sales-ai-setup.md", "author": "DATONG AI", "folder": "datong-ai", "pending": true}, {"id": "trade-document-matching", "title": "Four-way document matching for commodity orders", "date": "", "status": "live", "country": "not disclosed", "industry": "wholesale / trade", "size": "not disclosed", "walls": ["data-quality"], "summary": "Contracts, invoices, shipping documents and payment records arrive through different channels. They are now collected, read and matched per order by fixed rules; staff resolve the flagged mismatches.", "by": "DATONG AI", "url": "https://github.com/deploy-eu/case-library/blob/main/cases/datong-ai/2026-11_trade-document-matching.md", "author": "DATONG AI", "folder": "datong-ai", "pending": true}, {"id": "hvac-tender-review", "title": "Reading HVAC tenders: equipment list and first bid assessment", "date": "", "status": "pilot", "country": "not disclosed", "industry": "building services / HVAC", "size": "not disclosed", "walls": ["data-quality"], "summary": "Drawings and specifications become an equipment list linked to the drawing, with suggestions from the company's own range and a first assessment. Drawing recognition is in use at the client; selection and assessment are a finished demo.", "by": "DATONG AI", "url": "https://github.com/deploy-eu/case-library/blob/main/cases/datong-ai/2026-11_hvac-tender-review.md", "author": "DATONG AI", "folder": "datong-ai", "pending": true}, {"id": "fashion-trend-forecast", "title": "Trend forecast for style elements with short, gappy data", "date": "", "status": "live", "country": "not disclosed", "industry": "retail / fashion", "size": "not disclosed", "walls": ["data-quality"], "summary": "A fashion retailer forecasts how style elements develop from online buzz and search volume. The model borrows information from related elements; specialists decide what enters range planning. Accepted by the client.", "by": "DATONG AI", "url": "https://github.com/deploy-eu/case-library/blob/main/cases/datong-ai/2026-11_fashion-trend-forecast.md", "author": "DATONG AI", "folder": "datong-ai", "pending": true}, {"id": "price-comparison-15-stores", "title": "Price and availability from 15 online stores in one table", "date": "", "status": "live", "country": "not disclosed", "industry": "retail / e-commerce", "size": "not disclosed", "walls": ["data-quality"], "summary": "An uploaded product list is searched across 15 online stores. Possible matches, prices and availability land in one table; the team confirms that variants really match before exporting.", "by": "DATONG AI", "url": "https://github.com/deploy-eu/case-library/blob/main/cases/datong-ai/2026-11_price-comparison-15-stores.md", "author": "DATONG AI", "folder": "datong-ai", "pending": true}, {"id": "quarter-hour-billing-demo", "title": "Quarter-hour billing for shared solar power: a rules-only demo", "date": "", "status": "pilot", "country": "Germany", "industry": "energy / utilities", "size": "not applicable (demo, no client)", "walls": ["reliability"], "summary": "A demo for utilities: solar power shared among the sites of one legal entity is allocated and balanced for every quarter hour of a month. The calculation uses fixed rules only. It runs on simulated data; no utility has used it in operation.", "by": "DATONG AI", "url": "https://github.com/deploy-eu/case-library/blob/main/cases/datong-ai/2026-11_quarter-hour-billing-demo.md", "author": "DATONG AI", "folder": "datong-ai", "pending": true}, {"id": "incoming-mail-prototype", "title": "Assigning incoming letters to tenant companies: a prototype", "date": "", "status": "pilot", "country": "Germany", "industry": "business centre / office services", "size": "not disclosed", "walls": ["data-quality"], "summary": "A business centre receives mail for several hundred tenant companies. A prototype reads scanned letters and suggests the tenant; a person confirms every assignment. It was tested with real sample letters and handed to the client's IT.", "by": "DATONG AI", "url": "https://github.com/deploy-eu/case-library/blob/main/cases/datong-ai/2026-11_incoming-mail-prototype.md", "author": "DATONG AI", "folder": "datong-ai", "pending": true}];  // snapshot; replaced at load time from GitHub
+const REPO="deploy-eu/case-library";
+function parseCase(text,path){
+ const m=text.match(/^---\n([\s\S]*?)\n---/);if(!m)return null;
+ const f={};for(const line of m[1].split("\n")){const k=line.match(/^(\w+):\s*(.*)$/);if(!k)continue;let v=k[2].trim();try{v=JSON.parse(v)}catch(e){v=v.replace(/^["']|["']$/g,"")}f[k[1]]=v}
+ const sm=text.match(/>\s*\*\*Summary[^*]*\*\*\s*(.+)/);const folder=path.split("/")[1];
+ const arr=x=>Array.isArray(x)?x:(x?[x]:[]);
+ return {id:path,title:f.title||path,date:f.date||"",status:f.status||"",country:f.country||"",industry:f.industry||"",size:f.company_size||"",walls:arr(f.walls),summary:sm?sm[1].replace(/\*\*/g,""):"",author:arr(f.authors).join(", ")||folder,folder,pending:/pending/i.test(f.review||""),url:"https://github.com/"+REPO+"/blob/main/"+path};
+}
+async function loadCases(){
+ try{
+  const tr=await (await fetch("https://api.github.com/repos/"+REPO+"/git/trees/main?recursive=1")).json();
+  const files=(tr.tree||[]).filter(x=>x.type==="blob"&&/^cases\/[^/]+\/[^_/][^/]*\.md$/.test(x.path)&&!/\/README\.md$/i.test(x.path));
+  if(!files.length)return;
+  const got=await Promise.all(files.map(async x=>{try{return parseCase(await (await fetch("https://raw.githubusercontent.com/"+REPO+"/main/"+x.path.split("/").map(encodeURIComponent).join("/"))).text(),x.path)}catch(e){return null}}));
+  const ok=got.filter(Boolean);if(ok.length){CASES=ok.sort((a,b)=>(b.date||"").localeCompare(a.date||"")||a.title.localeCompare(b.title));render()}
+ }catch(e){}
+}
+const REAL=()=>CASES;
 
 const CHAT=[
  {who:"chloe",time:"18:02",lang:"fr",txt:"Idée pour le cercle de lecture : le retour d'expérience de Klarna sur son support IA. Qui est partant ?",tr:{en:"Reading session idea: Klarna's write-up on its AI support. Who's in?",zh:"共读会的想法：读 Klarna 讲他们 AI 客服的那篇复盘。谁来？",de:"Idee für den Lesekreis: Klarnas Erfahrungsbericht zu ihrem KI-Support. Wer ist dabei?",it:"Idea per il gruppo di lettura: il resoconto di Klarna sul suo supporto con IA. Chi c'è?",es:"Idea para el club de lectura: el informe de Klarna sobre su soporte con IA. ¿Quién se apunta?"}},
@@ -632,8 +652,8 @@ V.home=()=>{
  <section class="section">
   <div class="grid g2">
    <div style="display:flex;flex-direction:column;gap:12px">
-    <div class="section-head"><h3 class="eyebrow">${t(REAL_CASES.length?"latest_case":"example_case")}</h3><a href="#cases" style="font:12px var(--mono)">${t("see_all")}</a></div>
-    ${caseCard(CASES[0])}
+    <div class="section-head"><h3 class="eyebrow">${t(REAL().length?"latest_case":"example_case")}</h3><a href="#cases" style="font:12px var(--mono)">${t("see_all")}</a></div>
+    ${caseCard(CASES[0]||EXAMPLE)}
    </div>
    <div style="display:flex;flex-direction:column;gap:12px">
     <div class="section-head"><h3 class="eyebrow">${t("next_event")}</h3><a href="#events" style="font:12px var(--mono)">${t("see_all")}</a></div>
@@ -656,7 +676,8 @@ function memberCard(m){return `<a class="card hover mcard" href="#member-${m.id}
 function caseCard(c){return `<a class="card hover case" href="${c.url}" target="_blank" rel="noopener" style="--c:var(--cyan);color:inherit;text-decoration:none">
  ${c.fictional?`<span class="flag">${t("fictional")}</span>`:""}
  <h3>${esc(c.title)}</h3>
- <div class="meta"><span>${esc(c.industry)}</span><span>${esc(c.country)}</span><span>${esc(c.size)}</span><span>${esc(c.status)}</span><span>${esc(c.date)}</span></div>
+ <div class="meta">${[c.status,c.industry,c.country,c.size,c.date].filter(v=>v&&!/not (disclosed|applicable)/i.test(v)).map(v=>`<span>${esc(v)}</span>`).join("")}</div>
+ ${c.author?`<div class="meta"><span style="color:var(--fg-2)">${esc(t("by",{a:c.author}))}</span>${c.pending?`<span style="color:var(--yellow)">${t("review_pending")}</span>`:""}</div>`:""}
  <p>${esc(c.summary)}</p>
  <div class="tags">${c.walls.map(wtag).join("")}</div>
  <span style="font:12px var(--mono);color:var(--cyan)">${t("read_full")} ↗</span></a>`}
@@ -701,20 +722,20 @@ V.member=id=>{
 };
 
 V.cases=()=>{
- const list=CASES.filter(c=>!caseWall||c.walls.includes(caseWall));
+ const list=(CASES.length?CASES:[EXAMPLE]).filter(c=>!caseWall||c.walls.includes(caseWall));
  return `<div class="page-head">${prompt("ls ./cases")}<h1>${t("cases.title")}</h1><p class="lead">${esc(t("cases.sub"))}</p>
   <div class="cta"><a class="btn primary small" href="https://github.com/deploy-eu/case-library/issues/new/choose" target="_blank" rel="noopener">+ ${t("submit_case")}</a><a class="btn small" href="https://github.com/deploy-eu/case-library" target="_blank" rel="noopener">GitHub ↗</a></div></div>
  <div class="tags" style="margin-bottom:20px"><button class="tag ${caseWall?"":"on"}" data-wallf="" style="--c:var(--fg-2)">${t("all")}</button>${WALLS.map(w=>`<button class="tag ${caseWall===w[0]?"on":""}" data-wallf="${w[0]}" style="--c:var(${w[1]})">#${w[0]}</button>`).join("")}</div>
- ${REAL_CASES.length?"":`<div class="empty" style="margin-bottom:20px"><span>${esc(t("cases.empty"))}</span><a class="btn small" href="https://github.com/deploy-eu/case-library/blob/main/cases/_TEMPLATE.md" target="_blank" rel="noopener">_TEMPLATE.md ↗</a></div>`}
+ ${REAL().length?"":`<div class="empty" style="margin-bottom:20px"><span>${esc(t("cases.empty"))}</span><a class="btn small" href="https://github.com/deploy-eu/case-library/blob/main/cases/_TEMPLATE.md" target="_blank" rel="noopener">_TEMPLATE.md ↗</a></div>`}
  <div class="grid g2">${list.map(caseCard).join("")}</div>`;
 };
 
 V.walls=()=>{
- const counts=Object.fromEntries(WALLS.map(w=>[w[0],REAL_CASES.filter(c=>c.walls.includes(w[0])).length]));
+ const counts=Object.fromEntries(WALLS.map(w=>[w[0],REAL().filter(c=>c.walls.includes(w[0])).length]));
  const max=Math.max(1,...Object.values(counts));
  return `<div class="page-head">${prompt("grep -h walls: cases/*.md | sort | uniq -c")}<h1>${t("walls.title")}</h1><p class="lead">${esc(t("walls.sub"))}</p>
  <div class="cta"><a class="btn small" href="https://github.com/deploy-eu/case-library/issues/new?template=wall-report.yml" target="_blank" rel="noopener">+ ${t("report_wall")}</a></div></div>
- <div class="grid g3">${WALLS.map(w=>`<div class="card wall" style="--c:var(${w[1]})"><span class="code">#${w[0]}</span><p>${esc(w[2+li()])}</p>${REAL_CASES.length?`<div class="bar"><i style="width:${counts[w[0]]/max*100}%"></i></div><span class="cnt">${t("walls.count",{n:counts[w[0]]})}</span>`:""}</div>`).join("")}</div>`;
+ <div class="grid g3">${WALLS.map(w=>`<div class="card wall" style="--c:var(${w[1]})"><span class="code">#${w[0]}</span><p>${esc(w[2+li()])}</p>${REAL().length?`<div class="bar"><i style="width:${counts[w[0]]/max*100}%"></i></div><span class="cnt">${t("walls.count",{n:counts[w[0]]})}</span>`:""}</div>`).join("")}</div>`;
 };
 
 V.articles=()=>`<div class="page-head">${prompt("ls ./articles ./interviews")}<h1>${t("articles.title")}</h1><p class="lead">${esc(t("articles.sub"))}</p></div>
@@ -850,6 +871,7 @@ document.addEventListener("submit",e=>{
 });
 
 full();
+loadCases();
 </script>
 </body>
 </html>
