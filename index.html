@@ -430,6 +430,8 @@ d("read_mission","Why we exist →","为什么做这件事 →","Warum es uns gi
 d("example_case","What a case looks like","案例长什么样","So sieht ein Fall aus","À quoi ressemble un cas","Come si presenta un caso","Cómo es un caso");
 d("by","by {a}","作者：{a}","von {a}","par {a}","di {a}","por {a}");
 d("review_pending","· peer review pending","· 同行审核中","· Prüfung ausstehend","· relecture en attente","· revisione in corso","· revisión pendiente");
+d("write_t","Write your case with your AI","让你的 AI 帮你写案例","Schreib deinen Fall mit deiner KI","Rédigez votre cas avec votre IA","Scrivi il tuo caso con la tua IA","Escribe tu caso con tu IA");
+d("write_d","Copy this line into ChatGPT, Claude or any assistant. It interviews you, fills in the template, checks the rules and tells you how to submit. Your profile and cases are stored in the public case library on GitHub and appear here, with your name, after review.","把这句话复制给 ChatGPT、Claude 或任何 AI。它会问你问题、填好模板、检查规矩，再告诉你怎么提交。你的档案和案例存在 GitHub 上公开的案例库里，审核后会署你的名字出现在这里。","Kopiere diese Zeile in ChatGPT, Claude oder einen anderen Assistenten. Er interviewt dich, füllt die Vorlage aus, prüft die Regeln und sagt dir, wie du einreichst. Profil und Fälle liegen in der öffentlichen Fallbibliothek auf GitHub und erscheinen nach der Prüfung hier mit deinem Namen.","Copiez cette ligne dans ChatGPT, Claude ou un autre assistant. Il vous interroge, remplit le modèle, vérifie les règles et vous explique comment soumettre. Votre profil et vos cas sont stockés dans la bibliothèque publique sur GitHub et apparaissent ici, à votre nom, après relecture.","Copia questa riga in ChatGPT, Claude o un altro assistente. Ti intervista, compila il modello, controlla le regole e ti spiega come inviare. Profilo e casi sono salvati nella biblioteca pubblica su GitHub e compaiono qui, con il tuo nome, dopo la revisione.","Copia esta línea en ChatGPT, Claude u otro asistente. Te entrevista, rellena la plantilla, revisa las normas y te explica cómo enviarlo. Tu perfil y tus casos se guardan en la biblioteca pública en GitHub y aparecen aquí, con tu nombre, tras la revisión.");
 d("chat_title","Lobby chat","大厅聊天","Lobby-Chat","Chat du hall","Chat della lobby","Chat de la sala");
 d("chat_ph","Say hello…","打个招呼…","Sag hallo…","Dites bonjour…","Saluta…","Di hola…");
 d("local_note","Preview: messages stay in your browser. Translating new messages switches on with the backend.","预览版：消息只留在你的浏览器里。新消息的自动翻译要等后台接上才生效。","Vorschau: Nachrichten bleiben in deinem Browser. Die Übersetzung neuer Nachrichten startet mit dem Backend.","Aperçu : les messages restent dans votre navigateur. La traduction des nouveaux messages arrivera avec le backend.","Anteprima: i messaggi restano nel tuo browser. La traduzione dei nuovi messaggi arriva con il backend.","Vista previa: los mensajes se quedan en tu navegador. La traducción de mensajes nuevos llega con el backend.");
@@ -504,6 +506,7 @@ d("l.rec","Recognition","荣誉规则","Anerkennung","Reconnaissance","Riconosci
 d("l.priv","Privacy","隐私说明","Datenschutz","Confidentialité","Privacy","Privacidad");
 
 const PROMPT={"en": "Help me get to know Deploy@EU: https://deploy-eu.github.io/llms.txt", "zh": "帮我了解一下 Deploy@EU：https://deploy-eu.github.io/llms.txt", "de": "Hilf mir, Deploy@EU kennenzulernen: https://deploy-eu.github.io/llms.txt", "fr": "Aide-moi à découvrir Deploy@EU : https://deploy-eu.github.io/llms.txt", "it": "Aiutami a conoscere Deploy@EU: https://deploy-eu.github.io/llms.txt", "es": "Ayúdame a conocer Deploy@EU: https://deploy-eu.github.io/llms.txt"};
+const WRITE_PROMPT={"en": "Help me write a Deploy@EU case and member profile: https://deploy-eu.github.io/write-a-case.txt", "zh": "帮我写一篇 Deploy@EU 案例和成员档案：https://deploy-eu.github.io/write-a-case.txt", "de": "Hilf mir, einen Deploy@EU-Fall und mein Mitgliederprofil zu schreiben: https://deploy-eu.github.io/write-a-case.txt", "fr": "Aide-moi à rédiger un cas Deploy@EU et mon profil de membre : https://deploy-eu.github.io/write-a-case.txt", "it": "Aiutami a scrivere un caso Deploy@EU e il mio profilo da membro: https://deploy-eu.github.io/write-a-case.txt", "es": "Ayúdame a escribir un caso de Deploy@EU y mi perfil de miembro: https://deploy-eu.github.io/write-a-case.txt"};
 /* walls */
 const WALLS=[
  ["no-api","--red","No API, or only manual exports","没有接口，或者只能手动导出","Keine API oder nur manuelle Exporte","Pas d'API, ou seulement des exports manuels","Nessuna API, o solo esportazioni manuali","Sin API, o solo exportaciones manuales"],
@@ -557,9 +560,19 @@ function parseCase(text,path){
  const arr=x=>Array.isArray(x)?x:(x?[x]:[]);
  return {id:path,title:f.title||path,date:f.date||"",status:f.status||"",country:f.country||"",industry:f.industry||"",size:f.company_size||"",walls:arr(f.walls),summary:sm?sm[1].replace(/\*\*/g,""):"",author:arr(f.authors).join(", ")||folder,folder,pending:/pending/i.test(f.review||""),url:"https://github.com/"+REPO+"/blob/main/"+path};
 }
+const MC=["--cyan","--magenta","--green","--orange","--pink","--blue","--yellow","--teal"];
+function parseMember(text,path){
+ const m=text.match(/^---\n([\s\S]*?)\n---\s*([\s\S]*)$/);if(!m)return null;
+ const f={};for(const line of m[1].split("\n")){const k=line.match(/^(\w+):\s*(.*?)\s*(#.*)?$/);if(!k)continue;let v=k[2];try{v=JSON.parse(v)}catch(e){v=v.replace(/^["']|["']$/g,"")}f[k[1]]=v}
+ const id=path.split("/").pop().replace(/\.md$/,"");let h=0;for(const ch of id)h=(h*31+ch.charCodeAt(0))>>>0;
+ const arr=x=>Array.isArray(x)?x:(x?[x]:[]);
+ return {id,name:f.name||id,city:f.city||"",hl:f.headline||"",skills:arr(f.skills),links:arr(f.links).filter(Boolean),since:f.member_since||"",show:arr(f.show).filter(b=>B[b]&&arr(f.earned).includes(b)).slice(0,5),roles:[],about:m[2].replace(/<sub>[\s\S]*?<\/sub>/g,"").trim(),c:MC[h%MC.length],github:f.github||""};
+}
 async function loadCases(){
  try{
   const tr=await (await fetch("https://api.github.com/repos/"+REPO+"/git/trees/main?recursive=1")).json();
+  const mf=(tr.tree||[]).filter(x=>x.type==="blob"&&/^members\/[^_/][^/]*\.md$/.test(x.path));
+  if(mf.length){const ms=await Promise.all(mf.map(async x=>{try{return parseMember(await (await fetch("https://raw.githubusercontent.com/"+REPO+"/main/"+x.path)).text(),x.path)}catch(e){return null}}));MEMBERS.splice(0,MEMBERS.length,...ms.filter(Boolean));if(MEMBERS.length&&!NAV.includes("members"))NAV.splice(2,0,"members");render()}
   const files=(tr.tree||[]).filter(x=>x.type==="blob"&&/^cases\/[^/]+\/[^_/][^/]*\.md$/.test(x.path)&&!/\/README\.md$/i.test(x.path));
   if(!files.length)return;
   const got=await Promise.all(files.map(async x=>{try{return parseCase(await (await fetch("https://raw.githubusercontent.com/"+REPO+"/main/"+x.path.split("/").map(encodeURIComponent).join("/"))).text(),x.path)}catch(e){return null}}));
@@ -668,9 +681,13 @@ V.home=()=>{
  </section>`;
 };
 
+function writeBox(){return `<div class="term" style="max-width:820px;margin-bottom:20px"><div class="term-bar"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i><span>write-a-case.txt</span></div>
+ <div style="padding:16px 18px 18px;display:flex;flex-direction:column;gap:12px"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap"><h3 style="color:var(--green)">&gt; ${t("write_t")}</h3><button class="btn small primary" data-copy="write">${t("copy")}</button></div>
+ <p style="margin:0;font-size:13px;color:var(--muted)">${esc(t("write_d"))}</p>
+ <pre id="writeText" tabindex="0" style="margin:0;padding:14px 16px;background:#0b0d14;border:1px solid var(--line);border-radius:8px;font:500 14px/1.7 var(--mono);color:var(--white);white-space:pre-wrap;overflow-wrap:anywhere"><span class="t-p">❯</span> ${esc(WRITE_PROMPT[lang])}</pre></div></div>`}
 function eventCard(tk,wk,dk,c){return `<div class="card event" style="--c:var(${c})"><div class="when">${esc(t(wk))}</div><div><h3>${esc(t(tk))}</h3><p>${esc(t(dk))}</p></div></div>`}
 function memberCard(m){return `<a class="card hover mcard" href="#member-${m.id}" style="--c:var(${m.c});color:inherit;text-decoration:none">
- <div class="top-row">${av(m,"md")}<div class="who"><b>${esc(m.name)}</b><span>${esc(m.city)} · ${m.online?t("online"):t("offline")}</span></div></div>
+ <div class="top-row">${av(m,"md",false)}<div class="who"><b>${esc(m.name)}</b><span>${esc(m.city)}</span></div></div>
  <p class="hl">${esc(m.hl)}</p>
  <div class="badges">${m.show.map(badge).join("")}</div></a>`}
 function caseCard(c){return `<a class="card hover case" href="${c.url}" target="_blank" rel="noopener" style="--c:var(--cyan);color:inherit;text-decoration:none">
@@ -703,20 +720,19 @@ V.members=()=>{
 
 V.member=id=>{
  const m=byId(id);if(!m)return V.members();
- return `<div class="page-head">${prompt("cat ./members/"+m.id+".yml")}<a href="#members" style="font:13px var(--mono)">← ${t("nav.members")}</a></div>
+ return `<div class="page-head">${prompt("cat ./members/"+m.id+".md")}<a href="#members" style="font:13px var(--mono)">← ${t("nav.members")}</a></div>
  <div class="profile">
   <div class="card pcard" style="--c:var(${m.c})"><div class="banner"></div><div class="inner">
-   ${av(m,"lg")}
+   ${av(m,"lg",false)}
    <div><div style="font:700 22px var(--mono);color:var(--white)">${esc(m.name)}</div><div class="muted">${esc(m.hl)}</div></div>
-   <dl class="kv"><dt>${t("city")}</dt><dd>${esc(m.city)}</dd><dt>${t("member_since")}</dt><dd>${esc(m.since)}</dd><dt>Status</dt><dd style="color:var(${m.online?"--green":"--muted"})">● ${m.online?t("online"):t("offline")}</dd></dl>
-   <div class="acts" style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn small" data-dm="${m.id}">${t("message")}</button><button class="btn small" data-wave="${m.id}">${t("wave")}</button></div>
+   <dl class="kv"><dt>${t("city")}</dt><dd>${esc(m.city)}</dd><dt>${t("member_since")}</dt><dd>${esc(m.since)}</dd>${m.github?`<dt>GitHub</dt><dd><a href="https://github.com/${esc(m.github)}" target="_blank" rel="noopener">@${esc(m.github)}</a></dd>`:""}${m.links.map(l=>`<dt>Link</dt><dd><a href="${esc(l)}" target="_blank" rel="noopener nofollow">${esc(l.replace(/^https?:\/\//,""))}</a></dd>`).join("")}</dl>
   </div></div>
   <div style="display:flex;flex-direction:column;gap:16px;min-width:0">
    <div class="card" style="display:flex;flex-direction:column;gap:12px"><h3 class="eyebrow">${t("showcase")}</h3><div class="badges">${m.show.map(badge).join("")}</div></div>
    <div class="card" style="display:flex;flex-direction:column;gap:10px"><h3 class="eyebrow">${t("about")}</h3><p style="margin:0">${esc(m.about)}</p></div>
    <div class="card" style="display:flex;flex-direction:column;gap:12px"><h3 class="eyebrow">${t("skills")}</h3><div class="tags">${m.skills.map(stag).join("")}</div>
     ${m.roles.length?`<h3 class="eyebrow" style="margin-top:6px">${t("roles")}</h3><div class="tags">${m.roles.map(r=>`<span class="tag" style="--c:var(--pink)">🎖 ${esc(r)}</span>`).join("")}</div>`:""}</div>
-   <div class="card" style="display:flex;flex-direction:column;gap:10px"><h3 class="eyebrow">${t("credited")}</h3><p class="muted" style="margin:0;font:13px var(--mono)">— ${t("coming")}</p></div>
+   <div class="card" style="display:flex;flex-direction:column;gap:10px"><h3 class="eyebrow">${t("credited")}</h3>${(()=>{const mine=CASES.filter(c=>c.folder===m.id||c.folder===m.github);return mine.length?`<div class="grid" style="gap:10px">${mine.map(c=>`<a href="${c.url}" target="_blank" rel="noopener">${esc(c.title)} ↗</a>`).join("")}</div>`:`<p class="muted" style="margin:0;font:13px var(--mono)">—</p>`})()}</div>
   </div>
  </div>`;
 };
@@ -725,6 +741,7 @@ V.cases=()=>{
  const list=(CASES.length?CASES:[EXAMPLE]).filter(c=>!caseWall||c.walls.includes(caseWall));
  return `<div class="page-head">${prompt("ls ./cases")}<h1>${t("cases.title")}</h1><p class="lead">${esc(t("cases.sub"))}</p>
   <div class="cta"><a class="btn primary small" href="https://github.com/deploy-eu/case-library/issues/new/choose" target="_blank" rel="noopener">+ ${t("submit_case")}</a><a class="btn small" href="https://github.com/deploy-eu/case-library" target="_blank" rel="noopener">GitHub ↗</a></div></div>
+ ${writeBox()}
  <div class="tags" style="margin-bottom:20px"><button class="tag ${caseWall?"":"on"}" data-wallf="" style="--c:var(--fg-2)">${t("all")}</button>${WALLS.map(w=>`<button class="tag ${caseWall===w[0]?"on":""}" data-wallf="${w[0]}" style="--c:var(${w[1]})">#${w[0]}</button>`).join("")}</div>
  ${REAL().length?"":`<div class="empty" style="margin-bottom:20px"><span>${esc(t("cases.empty"))}</span><a class="btn small" href="https://github.com/deploy-eu/case-library/blob/main/cases/_TEMPLATE.md" target="_blank" rel="noopener">_TEMPLATE.md ↗</a></div>`}
  <div class="grid g2">${list.map(caseCard).join("")}</div>`;
@@ -775,6 +792,7 @@ V.privacy=()=>`<div class="page-head">${prompt("cat ./privacy.md")}<h1>${t("l.pr
 V.join=()=>{
  const items=[["j1","--pink","https://github.com/deploy-eu/case-library/issues/new?template=guest-recommendation.yml"],["j2","--red","https://github.com/deploy-eu/case-library/issues/new?template=wall-report.yml"],["j3","--cyan","https://github.com/deploy-eu/case-library/issues/new?template=case-submission.yml"],["j4","--green","https://github.com/deploy-eu/case-library/issues/new/choose"],["j5","--magenta","https://github.com/deploy-eu/case-library/blob/main/CONTRIBUTING.md"]];
  return `<div class="page-head">${prompt("./join --as you")}<h1>Join <span class="grad">Deploy@EU</span></h1><p class="lead">${esc(t("join.sub"))}</p></div>
+ ${writeBox()}
  <div class="card strip" style="--c:var(--magenta);max-width:820px;margin-bottom:12px"><div style="display:flex;flex-direction:column;gap:4px;min-width:0"><h3>${t("discord_t")}</h3><span class="muted" style="font-size:14px">${esc(t("discord_d"))}</span></div><span class="btn small" aria-disabled="true" style="opacity:.7;cursor:default">Discord · ${t("coming")}</span></div>
  <div class="steps" style="max-width:820px">${items.map(([k,c,u])=>`<div class="card step" style="--c:var(${c})"><div class="l"><span class="n"></span><h3>${esc(t(k))}</h3></div><a class="btn small" href="${u}" target="_blank" rel="noopener">${t("go")}</a></div>`).join("")}</div>
  <section class="section" style="max-width:820px"><h2>${t("how_title")}</h2><p class="lead">${esc(t("how_text"))}</p>
@@ -847,7 +865,7 @@ document.addEventListener("click",e=>{
  if(x=g("[data-closedm]")){document.getElementById("dm").remove();return}
  if(x=g("[data-wave]")){const m=byId(x.dataset.wave);closePop();toast(t("waved",{name:m.name}));return}
  if(x=g("[data-orig]")){const m=chatLog[+x.dataset.orig];m.showOrig=!m.showOrig;const log=document.getElementById("chatLog");const st=log.scrollTop;log.innerHTML=chatLog.map((y,k)=>chatMsg(y,k)).join("");log.scrollTop=st;return}
- if(x=g("[data-copy]")){const txt=PROMPT[lang];const pre=document.getElementById("promptText");
+ if(x=g("[data-copy]")){const w=x.dataset.copy==="write";const txt=w?WRITE_PROMPT[lang]:PROMPT[lang];const pre=document.getElementById(w?"writeText":"promptText");
   const sel=()=>{const r=document.createRange();r.selectNodeContents(pre);const w=getSelection();w.removeAllRanges();w.addRange(r)};
   try{navigator.clipboard.writeText(txt).then(()=>toast(t("copied")),sel)}catch(err){sel()}return}
  if(x=g("[data-skill]")){memberSkill=x.dataset.skill;render();return}
