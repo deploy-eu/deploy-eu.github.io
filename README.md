@@ -11,4 +11,4 @@ Content: CC BY 4.0. Code: MIT.
 
 ## Credits
 
-Built and maintained by Abuzhabilaohan and the [Deploy@EU contributors](https://github.com/deploy-eu/case-library/blob/main/CONTRIBUTORS.md). Fonts: JetBrains Mono and IBM Plex Sans (SIL Open Font License).
+Built and maintained by Abuzhabilaohan and the [Deploy@EU contributors](https://github.com/deploy-eu/case-library/blob/main/CONTRIBUTORS.md). Fonts: Space Grotesk, IBM Plex Sans and JetBrains Mono (SIL Open Font License).
