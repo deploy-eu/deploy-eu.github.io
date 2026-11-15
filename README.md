@@ -8,3 +8,7 @@ A single static page (`index.html`) with self-hosted fonts (`fonts/`, SIL Open F
 - Text is available in English, Chinese, German, French, Italian and Spanish; translations are in the `d(...)` lines near the top of the script.
 
 Content: CC BY 4.0. Code: MIT.
+
+## Credits
+
+Built and maintained by Abuzhabilaohan and the [Deploy@EU contributors](https://github.com/deploy-eu/case-library/blob/main/CONTRIBUTORS.md). Fonts: JetBrains Mono and IBM Plex Sans (SIL Open Font License).
