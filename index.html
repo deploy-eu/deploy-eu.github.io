@@ -1,0 +1,853 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Deploy@EU</title>
+<meta name="description" content="Deploy@EU: a non-profit community of practitioners deploying AI in European companies. Real cases, the walls we hit, interviews and reading sessions.">
+<meta property="og:title" content="Deploy@EU">
+<meta property="og:description" content="A non-profit community of practitioners deploying AI in European companies.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2308090e'/%3E%3Ctext x='16' y='23' font-family='monospace' font-size='20' font-weight='700' text-anchor='middle' fill='%23ff79c6'%3E@%3C/text%3E%3C/svg%3E">
+<style>
+@font-face{font-family:"JetBrains Mono";font-style:normal;font-weight:400;font-display:swap;src:url(fonts/jetbrains-mono-latin-400-normal.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"JetBrains Mono";font-style:normal;font-weight:400;font-display:swap;src:url(fonts/jetbrains-mono-latin-ext-400-normal.woff2) format("woff2");unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:"JetBrains Mono";font-style:normal;font-weight:500;font-display:swap;src:url(fonts/jetbrains-mono-latin-500-normal.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"JetBrains Mono";font-style:normal;font-weight:500;font-display:swap;src:url(fonts/jetbrains-mono-latin-ext-500-normal.woff2) format("woff2");unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:"JetBrains Mono";font-style:normal;font-weight:700;font-display:swap;src:url(fonts/jetbrains-mono-latin-700-normal.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"JetBrains Mono";font-style:normal;font-weight:700;font-display:swap;src:url(fonts/jetbrains-mono-latin-ext-700-normal.woff2) format("woff2");unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:"IBM Plex Sans";font-style:normal;font-weight:400;font-display:swap;src:url(fonts/ibm-plex-sans-latin-400-normal.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"IBM Plex Sans";font-style:normal;font-weight:400;font-display:swap;src:url(fonts/ibm-plex-sans-latin-ext-400-normal.woff2) format("woff2");unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:"IBM Plex Sans";font-style:normal;font-weight:500;font-display:swap;src:url(fonts/ibm-plex-sans-latin-500-normal.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"IBM Plex Sans";font-style:normal;font-weight:500;font-display:swap;src:url(fonts/ibm-plex-sans-latin-ext-500-normal.woff2) format("woff2");unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:"IBM Plex Sans";font-style:normal;font-weight:600;font-display:swap;src:url(fonts/ibm-plex-sans-latin-600-normal.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"IBM Plex Sans";font-style:normal;font-weight:600;font-display:swap;src:url(fonts/ibm-plex-sans-latin-ext-600-normal.woff2) format("woff2");unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+
+/* Layout: sticky terminal-style top bar, one content column (max 1180px), cards on a near-black canvas with coloured glow.
+   Palette: Tokyo Night (night) accents + Dracula pink, set on a deeper black canvas the way Warp layers its surfaces.
+   Tags: GitHub-label style pills tinted by their own colour. Lobby popout: Discord-style profile card. */
+:root{
+  color-scheme:dark;
+  --bg:#08090e; --panel:#10121a; --panel-2:#161925; --line:#232838; --line-2:#2f3550;
+  --fg:#c0caf5; --fg-2:#a9b1d6; --muted:#6b74a0; --white:#eef1ff;
+  --blue:#7aa2f7; --cyan:#7dcfff; --magenta:#bb9af7; --pink:#ff79c6; --green:#9ece6a;
+  --teal:#1abc9c; --orange:#ff9e64; --yellow:#e0af68; --red:#f7768e;
+  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,"PingFang SC","Microsoft YaHei","Noto Sans SC",monospace;
+  --sans:"IBM Plex Sans","PingFang SC","Microsoft YaHei","Noto Sans SC",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --r:10px; --r-sm:6px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 var(--sans);-webkit-font-smoothing:antialiased;min-height:100vh;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--bg)}
+.glow-bg{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+   radial-gradient(600px 380px at 8% -5%, color-mix(in srgb,var(--magenta) 22%,transparent), transparent 70%),
+   radial-gradient(520px 360px at 92% 8%, color-mix(in srgb,var(--cyan) 16%,transparent), transparent 70%),
+   radial-gradient(700px 420px at 70% 105%, color-mix(in srgb,var(--pink) 12%,transparent), transparent 70%),
+   radial-gradient(500px 300px at 15% 95%, color-mix(in srgb,var(--green) 9%,transparent), transparent 70%);}
+.grid-bg{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.35;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:48px 48px;mask-image:radial-gradient(ellipse at 50% 0%,#000 0%,transparent 70%)}
+a{color:var(--cyan);text-decoration:none}
+a:hover{text-decoration:underline}
+:focus-visible{outline:2px solid var(--cyan);outline-offset:2px;border-radius:4px}
+.wrap{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+
+/* top bar */
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:16px;height:60px}
+.logo{font:700 16px var(--mono);color:var(--white);display:flex;align-items:center;gap:2px;white-space:nowrap}
+.logo .at{color:var(--pink);text-shadow:0 0 12px color-mix(in srgb,var(--pink) 70%,transparent)}
+.logo .eu{color:var(--cyan);text-shadow:0 0 12px color-mix(in srgb,var(--cyan) 60%,transparent)}
+.cursor{display:inline-block;width:8px;height:16px;background:var(--green);margin-left:4px;box-shadow:0 0 10px var(--green);animation:blink 1.1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+nav.main{display:flex;gap:2px;margin-left:8px;flex:1;min-width:0}
+nav.main a{font:500 13px var(--mono);color:var(--fg-2);padding:6px 10px;border-radius:var(--r-sm);white-space:nowrap}
+nav.main a:hover{color:var(--white);background:var(--panel-2);text-decoration:none}
+nav.main a.on{color:var(--white);background:var(--panel-2);box-shadow:inset 0 -2px 0 var(--cyan)}
+.top-right{display:flex;align-items:center;gap:10px;margin-left:auto}
+select.lang{appearance:none;background:var(--panel) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%236b74a0'/%3E%3C/svg%3E") no-repeat right 9px center;color:var(--fg);border:1px solid var(--line-2);border-radius:var(--r-sm);font:500 13px var(--mono);padding:6px 26px 6px 10px;cursor:pointer}
+.btn{display:inline-flex;align-items:center;gap:8px;font:600 13px var(--mono);border-radius:var(--r-sm);padding:9px 16px;border:1px solid var(--line-2);background:var(--panel-2);color:var(--white);cursor:pointer;white-space:nowrap;transition:box-shadow .2s,border-color .2s,transform .1s}
+.btn:hover{text-decoration:none;border-color:var(--cyan);box-shadow:0 0 0 1px var(--cyan),0 0 18px color-mix(in srgb,var(--cyan) 35%,transparent)}
+.btn:active{transform:translateY(1px)}
+.btn.primary{background:var(--white);color:#0b0c12;border-color:var(--white)}
+.btn.primary:hover{box-shadow:0 0 22px color-mix(in srgb,var(--magenta) 55%,transparent),0 0 0 1px var(--magenta)}
+.btn.small{padding:6px 11px;font-size:12px}
+.menu-btn{display:none;background:none;border:1px solid var(--line-2);color:var(--fg);border-radius:var(--r-sm);font:600 13px var(--mono);padding:6px 10px;cursor:pointer}
+@media (max-width:1020px){
+  nav.main{display:none;position:absolute;top:60px;left:0;right:0;flex-direction:column;background:var(--panel);border-bottom:1px solid var(--line);padding:8px max(16px,env(safe-area-inset-right,0px)) 12px max(16px,env(safe-area-inset-left,0px));margin:0}
+  nav.main.open{display:flex}
+  nav.main a{padding:10px 12px}
+  .menu-btn{display:inline-block}
+  .top .join-top{display:none}
+}
+
+.demo-bar{position:relative;z-index:1;border-bottom:1px solid var(--line);background:color-mix(in srgb,var(--yellow) 7%,var(--bg))}
+.demo-bar .wrap{display:flex;gap:10px;align-items:baseline;padding-block:8px;font:12px/1.5 var(--mono);color:var(--yellow)}
+.demo-bar b{border:1px solid color-mix(in srgb,var(--yellow) 45%,transparent);border-radius:4px;padding:0 6px;flex:none}
+
+main{position:relative;z-index:1;min-height:70vh}
+main .wrap{padding-block:40px 72px}
+.eyebrow{font:500 12px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.eyebrow .dot{color:var(--green)}
+h1,h2,h3{color:var(--white);text-wrap:balance;margin:0}
+h1{font:700 clamp(30px,5vw,54px)/1.08 var(--mono);letter-spacing:-.02em}
+h2{font:700 clamp(22px,2.6vw,28px)/1.2 var(--mono);letter-spacing:-.01em}
+h3{font:600 16px/1.35 var(--mono)}
+.lead{font-size:17px;color:var(--fg-2);max-width:62ch;margin:0}
+.page-head{display:flex;flex-direction:column;gap:12px;margin-bottom:32px}
+.page-head .prompt{font:500 13px var(--mono);color:var(--muted)}
+.page-head .prompt .p{color:var(--green)}
+.page-head .prompt .c{color:var(--fg-2)}
+.muted{color:var(--muted)}
+.section{margin-top:64px;display:flex;flex-direction:column;gap:20px}
+.section-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.grad{background:linear-gradient(90deg,var(--cyan),var(--magenta) 45%,var(--pink) 70%,var(--orange));-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 18px color-mix(in srgb,var(--magenta) 35%,transparent))}
+
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:20px;min-width:0}
+.card.hover{transition:border-color .2s,box-shadow .2s,transform .2s;cursor:pointer}
+.card.hover:hover{border-color:var(--c,var(--cyan));box-shadow:0 0 0 1px var(--c,var(--cyan)),0 0 28px color-mix(in srgb,var(--c,var(--cyan)) 22%,transparent);transform:translateY(-2px)}
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(auto-fill,minmax(min(100%,420px),1fr))}
+.g3{grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr))}
+.g4{grid-template-columns:repeat(auto-fill,minmax(min(100%,240px),1fr))}
+
+/* tags */
+.tag{--c:var(--blue);display:inline-flex;align-items:center;gap:6px;font:500 12px/1 var(--mono);color:var(--c);background:color-mix(in srgb,var(--c) 12%,transparent);border:1px solid color-mix(in srgb,var(--c) 38%,transparent);border-radius:999px;padding:5px 10px;white-space:nowrap;transition:box-shadow .2s}
+.tag:hover{box-shadow:0 0 14px color-mix(in srgb,var(--c) 45%,transparent)}
+button.tag{cursor:pointer}
+button.tag.on{background:color-mix(in srgb,var(--c) 26%,transparent);border-color:var(--c);box-shadow:0 0 14px color-mix(in srgb,var(--c) 40%,transparent)}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.badge{--c:var(--yellow);display:inline-flex;align-items:center;gap:6px;font:500 12px/1 var(--mono);color:var(--white);background:linear-gradient(180deg,color-mix(in srgb,var(--c) 18%,var(--panel-2)),var(--panel-2));border:1px solid color-mix(in srgb,var(--c) 55%,transparent);border-radius:var(--r-sm);padding:6px 9px;box-shadow:0 0 12px color-mix(in srgb,var(--c) 22%,transparent);white-space:nowrap}
+.badge .e{font-size:14px;line-height:1}
+
+/* hero */
+.hero{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:40px;align-items:center}
+@media (max-width:900px){.hero{grid-template-columns:1fr}}
+.hero-copy{display:flex;flex-direction:column;gap:20px}
+.cta{display:flex;gap:10px;flex-wrap:wrap}
+.term{background:#05060a;border:1px solid var(--line-2);border-radius:12px;overflow:hidden;box-shadow:0 0 0 1px #000,0 30px 80px -20px color-mix(in srgb,var(--magenta) 30%,transparent),0 0 60px -10px color-mix(in srgb,var(--cyan) 18%,transparent);min-width:0}
+.term-bar{height:32px;background:#14161f;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:7px;padding:0 12px;font:12px var(--mono);color:var(--muted)}
+.term-bar i{width:11px;height:11px;border-radius:50%;display:block}
+.term-bar span{margin-left:auto}
+.term pre{margin:0;padding:18px 18px 22px;font:13px/1.75 var(--mono);color:var(--fg);white-space:pre-wrap;overflow-x:auto}
+.t-p{color:var(--green)} .t-c{color:var(--white)} .t-d{color:var(--blue)} .t-m{color:var(--magenta)} .t-o{color:var(--orange)} .t-y{color:var(--yellow)} .t-k{color:var(--muted)} .t-pk{color:var(--pink)} .t-cy{color:var(--cyan)} .t-r{color:var(--red)}
+
+.feat{display:flex;flex-direction:column;gap:10px}
+.feat .ic{font:700 13px var(--mono);color:var(--c);text-shadow:0 0 12px color-mix(in srgb,var(--c) 60%,transparent)}
+.feat p{margin:0;color:var(--fg-2);font-size:14px}
+
+.strip{display:flex;align-items:center;gap:18px;flex-wrap:wrap;justify-content:space-between}
+.stack{display:flex}
+.stack .av{margin-left:-10px;border:2px solid var(--panel)}
+.stack .av:first-child{margin-left:0}
+.live{display:inline-flex;align-items:center;gap:8px;font:600 13px var(--mono);color:var(--green)}
+.live::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+
+/* avatar */
+.av{--c:var(--cyan);width:40px;height:40px;border-radius:50%;flex:none;display:grid;place-items:center;font:700 14px var(--mono);color:#0a0b10;background:radial-gradient(circle at 30% 25%,color-mix(in srgb,var(--c) 55%,#fff),var(--c));position:relative}
+.av.lg{width:84px;height:84px;font-size:26px}
+.av.md{width:56px;height:56px;font-size:18px}
+.av .st{position:absolute;right:-1px;bottom:-1px;width:12px;height:12px;border-radius:50%;background:var(--green);border:2px solid var(--panel)}
+.av.lg .st{width:18px;height:18px;border-width:3px;right:2px;bottom:2px}
+.av .st.off{background:var(--muted)}
+
+/* lobby */
+.lobby{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:16px;align-items:start}
+@media (max-width:900px){.lobby{grid-template-columns:1fr}}
+.stage{position:relative;min-height:440px;background:
+   radial-gradient(circle at 50% 40%,color-mix(in srgb,var(--magenta) 10%,transparent),transparent 60%),
+   linear-gradient(var(--line) 1px,transparent 1px) 0 0/32px 32px,
+   linear-gradient(90deg,var(--line) 1px,transparent 1px) 0 0/32px 32px,var(--panel);
+   border:1px solid var(--line);border-radius:var(--r);padding:20px;display:flex;flex-direction:column;gap:18px}
+.stage-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.people{display:flex;flex-wrap:wrap;gap:22px 18px;align-content:flex-start;justify-content:center;padding-block:18px}
+.person{display:flex;flex-direction:column;align-items:center;gap:8px;width:108px;background:none;border:0;color:inherit;cursor:pointer;padding:8px 4px;border-radius:var(--r)}
+.person .av{width:64px;height:64px;font-size:20px;box-shadow:0 0 0 2px var(--bg),0 0 0 4px color-mix(in srgb,var(--c) 70%,transparent),0 0 26px color-mix(in srgb,var(--c) 55%,transparent);animation:breathe 4s ease-in-out infinite}
+.person:nth-child(2n) .av{animation-delay:-1.3s}.person:nth-child(3n) .av{animation-delay:-2.6s}
+@keyframes breathe{50%{box-shadow:0 0 0 2px var(--bg),0 0 0 4px color-mix(in srgb,var(--c) 90%,transparent),0 0 40px color-mix(in srgb,var(--c) 75%,transparent)}}
+.person:hover .av{transform:scale(1.06)}
+.person .nm{font:600 13px var(--mono);color:var(--white);text-align:center;line-height:1.25}
+.person .ct{font:11px var(--mono);color:var(--muted)}
+.person .mini{display:flex;gap:2px;font-size:12px}
+.person.me .av{--c:var(--white)}
+
+.chat{display:flex;flex-direction:column;background:var(--panel);border:1px solid var(--line);border-radius:var(--r);height:520px;min-width:0}
+.chat-head{padding:12px 14px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:8px}
+.chat-log{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:12px}
+.msg{display:flex;gap:10px;align-items:flex-start;min-width:0}
+.msg .av{width:30px;height:30px;font-size:11px}
+.msg .body{min-width:0}
+.msg .who{font:600 12px var(--mono)}
+.msg .who time{color:var(--muted);font-weight:400;margin-left:6px}
+.msg .txt{font-size:14px;color:var(--fg);overflow-wrap:anywhere}
+.msg.sys .txt{font:12px var(--mono);color:var(--muted)}
+.trl{align-self:flex-start;margin-top:3px;background:none;border:0;padding:0;font:11px var(--mono);color:var(--muted);cursor:pointer;text-align:left}
+.trl:hover{color:var(--cyan)}
+.chat-form{display:flex;gap:8px;padding:10px;border-top:1px solid var(--line)}
+.chat-note{font:11px var(--mono);color:var(--muted);padding:0 12px 10px}
+input.in,textarea.in{width:100%;background:var(--bg);border:1px solid var(--line-2);border-radius:var(--r-sm);color:var(--white);font:14px var(--sans);padding:9px 11px}
+input.in:focus,textarea.in:focus{outline:none;border-color:var(--cyan);box-shadow:0 0 0 1px var(--cyan),0 0 16px color-mix(in srgb,var(--cyan) 30%,transparent)}
+textarea.in{resize:vertical;min-height:90px}
+label.f{display:flex;flex-direction:column;gap:6px;font:500 12px var(--mono);color:var(--fg-2)}
+
+/* room (Gather / WorkAdventure-style top-down hall) */
+.lobby.room-layout{grid-template-columns:minmax(0,1fr) minmax(0,320px)}
+@media (max-width:980px){.lobby.room-layout{grid-template-columns:1fr}}
+.room{position:relative;border:1px solid var(--line-2);border-radius:var(--r);overflow:hidden;background:#07080d;box-shadow:0 0 0 1px #000,0 0 50px -10px color-mix(in srgb,var(--magenta) 30%,transparent);min-width:0}
+.room canvas{display:block;width:100%;aspect-ratio:5/3;max-width:100%;cursor:crosshair;touch-action:none}
+.room .hud{position:absolute;left:10px;top:10px;display:flex;gap:8px;flex-wrap:wrap;pointer-events:none}
+.room .hud span{font:600 11px var(--mono);background:rgba(8,9,14,.78);border:1px solid var(--line-2);border-radius:999px;padding:4px 10px;color:var(--fg-2)}
+.room-hint{font:12px var(--mono);color:var(--muted);margin-top:8px}
+.room-hint kbd{font:600 11px var(--mono);border:1px solid var(--line-2);border-bottom-width:2px;border-radius:4px;padding:0 5px;color:var(--fg)}
+.lobby .chat{height:420px}
+@media (min-width:981px){.lobby .chat{height:540px}}
+
+/* popout */
+.overlay{position:fixed;inset:0;z-index:80;background:rgba(3,4,8,.72);backdrop-filter:blur(3px);display:grid;place-items:center;padding:max(16px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(16px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.pop{width:min(380px,100%);max-height:100%;overflow-y:auto;background:var(--panel);border:1px solid var(--line-2);border-radius:14px;box-shadow:0 0 0 1px #000,0 0 60px color-mix(in srgb,var(--c) 30%,transparent);position:relative}
+.pop .banner{height:96px;background:linear-gradient(120deg,var(--c),color-mix(in srgb,var(--c) 30%,var(--magenta)) 60%,var(--panel-2));position:relative}
+.pop .banner::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent 0 3px,rgba(0,0,0,.18) 3px 4px)}
+.pop .x{position:absolute;top:10px;right:10px;z-index:2;background:rgba(0,0,0,.55);border:0;color:#fff;width:30px;height:30px;border-radius:50%;cursor:pointer;font:16px var(--mono)}
+.pop .av.lg{position:absolute;left:18px;top:52px;box-shadow:0 0 0 6px var(--panel)}
+.pop .in-pad{padding:52px 18px 18px;display:flex;flex-direction:column;gap:14px}
+.pop .name{font:700 20px var(--mono);color:var(--white)}
+.pop .hl{color:var(--fg-2);font-size:14px}
+.pop .sect{background:var(--bg);border:1px solid var(--line);border-radius:var(--r-sm);padding:12px;display:flex;flex-direction:column;gap:8px}
+.pop .sect h4{margin:0;font:600 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.pop .sect p{margin:0;font-size:14px}
+.pop .acts{display:flex;gap:8px;flex-wrap:wrap}
+
+.dm{position:fixed;z-index:70;right:max(16px,env(safe-area-inset-right,0px));bottom:max(16px,env(safe-area-inset-bottom,0px));width:min(340px,calc(100vw - 32px));height:420px;max-height:70vh;display:flex;flex-direction:column;background:var(--panel);border:1px solid var(--line-2);border-radius:12px;box-shadow:0 0 50px color-mix(in srgb,var(--c) 28%,transparent),0 20px 50px rgba(0,0,0,.6)}
+.toast{position:fixed;z-index:90;left:50%;transform:translateX(-50%);bottom:max(24px,env(safe-area-inset-bottom,0px));background:var(--white);color:#0a0b10;font:600 13px var(--mono);padding:10px 16px;border-radius:999px;box-shadow:0 0 24px color-mix(in srgb,var(--magenta) 50%,transparent)}
+
+/* members */
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:18px}
+.toolbar .in{max-width:320px}
+.mcard{display:flex;flex-direction:column;gap:14px}
+.mcard .top-row{display:flex;gap:12px;align-items:center;min-width:0}
+.mcard .who{min-width:0}
+.mcard .who b{display:block;font:700 15px var(--mono);color:var(--white)}
+.mcard .who span{font-size:13px;color:var(--muted)}
+.mcard .hl{font-size:14px;color:var(--fg-2);margin:0}
+.badges{display:flex;flex-wrap:wrap;gap:6px}
+
+.profile{display:grid;grid-template-columns:minmax(0,320px) minmax(0,1fr);gap:20px;align-items:start}
+@media (max-width:860px){.profile{grid-template-columns:1fr}}
+.pcard{overflow:hidden;padding:0}
+.pcard .banner{height:110px;background:linear-gradient(120deg,var(--c),color-mix(in srgb,var(--c) 30%,var(--magenta)) 60%,var(--panel-2))}
+.pcard .inner{padding:0 20px 20px;margin-top:-42px;display:flex;flex-direction:column;gap:12px}
+.pcard .av.lg{box-shadow:0 0 0 6px var(--panel)}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:14px;margin:0}
+.kv dt{font:500 12px var(--mono);color:var(--muted);padding-top:2px}
+.kv dd{margin:0;min-width:0;overflow-wrap:anywhere}
+
+/* cases */
+.case{display:flex;flex-direction:column;gap:12px}
+.case .meta{display:flex;flex-wrap:wrap;gap:6px 14px;font:12px var(--mono);color:var(--muted)}
+.case p{margin:0;color:var(--fg-2);font-size:14px}
+.flag{font:600 11px var(--mono);color:var(--yellow);border:1px dashed color-mix(in srgb,var(--yellow) 60%,transparent);border-radius:4px;padding:2px 6px;align-self:flex-start}
+.empty{border:1px dashed var(--line-2);border-radius:var(--r);padding:28px;text-align:center;color:var(--fg-2);display:flex;flex-direction:column;align-items:center;gap:14px}
+
+.wall{display:flex;flex-direction:column;gap:10px}
+.wall .code{font:700 15px var(--mono);color:var(--c);text-shadow:0 0 14px color-mix(in srgb,var(--c) 55%,transparent)}
+.wall p{margin:0;font-size:14px;color:var(--fg-2)}
+.wall .bar{height:4px;border-radius:2px;background:var(--line)}
+.wall .bar i{display:block;height:100%;width:0;background:var(--c);box-shadow:0 0 10px var(--c);border-radius:2px}
+.wall .cnt{font:12px var(--mono);color:var(--muted)}
+
+.tool{display:flex;flex-direction:column;gap:10px}
+.tool code{font:700 14px var(--mono);color:var(--c)}
+.tool p{margin:0;font-size:14px;color:var(--fg-2)}
+.status{font:600 11px var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--c);display:inline-flex;gap:6px;align-items:center}
+.status::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--c);box-shadow:0 0 8px var(--c)}
+
+.event{display:grid;grid-template-columns:120px minmax(0,1fr);gap:18px;align-items:start}
+@media (max-width:560px){.event{grid-template-columns:1fr}}
+.event .when{font:600 12px var(--mono);color:var(--c)}
+.event p{margin:4px 0 0;color:var(--fg-2);font-size:14px}
+
+.me{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,340px);gap:20px;align-items:start}
+@media (max-width:900px){.me{grid-template-columns:1fr}}
+.form{display:flex;flex-direction:column;gap:14px}
+.form .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:520px){.form .row{grid-template-columns:1fr}}
+.pick{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,210px),1fr));gap:8px}
+.pick button{--c:var(--yellow);display:flex;gap:10px;align-items:center;text-align:left;background:var(--bg);border:1px solid var(--line-2);border-radius:var(--r-sm);padding:10px;color:var(--fg);cursor:pointer;font:13px var(--sans);min-width:0}
+.pick button .e{font-size:18px}
+.pick button b{display:block;font:600 12px var(--mono);color:var(--white)}
+.pick button small{display:block;color:var(--muted);font-size:12px;line-height:1.35}
+.pick button.on{border-color:var(--c);background:color-mix(in srgb,var(--c) 10%,var(--bg));box-shadow:0 0 0 1px var(--c),0 0 16px color-mix(in srgb,var(--c) 30%,transparent)}
+.pick button.locked{opacity:.38;cursor:not-allowed}
+.note{font:12px/1.5 var(--mono);color:var(--yellow);border-left:2px solid var(--yellow);padding:4px 10px;background:color-mix(in srgb,var(--yellow) 6%,transparent)}
+
+.steps{display:flex;flex-direction:column;gap:10px;counter-reset:s}
+.step{display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.step .l{display:flex;gap:14px;align-items:center;min-width:0}
+.step .n{counter-increment:s;font:700 13px var(--mono);color:var(--c);border:1px solid color-mix(in srgb,var(--c) 50%,transparent);border-radius:var(--r-sm);width:32px;height:32px;display:grid;place-items:center;flex:none;box-shadow:0 0 12px color-mix(in srgb,var(--c) 25%,transparent)}
+.step .n::before{content:counter(s)}
+
+footer{position:relative;z-index:1;border-top:1px solid var(--line);background:var(--bg)}
+footer .wrap{padding-block:28px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font:12px var(--mono);color:var(--muted)}
+footer nav{display:flex;gap:16px;flex-wrap:wrap}
+footer a{color:var(--fg-2)}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
+
+</head>
+<body>
+<div class="glow-bg"></div><div class="grid-bg"></div>
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#home" aria-label="Deploy@EU home">deploy<span class="at">@</span><span class="eu">eu</span><span class="cursor" aria-hidden="true"></span></a>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mainNav">☰</button>
+    <nav class="main" id="mainNav"></nav>
+    <div class="top-right">
+      <select class="lang" id="lang" aria-label="Language">
+        <option value="en">EN</option><option value="zh">中文</option><option value="de">DE</option>
+        <option value="fr">FR</option><option value="it">IT</option><option value="es">ES</option>
+      </select>
+      <a class="btn primary small join-top" href="#join" data-t="nav.join"></a>
+    </div>
+  </div>
+</header>
+<main id="app"></main>
+<footer><div class="wrap"><span>Deploy@EU · <span data-t="f.np"></span> · CC BY 4.0 · MIT</span>
+<nav>
+  <a href="https://github.com/deploy-eu/case-library/blob/main/GOVERNANCE.md" target="_blank" rel="noopener" data-t="l.gov"></a>
+  <a href="https://github.com/deploy-eu/case-library/blob/main/CODE_OF_CONDUCT.md" target="_blank" rel="noopener" data-t="l.coc"></a>
+  <a href="https://github.com/deploy-eu/case-library/blob/main/RECOGNITION.md" target="_blank" rel="noopener" data-t="l.rec"></a>
+  <a href="https://github.com/deploy-eu" target="_blank" rel="noopener">GitHub</a>
+  <a href="#privacy" data-t="l.priv"></a>
+</nav></div></footer>
+
+<script>
+/* ---------- i18n ---------- */
+const L=["en","zh","de","fr","it","es"];
+const T={};
+function d(key,...v){T[key]=Object.fromEntries(L.map((l,i)=>[l,v[i]]));}
+d("nav.home","Home","首页","Start","Accueil","Home","Inicio");
+d("nav.lobby","Lobby","大厅","Lobby","Hall","Lobby","Sala");
+d("nav.members","Members","成员","Mitglieder","Membres","Membri","Miembros");
+d("nav.cases","Cases","案例库","Fälle","Cas","Casi","Casos");
+d("nav.walls","Walls","撞墙榜","Mauern","Murs","Muri","Muros");
+d("nav.articles","Articles","文章","Artikel","Articles","Articoli","Artículos");
+d("nav.tools","Tools","工具","Tools","Outils","Strumenti","Herramientas");
+d("nav.events","Events","活动","Termine","Événements","Eventi","Eventos");
+d("nav.me","My profile","我的","Mein Profil","Mon profil","Il mio profilo","Mi perfil");
+d("nav.join","Join","加入","Mitmachen","Rejoindre","Unisciti","Únete");
+d("demo","Preview with fictional demo members. Sign-in, the live lobby and chat switch on once the backend is connected.","预览版：成员都是虚构的示例。接上后台后，登录、实时大厅和聊天才会开通。","Vorschau mit fiktiven Demo-Mitgliedern. Anmeldung, Live-Lobby und Chat starten, sobald das Backend angebunden ist.","Aperçu avec des membres fictifs. La connexion, le hall en direct et le chat seront activés une fois le backend branché.","Anteprima con membri fittizi. Accesso, lobby dal vivo e chat si attivano quando il backend sarà collegato.","Vista previa con miembros ficticios. El inicio de sesión, la sala en directo y el chat se activan cuando se conecte el backend.");
+d("online","Online","在线","Online","En ligne","Online","En línea");
+d("offline","Offline","离线","Offline","Hors ligne","Offline","Desconectado");
+d("view_profile","View profile","查看档案","Profil ansehen","Voir le profil","Vedi profilo","Ver perfil");
+d("message","Message","私聊","Nachricht","Message","Messaggio","Mensaje");
+d("wave","Wave 👋","打招呼 👋","Winken 👋","Saluer 👋","Saluta 👋","Saludar 👋");
+d("waved","You waved at {name}.","你向 {name} 打了招呼。","Du hast {name} zugewinkt.","Vous avez salué {name}.","Hai salutato {name}.","Has saludado a {name}.");
+d("close","Close","关闭","Schließen","Fermer","Chiudi","Cerrar");
+d("send","Send","发送","Senden","Envoyer","Invia","Enviar");
+d("badges","Badges","徽章","Abzeichen","Badges","Badge","Insignias");
+d("skills","Skills","擅长","Skills","Compétences","Competenze","Habilidades");
+d("roles","Roles","职责","Rollen","Rôles","Ruoli","Roles");
+d("about","About","简介","Über mich","À propos","Chi sono","Sobre mí");
+d("all","All","全部","Alle","Tous","Tutti","Todos");
+d("planned","Planned","筹备中","Geplant","Prévu","Previsto","Previsto");
+d("coming","coming soon","即将上线","bald","bientôt","in arrivo","próximamente");
+d("submit_case","Submit a case","投稿案例","Fall einreichen","Proposer un cas","Proponi un caso","Enviar un caso");
+d("report_wall","Report a wall","报告一堵墙","Mauer melden","Signaler un mur","Segnala un muro","Reportar un muro");
+d("see_all","See all →","查看全部 →","Alle ansehen →","Tout voir →","Vedi tutti →","Ver todo →");
+d("you","You","我","Du","Vous","Tu","Tú");
+d("home.eyebrow","Non-profit community · Europe","非营利社区 · 欧洲","Gemeinnützige Community · Europa","Communauté à but non lucratif · Europe","Community non profit · Europa","Comunidad sin ánimo de lucro · Europa");
+d("home.t1","We put AI to work in European companies.","我们在欧洲企业里把 AI 真正用起来，","Wir bringen KI in europäischen Unternehmen zum Laufen.","Nous déployons l'IA dans des entreprises européennes.","Mettiamo l'IA al lavoro nelle aziende europee.","Ponemos la IA a trabajar en empresas europeas.");
+d("home.t2","Then we write down what really happened.","再把真实经过写下来。","Und schreiben auf, was wirklich passiert ist.","Puis nous racontons ce qui s'est vraiment passé.","Poi scriviamo cosa è successo davvero.","Y contamos lo que pasó de verdad.");
+d("home.sub","Forward-deployed engineers, in-house builders, consultants and the business owners who work with them.","成员包括驻场工程师（FDE）、企业内部的搭建者、顾问，以及和他们合作的企业老板。","Forward Deployed Engineers, interne Entwickler, Berater und die Unternehmer, die mit ihnen arbeiten.","Des forward-deployed engineers, des équipes internes, des consultants et les dirigeants qui travaillent avec eux.","Forward-deployed engineer, sviluppatori interni, consulenti e gli imprenditori che lavorano con loro.","Forward-deployed engineers, equipos internos, consultores y los empresarios que trabajan con ellos.");
+d("cta_join","Join the community","加入社区","Community beitreten","Rejoindre la communauté","Unisciti alla community","Únete a la comunidad");
+d("cta_cases","Browse cases","看案例","Fälle ansehen","Voir les cas","Sfoglia i casi","Ver casos");
+d("term_who","practitioners deploying AI across Europe","在欧洲落地 AI 的实践者","Praktiker, die KI in Europa einsetzen","des praticiens qui déploient l'IA en Europe","professionisti che portano l'IA in Europa","profesionales que despliegan IA en Europa");
+d("term_join","welcome aboard. first contribution → #join","欢迎上船。第一次贡献 → #join","willkommen an Bord. erster Beitrag → #join","bienvenue à bord. première contribution → #join","benvenuto a bordo. primo contributo → #join","bienvenido a bordo. primera contribución → #join");
+d("what_title","What we do","我们做什么","Was wir machen","Ce que nous faisons","Cosa facciamo","Qué hacemos");
+d("interviews","Interviews","访谈","Interviews","Entretiens","Interviste","Entrevistas");
+d("reading","Reading sessions","共读会","Lesekreis","Cercle de lecture","Gruppo di lettura","Club de lectura");
+d("w_cases","Real deployment stories: the problem, what was built, measured results, and where it got stuck.","真实的落地案例：问题是什么、搭了什么、实测结果、卡在了哪里。","Echte Einsatzberichte: das Problem, die Lösung, gemessene Ergebnisse und wo es hakte.","De vrais retours de déploiement : le problème, la solution, les résultats mesurés et les blocages.","Storie reali di implementazione: il problema, cosa è stato costruito, risultati misurati e dove si è bloccato.","Historias reales de despliegue: el problema, lo construido, resultados medidos y dónde se atascó.");
+d("w_walls","The obstacles that keep coming back: no API, GDPR, works councils, messy data.","反复出现的障碍：没有接口、GDPR、职工委员会、数据太乱。","Die Hürden, die immer wiederkommen: keine API, DSGVO, Betriebsrat, unsaubere Daten.","Les obstacles récurrents : pas d'API, RGPD, comité d'entreprise, données en désordre.","Gli ostacoli ricorrenti: niente API, GDPR, consiglio di fabbrica, dati disordinati.","Los obstáculos que se repiten: sin API, RGPD, comité de empresa, datos desordenados.");
+d("w_interviews","Recorded conversations with practitioners and the owners who hired them.","访谈落地实践者和请他们的企业老板，录下来分享。","Aufgezeichnete Gespräche mit Praktikern und den Unternehmern, die sie beauftragt haben.","Entretiens enregistrés avec des praticiens et les dirigeants qui les ont engagés.","Conversazioni registrate con professionisti e con gli imprenditori che li hanno ingaggiati.","Conversaciones grabadas con profesionales y con los empresarios que los contrataron.");
+d("w_reading","A reading session every two weeks: one article, one hour, honest discussion.","每两周一次共读会：一篇文章，一小时，实话实说。","Alle zwei Wochen ein Lesekreis: ein Artikel, eine Stunde, offene Diskussion.","Un cercle de lecture toutes les deux semaines : un article, une heure, une discussion franche.","Un gruppo di lettura ogni due settimane: un articolo, un'ora, discussione franca.","Un club de lectura cada dos semanas: un artículo, una hora, debate sincero.");
+d("online_now","{n} online now","现在 {n} 人在线","{n} gerade online","{n} en ligne","{n} online ora","{n} en línea ahora");
+d("enter_lobby","Enter the lobby","进入大厅","Lobby betreten","Entrer dans le hall","Entra nella lobby","Entrar en la sala");
+d("latest_case","Latest case","最新案例","Neuester Fall","Dernier cas","Ultimo caso","Último caso");
+d("next_event","Next up","接下来","Als Nächstes","Prochainement","Prossimamente","Próximamente");
+d("rules_line","A community space, not a marketplace: no ads, no prices, no endorsements.","这是社区，不是集市：不打广告、不报价、不为任何公司背书。","Ein Ort für die Community, kein Marktplatz: keine Werbung, keine Preise, keine Empfehlungen.","Un espace communautaire, pas une place de marché : ni pub, ni prix, ni recommandation.","Uno spazio di comunità, non un mercato: niente pubblicità, prezzi o sponsorizzazioni.","Un espacio de comunidad, no un mercado: sin anuncios, sin precios, sin recomendaciones.");
+d("lobby.sub","Everyone who is online appears here. Click someone to see who they are.","在线的人都会出现在这里。点一下，看看对方是谁。","Wer online ist, erscheint hier. Klick auf jemanden, um das Profil zu sehen.","Toutes les personnes en ligne apparaissent ici. Cliquez sur quelqu'un pour voir son profil.","Chi è online appare qui. Clicca su qualcuno per vedere il suo profilo.","Quien está en línea aparece aquí. Haz clic en alguien para ver su perfil.");
+d("room_hint","Click the floor to walk, or use the arrow keys. Click someone to see their profile.","点地面就能走过去，也可以用方向键。点别人的小人看他的档案。","Klick auf den Boden, um hinzulaufen, oder nutze die Pfeiltasten. Klick auf jemanden, um das Profil zu sehen.","Cliquez sur le sol pour marcher, ou utilisez les flèches. Cliquez sur quelqu'un pour voir son profil.","Clicca sul pavimento per camminare, o usa le frecce. Clicca su qualcuno per vedere il suo profilo.","Haz clic en el suelo para caminar, o usa las flechas. Haz clic en alguien para ver su perfil.");
+d("nearby","Nearby: {names}","身边：{names}","In der Nähe: {names}","À proximité : {names}","Vicino: {names}","Cerca: {names}");
+d("tr_from","Translated from {lang}","译自{lang}","Übersetzt aus: {lang}","Traduit depuis : {lang}","Tradotto da: {lang}","Traducido de: {lang}");
+d("show_orig","Show original","看原文","Original anzeigen","Voir l'original","Mostra originale","Ver original");
+d("show_tr","Show translation","看译文","Übersetzung anzeigen","Voir la traduction","Mostra traduzione","Ver traducción");
+d("orig_in","Original · {lang}","原文 · {lang}","Original · {lang}","Original · {lang}","Originale · {lang}","Original · {lang}");
+d("autotr","🌐 Auto-translate on","🌐 自动翻译已开","🌐 Auto-Übersetzung an","🌐 Traduction auto activée","🌐 Traduzione automatica attiva","🌐 Traducción automática activada");
+d("discord_t","Our home base: Discord","我们的根据地：Discord","Unser Treffpunkt: Discord","Notre point de rencontre : Discord","Il nostro punto d'incontro: Discord","Nuestro punto de encuentro: Discord");
+d("discord_d","Chat, reading sessions, events and newcomers. The server is being set up.","聊天、共读会、活动、新人报到都在这里。服务器正在搭建中。","Chat, Lesekreis, Termine und Neuankömmlinge. Der Server wird gerade eingerichtet.","Discussions, cercles de lecture, événements et nouveaux venus. Le serveur est en cours de création.","Chat, gruppi di lettura, eventi e nuovi arrivati. Il server è in preparazione.","Chat, clubes de lectura, eventos y recién llegados. El servidor se está preparando.");
+d("members.empty","Profiles are added with each member's consent. Until then, contributors are listed on GitHub.","成员档案经本人同意后才会放上来。在那之前，贡献者名单在 GitHub 上。","Profile werden nur mit Zustimmung der Mitglieder ergänzt. Bis dahin stehen die Mitwirkenden auf GitHub.","Les profils sont ajoutés avec l'accord de chaque membre. En attendant, les contributeurs sont listés sur GitHub.","I profili vengono aggiunti con il consenso di ogni membro. Nel frattempo i contributori sono elencati su GitHub.","Los perfiles se añaden con el consentimiento de cada miembro. Mientras tanto, los colaboradores aparecen en GitHub.");
+d("p1","This website sets no cookies and uses no tracking or analytics. Fonts are served from this site, not from third parties.","本网站不设 cookie，不做任何跟踪或统计。字体从本站加载，不经过第三方。","Diese Website setzt keine Cookies und nutzt kein Tracking und keine Analyse. Schriften werden von dieser Website geladen, nicht von Dritten.","Ce site ne dépose aucun cookie et n'utilise ni suivi ni statistiques. Les polices sont servies par ce site, pas par des tiers.","Questo sito non usa cookie né strumenti di tracciamento o analisi. I font sono serviti da questo sito, non da terzi.","Este sitio no usa cookies ni herramientas de seguimiento o analítica. Las fuentes se sirven desde este sitio, no desde terceros.");
+d("p2","The site is hosted on GitHub Pages. GitHub may log technical data such as your IP address when you visit; see GitHub's privacy statement.","网站托管在 GitHub Pages 上。你访问时，GitHub 可能会记录 IP 地址等技术数据，详见 GitHub 的隐私声明。","Die Website wird über GitHub Pages bereitgestellt. GitHub kann beim Besuch technische Daten wie deine IP-Adresse protokollieren; siehe die Datenschutzerklärung von GitHub.","Le site est hébergé sur GitHub Pages. GitHub peut enregistrer des données techniques comme votre adresse IP lors de votre visite ; voir la déclaration de confidentialité de GitHub.","Il sito è ospitato su GitHub Pages. GitHub può registrare dati tecnici come il tuo indirizzo IP durante la visita; vedi l'informativa privacy di GitHub.","El sitio está alojado en GitHub Pages. GitHub puede registrar datos técnicos como tu dirección IP al visitarlo; consulta la declaración de privacidad de GitHub.");
+d("p3","Your language choice is stored only in your own browser. Member profiles appear only with the member's consent and can be removed on request.","你选的语言只存在你自己的浏览器里。成员档案只在本人同意后才公开，本人要求就会删除。","Deine Sprachwahl wird nur in deinem eigenen Browser gespeichert. Mitgliederprofile erscheinen nur mit Zustimmung und werden auf Wunsch entfernt.","Votre choix de langue est enregistré uniquement dans votre navigateur. Les profils n'apparaissent qu'avec l'accord du membre et sont retirés sur demande.","La lingua scelta viene salvata solo nel tuo browser. I profili compaiono solo con il consenso del membro e vengono rimossi su richiesta.","Tu idioma elegido se guarda solo en tu navegador. Los perfiles solo aparecen con el consentimiento del miembro y se eliminan si lo pide.");
+d("ask_ai_t","Ask your AI about us","让你的 AI 介绍我们","Frag deine KI nach uns","Demandez à votre IA","Chiedi alla tua IA","Pregunta a tu IA");
+d("ask_ai_d","Copy this prompt into ChatGPT, Claude or any assistant. Replace the last line with a sentence about you.","把这段话复制给 ChatGPT、Claude 或任何 AI 助手，最后一行换成你自己的一句介绍。","Kopiere diesen Prompt in ChatGPT, Claude oder einen anderen Assistenten. Ersetze die letzte Zeile durch einen Satz über dich.","Copiez ce prompt dans ChatGPT, Claude ou un autre assistant. Remplacez la dernière ligne par une phrase sur vous.","Copia questo prompt in ChatGPT, Claude o un altro assistente. Sostituisci l'ultima riga con una frase su di te.","Copia este prompt en ChatGPT, Claude u otro asistente. Cambia la última línea por una frase sobre ti.");
+d("copy","Copy prompt","复制","Kopieren","Copier","Copia","Copiar");
+d("copied","Copied. Paste it into your AI.","已复制，粘贴给你的 AI 就行。","Kopiert. Füge ihn in deine KI ein.","Copié. Collez-le dans votre IA.","Copiato. Incollalo nella tua IA.","Copiado. Pégalo en tu IA.");
+d("nav.about","About","关于我们","Über uns","À propos","Chi siamo","Quiénes somos");
+d("ab.title","Why Deploy@EU exists","我们为什么做 Deploy@EU","Warum es Deploy@EU gibt","Pourquoi Deploy@EU existe","Perché esiste Deploy@EU","Por qué existe Deploy@EU");
+d("ab.mission_h","Our goal","我们的目标","Unser Ziel","Notre objectif","Il nostro obiettivo","Nuestro objetivo");
+d("ab.mission","Help European companies put AI to work, by sharing what really happens when people deploy it: what worked, what it cost, and what failed.","帮欧洲企业把 AI 真正用起来。方法是把落地的真实经过分享出来：什么成了、花了多少、什么失败了。","Europäischen Unternehmen helfen, KI wirklich einzusetzen, indem wir teilen, was beim Einsatz tatsächlich passiert: was funktioniert hat, was es gekostet hat und was gescheitert ist.","Aider les entreprises européennes à mettre l'IA au travail, en partageant ce qui se passe vraiment lors des déploiements : ce qui a marché, ce que ça a coûté, ce qui a échoué.","Aiutare le aziende europee a mettere l'IA al lavoro, condividendo cosa succede davvero quando la si implementa: cosa ha funzionato, quanto è costato, cosa è fallito.","Ayudar a las empresas europeas a poner la IA a trabajar, compartiendo lo que pasa de verdad al implantarla: qué funcionó, cuánto costó y qué falló.");
+d("ab.mission2","At the core are the people who do the deployment work. Around them we connect business owners, newcomers to the field and partners.","核心是亲手做落地的人。围绕他们，我们连接企业老板、想入行的新人和合作伙伴。","Im Mittelpunkt stehen die Menschen, die die Umsetzung machen. Um sie herum verbinden wir Unternehmer, Neueinsteiger und Partner.","Au cœur, il y a celles et ceux qui font le travail de déploiement. Autour d'eux, nous réunissons dirigeants, nouveaux venus dans le métier et partenaires.","Al centro ci sono le persone che fanno davvero l'implementazione. Intorno a loro mettiamo in contatto imprenditori, nuovi arrivati nel settore e partner.","En el centro están las personas que hacen el trabajo de implantación. A su alrededor conectamos a empresarios, recién llegados al sector y socios.");
+d("ab.why_h","Why it matters","为什么重要","Warum das wichtig ist","Pourquoi c'est important","Perché è importante","Por qué importa");
+d("ab.why","Most AI stories are demos and sales pitches. What is missing are honest reports from the field. In Europe the obstacles are specific: old software without an API, GDPR, the AI Act, works councils, many languages. Every team hits the same walls alone. We want each wall to be hit only once.","大多数 AI 故事是演示和推销，缺的是一线的真实记录。欧洲的障碍很具体：没有接口的老软件、GDPR、AI 法案、职工委员会、多种语言。每个团队都在独自撞同样的墙。我们希望同一堵墙，大家只撞一次。","Die meisten KI-Geschichten sind Demos und Verkaufsgespräche. Was fehlt, sind ehrliche Berichte aus der Praxis. In Europa sind die Hürden speziell: alte Software ohne API, DSGVO, AI Act, Betriebsräte, viele Sprachen. Jedes Team läuft allein gegen dieselben Mauern. Wir wollen, dass man gegen jede Mauer nur einmal läuft.","La plupart des histoires d'IA sont des démos et des argumentaires commerciaux. Ce qui manque, ce sont des retours honnêtes du terrain. En Europe, les obstacles sont particuliers : vieux logiciels sans API, RGPD, AI Act, comités d'entreprise, nombreuses langues. Chaque équipe se heurte seule aux mêmes murs. Nous voulons qu'on ne se heurte à chaque mur qu'une seule fois.","La maggior parte delle storie sull'IA sono demo e presentazioni commerciali. Mancano resoconti onesti dal campo. In Europa gli ostacoli sono specifici: vecchi software senza API, GDPR, AI Act, consigli di fabbrica, tante lingue. Ogni team sbatte da solo contro gli stessi muri. Vogliamo che contro ogni muro si sbatta una volta sola.","La mayoría de las historias sobre IA son demos y presentaciones comerciales. Faltan relatos honestos desde el terreno. En Europa los obstáculos son concretos: software antiguo sin API, RGPD, la Ley de IA, comités de empresa, muchos idiomas. Cada equipo choca solo contra los mismos muros. Queremos que contra cada muro se choque una sola vez.");
+d("ab.value_h","What you get","你能得到什么","Was du davon hast","Ce que vous y gagnez","Cosa ci guadagni","Qué te aporta");
+d("v1t","Practitioners","落地实践者","Praktiker","Praticiens","Professionisti","Profesionales");
+d("v1","FDEs, in-house builders and consultants learn from other people's cases and walls, find peers across Europe, and build a public, reviewed portfolio under their own name.","FDE、企业内部搭建者和顾问：看别人的案例和撞过的墙，在全欧洲找到同行，用自己的名字攒下经过审核的公开作品集。","FDEs, interne Entwickler und Berater lernen aus den Fällen und Mauern anderer, finden Gleichgesinnte in ganz Europa und bauen unter eigenem Namen ein öffentliches, geprüftes Portfolio auf.","Les FDE, équipes internes et consultants apprennent des cas et des murs des autres, trouvent des pairs dans toute l'Europe et se constituent un portfolio public et relu, à leur nom.","FDE, sviluppatori interni e consulenti imparano dai casi e dai muri degli altri, trovano colleghi in tutta Europa e costruiscono un portfolio pubblico e revisionato a proprio nome.","Los FDE, equipos internos y consultores aprenden de los casos y muros de otros, encuentran colegas en toda Europa y construyen un portafolio público y revisado con su nombre.");
+d("v2t","Business owners","企业老板","Unternehmer","Dirigeants","Imprenditori","Empresarios");
+d("v2","See what AI deployments look like at companies like yours, with measured numbers and honest failures, before you spend money. Talk to people who have done it, without being sold to.","花钱之前，先看看和你类似的公司是怎么落地 AI 的：有实测数字，也有真实的失败。可以和做过的人聊，没人向你推销。","Sieh dir an, wie KI-Einsätze in Unternehmen wie deinem aussehen, mit gemessenen Zahlen und ehrlichen Fehlschlägen, bevor du Geld ausgibst. Sprich mit Leuten, die es gemacht haben, ohne dass dir etwas verkauft wird.","Voyez à quoi ressemblent des déploiements d'IA dans des entreprises comme la vôtre, avec des chiffres mesurés et des échecs assumés, avant de dépenser. Échangez avec des personnes qui l'ont fait, sans qu'on cherche à vous vendre quoi que ce soit.","Guarda come sono le implementazioni di IA in aziende simili alla tua, con numeri misurati e fallimenti onesti, prima di spendere. Parla con chi l'ha già fatto, senza che nessuno ti venda nulla.","Mira cómo son las implantaciones de IA en empresas como la tuya, con cifras medidas y fracasos contados con honestidad, antes de gastar dinero. Habla con quien ya lo ha hecho, sin que nadie te venda nada.");
+d("v3t","Newcomers","想入行的新人","Neueinsteiger","Nouveaux venus","Nuovi arrivati","Recién llegados");
+d("v3","A way into the field: read real cases, join reading sessions, and make a first small contribution with someone to guide you.","一条入行的路：读真实案例，参加共读会，有人带着你完成第一次小贡献。","Ein Einstieg ins Feld: echte Fälle lesen, beim Lesekreis mitmachen und mit Begleitung einen ersten kleinen Beitrag leisten.","Une porte d'entrée dans le métier : lire de vrais cas, rejoindre les cercles de lecture et faire une première petite contribution, accompagné.","Una via d'ingresso nel settore: leggere casi reali, partecipare ai gruppi di lettura e dare un primo piccolo contributo con qualcuno che ti guida.","Una puerta de entrada al sector: leer casos reales, unirte a los clubes de lectura y hacer una primera pequeña contribución con alguien que te guíe.");
+d("v4t","Partners","合作伙伴","Partner","Partenaires","Partner","Socios");
+d("v4","Support a neutral, practitioner-led space. Sponsors are credited at the events they support; the community endorses no company.","支持一个中立、由实践者主导的社区。赞助方会在赞助的活动上署名致谢；社区不为任何公司背书。","Unterstütze einen neutralen, von Praktikern getragenen Raum. Sponsoren werden bei den Veranstaltungen genannt, die sie unterstützen; die Community empfiehlt kein Unternehmen.","Soutenez un espace neutre, porté par des praticiens. Les sponsors sont remerciés lors des événements qu'ils soutiennent ; la communauté ne recommande aucune entreprise.","Sostieni uno spazio neutrale, guidato da professionisti. Gli sponsor vengono citati agli eventi che sostengono; la community non sponsorizza nessuna azienda.","Apoya un espacio neutral, liderado por profesionales. Los patrocinadores aparecen en los eventos que apoyan; la comunidad no respalda a ninguna empresa.");
+d("ab.pr_h","How we work","我们的原则","Wie wir arbeiten","Nos principes","Come lavoriamo","Cómo trabajamos");
+d("pr1","Non-profit. No membership fees. Our own talks and courses are free.","非营利。不收会费。社区自己的分享和课程免费。","Gemeinnützig. Keine Mitgliedsbeiträge. Unsere eigenen Vorträge und Kurse sind kostenlos.","À but non lucratif. Pas de cotisation. Nos interventions et formations sont gratuites.","Non profit. Nessuna quota associativa. I nostri interventi e corsi sono gratuiti.","Sin ánimo de lucro. Sin cuotas. Nuestras charlas y cursos son gratuitos.");
+d("pr2","Money the community receives is used only for the community.","社区收到的钱只用在社区自己身上。","Geld, das die Community erhält, wird nur für die Community verwendet.","L'argent reçu par la communauté sert uniquement à la communauté.","Il denaro ricevuto dalla community è usato solo per la community.","El dinero que recibe la comunidad se usa solo para la comunidad.");
+d("pr3","We endorse no company, including sponsors and members' own businesses, and take no commission.","不为任何公司背书，包括赞助方和成员自己的公司，也不抽佣。","Wir empfehlen kein Unternehmen, auch keine Sponsoren oder Firmen von Mitgliedern, und nehmen keine Provision.","Nous ne recommandons aucune entreprise, ni sponsors ni sociétés des membres, et ne prenons aucune commission.","Non sponsorizziamo nessuna azienda, nemmeno sponsor o aziende dei membri, e non prendiamo commissioni.","No respaldamos a ninguna empresa, ni patrocinadores ni negocios de miembros, y no cobramos comisiones.");
+d("pr4","Honest numbers: measured results are marked as measured, estimates as estimates.","数字要真实：实测的标实测，估算的标估算。","Ehrliche Zahlen: Gemessenes ist als gemessen markiert, Schätzungen als Schätzungen.","Des chiffres honnêtes : le mesuré est indiqué comme mesuré, l'estimé comme estimé.","Numeri onesti: ciò che è misurato è indicato come tale, le stime come stime.","Cifras honestas: lo medido se marca como medido y lo estimado como estimado.");
+d("pr5","No personal or client data. Cases are published only with the consent of whoever needs to agree.","不放个人数据和客户数据。案例要经过该同意的人同意才发布。","Keine personenbezogenen oder Kundendaten. Fälle erscheinen nur mit Zustimmung aller, die zustimmen müssen.","Aucune donnée personnelle ou client. Les cas ne sont publiés qu'avec l'accord de ceux qui doivent le donner.","Nessun dato personale o dei clienti. I casi sono pubblicati solo con il consenso di chi deve darlo.","Sin datos personales ni de clientes. Los casos se publican solo con el consentimiento de quien deba darlo.");
+d("pr6","Every contribution counts, online or offline. We recognise it with badges, not points or rankings.","线上线下的贡献都算数。用徽章认可，不打分，不排名。","Jeder Beitrag zählt, online wie offline. Wir würdigen ihn mit Abzeichen, nicht mit Punkten oder Ranglisten.","Chaque contribution compte, en ligne comme hors ligne. Nous la reconnaissons par des badges, sans points ni classement.","Ogni contributo conta, online e offline. Lo riconosciamo con badge, non con punti o classifiche.","Cada contribución cuenta, en línea o presencial. La reconocemos con insignias, no con puntos ni clasificaciones.");
+d("ab.who_h","Who runs it","谁在运营","Wer dahintersteht","Qui l'anime","Chi la gestisce","Quién la gestiona");
+d("ab.who","The community is run by a small management team. Being on it is a responsibility, not a power. Decisions are recorded, and every account has at least two administrators.","社区由一个小的管理团队运营。进管理团队是一份责任，不是权力。决定都有记录，每个账号至少两名管理员。","Die Community wird von einem kleinen Orga-Team getragen. Dabei zu sein ist Verantwortung, keine Macht. Entscheidungen werden dokumentiert, jedes Konto hat mindestens zwei Administratoren.","La communauté est animée par une petite équipe. En faire partie est une responsabilité, pas un pouvoir. Les décisions sont consignées et chaque compte a au moins deux administrateurs.","La community è gestita da un piccolo team. Farne parte è una responsabilità, non un potere. Le decisioni sono registrate e ogni account ha almeno due amministratori.","La comunidad la lleva un pequeño equipo de gestión. Formar parte de él es una responsabilidad, no un poder. Las decisiones quedan registradas y cada cuenta tiene al menos dos administradores.");
+d("ab.full","Read the full principles","看完整的社区准则","Alle Grundsätze lesen","Lire tous les principes","Leggi tutti i principi","Leer todos los principios");
+d("read_mission","Why we exist →","为什么做这件事 →","Warum es uns gibt →","Pourquoi nous existons →","Perché esistiamo →","Por qué existimos →");
+d("chat_title","Lobby chat","大厅聊天","Lobby-Chat","Chat du hall","Chat della lobby","Chat de la sala");
+d("chat_ph","Say hello…","打个招呼…","Sag hallo…","Dites bonjour…","Saluta…","Di hola…");
+d("local_note","Preview: messages stay in your browser. Translating new messages switches on with the backend.","预览版：消息只留在你的浏览器里。新消息的自动翻译要等后台接上才生效。","Vorschau: Nachrichten bleiben in deinem Browser. Die Übersetzung neuer Nachrichten startet mit dem Backend.","Aperçu : les messages restent dans votre navigateur. La traduction des nouveaux messages arrivera avec le backend.","Anteprima: i messaggi restano nel tuo browser. La traduzione dei nuovi messaggi arriva con il backend.","Vista previa: los mensajes se quedan en tu navegador. La traducción de mensajes nuevos llega con el backend.");
+d("dm_with","Chat with {name}","和 {name} 私聊","Chat mit {name}","Discussion avec {name}","Chat con {name}","Chat con {name}");
+d("members.sub","Everyone who has contributed. Each person shows up to five badges of their own choosing. No ranks, no points.","所有做过贡献的人。每人自己挑最多 5 枚徽章挂出来。不排名，不打分。","Alle, die beigetragen haben. Jede Person zeigt bis zu fünf selbst gewählte Abzeichen. Keine Ränge, keine Punkte.","Toutes les personnes qui ont contribué. Chacun affiche jusqu'à cinq badges de son choix. Ni classement ni points.","Tutti quelli che hanno contribuito. Ognuno mostra fino a cinque badge a sua scelta. Niente classifiche, niente punti.","Todas las personas que han contribuido. Cada una muestra hasta cinco insignias que elige. Sin rangos ni puntos.");
+d("search_ph","Search name, city or skill","搜名字、城市或技能","Name, Stadt oder Skill suchen","Nom, ville ou compétence","Cerca nome, città o competenza","Buscar nombre, ciudad o habilidad");
+d("no_match","No one matches.","没有找到匹配的人。","Niemand gefunden.","Aucun résultat.","Nessun risultato.","Sin resultados.");
+d("showcase","Showcase · chosen by them","自选展示","Vitrine · selbst gewählt","Vitrine · choisie par la personne","Vetrina · scelta personale","Escaparate · elegido por la persona");
+d("credited","Credited work","署名的贡献","Anerkannte Beiträge","Travaux crédités","Contributi riconosciuti","Trabajo reconocido");
+d("member_since","Member since","加入于","Dabei seit","Membre depuis","Membro dal","Miembro desde");
+d("city","City","城市","Stadt","Ville","Città","Ciudad");
+d("cases.title","Case library","案例库","Fallbibliothek","Bibliothèque de cas","Biblioteca dei casi","Biblioteca de casos");
+d("cases.sub","Real deployments, written by the people who did them. Every case is reviewed for consent, privacy, honest numbers and no advertising.","真实的落地，由亲手做的人来写。每篇都审过四件事：授权、隐私、数字真实、不打广告。","Echte Einsätze, geschrieben von denen, die sie umgesetzt haben. Geprüft auf Zustimmung, Datenschutz, ehrliche Zahlen und keine Werbung.","De vrais déploiements, écrits par celles et ceux qui les ont faits. Relus pour le consentement, la confidentialité, des chiffres honnêtes et l'absence de pub.","Implementazioni reali, scritte da chi le ha fatte. Revisionate per consenso, privacy, numeri onesti e nessuna pubblicità.","Despliegues reales, escritos por quienes los hicieron. Revisados en consentimiento, privacidad, cifras honestas y sin publicidad.");
+d("cases.empty","No real cases yet. The first one could be yours.","还没有真实案例。第一篇可以是你的。","Noch keine echten Fälle. Der erste könnte deiner sein.","Pas encore de vrai cas. Le premier pourrait être le vôtre.","Ancora nessun caso reale. Il primo potrebbe essere il tuo.","Aún no hay casos reales. El primero podría ser el tuyo.");
+d("fictional","Fictional example","虚构示例","Fiktives Beispiel","Exemple fictif","Esempio fittizio","Ejemplo ficticio");
+d("f_industry","Industry","行业","Branche","Secteur","Settore","Sector");
+d("f_country","Country","国家","Land","Pays","Paese","País");
+d("f_size","Company size","公司规模","Unternehmensgröße","Taille","Dimensione","Tamaño");
+d("f_status","Status","状态","Status","Statut","Stato","Estado");
+d("f_systems","Existing systems","原有系统","Bestehende Systeme","Systèmes existants","Sistemi esistenti","Sistemas existentes");
+d("f_tools","AI & tools","AI 和工具","KI & Tools","IA & outils","IA e strumenti","IA y herramientas");
+d("f_walls","Walls hit","撞到的墙","Mauern","Murs rencontrés","Muri incontrati","Muros encontrados");
+d("read_full","Read the full case on GitHub","在 GitHub 上看全文","Ganzen Fall auf GitHub lesen","Lire le cas complet sur GitHub","Leggi il caso completo su GitHub","Leer el caso completo en GitHub");
+d("walls.title","Walls","撞墙榜","Mauern","Murs","Muri","Muros");
+d("walls.sub","The obstacles that come up again and again. Every case is tagged with the walls it hit, so we can see which ones matter most.","一次又一次撞上的障碍。每篇案例都标上撞到的墙，看哪几堵最常见。","Die Hürden, die immer wieder auftauchen. Jeder Fall wird mit seinen Mauern markiert, damit sichtbar wird, welche am häufigsten sind.","Les obstacles qui reviennent sans cesse. Chaque cas est étiqueté avec les murs rencontrés, pour voir lesquels comptent le plus.","Gli ostacoli che ritornano. Ogni caso è etichettato con i muri incontrati, così vediamo quali contano di più.","Los obstáculos que aparecen una y otra vez. Cada caso se etiqueta con sus muros, para ver cuáles pesan más.");
+d("walls.count","{n} real cases","{n} 篇真实案例","{n} echte Fälle","{n} cas réels","{n} casi reali","{n} casos reales");
+d("articles.title","Articles & interviews","文章与访谈","Artikel & Interviews","Articles & entretiens","Articoli e interviste","Artículos y entrevistas");
+d("articles.sub","Notes from reading sessions, recorded interviews and articles by members.","共读会笔记、访谈录像和成员写的文章。","Notizen aus dem Lesekreis, aufgezeichnete Interviews und Artikel von Mitgliedern.","Notes du cercle de lecture, entretiens enregistrés et articles des membres.","Appunti del gruppo di lettura, interviste registrate e articoli dei membri.","Notas del club de lectura, entrevistas grabadas y artículos de miembros.");
+d("a1","Reading session notes","共读会笔记","Notizen aus dem Lesekreis","Notes de lecture","Appunti di lettura","Notas de lectura");
+d("a1d","After each session: the article, the main points, the disagreements.","每次共读会后：读了哪篇、要点、分歧。","Nach jedem Treffen: der Artikel, die Kernpunkte, die Streitfragen.","Après chaque séance : l'article, les points clés, les désaccords.","Dopo ogni incontro: l'articolo, i punti chiave, i disaccordi.","Tras cada sesión: el artículo, las ideas clave, los desacuerdos.");
+d("a2d","Practitioners and business owners on what worked and what didn't.","实践者和老板讲哪些成了、哪些没成。","Praktiker und Unternehmer darüber, was funktioniert hat und was nicht.","Praticiens et dirigeants sur ce qui a marché ou non.","Professionisti e imprenditori su cosa ha funzionato e cosa no.","Profesionales y empresarios sobre lo que funcionó y lo que no.");
+d("a3","Member articles","成员文章","Artikel von Mitgliedern","Articles des membres","Articoli dei membri","Artículos de miembros");
+d("a3d","Write one and it appears here with your name.","写一篇，就会署你的名字出现在这里。","Schreib einen, dann erscheint er hier mit deinem Namen.","Écrivez-en un, il apparaîtra ici avec votre nom.","Scrivine uno e apparirà qui con il tuo nome.","Escribe uno y aparecerá aquí con tu nombre.");
+d("tools.sub","Open-source tools from members, free to use under the MIT licence.","成员开源的工具，MIT 许可，免费用。","Open-Source-Tools von Mitgliedern, frei nutzbar unter MIT-Lizenz.","Outils open source des membres, libres d'usage sous licence MIT.","Strumenti open source dei membri, liberi sotto licenza MIT.","Herramientas de código abierto de los miembros, libres con licencia MIT.");
+d("t1","Reads DATEV payroll PDFs into structured data and checks the totals.","把 DATEV 工资单 PDF 读成结构化数据，并核对合计。","Liest DATEV-Lohnabrechnungen (PDF) in strukturierte Daten und prüft die Summen.","Lit les bulletins de paie DATEV (PDF) en données structurées et vérifie les totaux.","Legge i cedolini DATEV (PDF) in dati strutturati e controlla i totali.","Lee nóminas DATEV en PDF como datos estructurados y comprueba los totales.");
+d("t2","Keeps a snapshot before each run and shows what changed afterwards.","每次运行前留底，运行后列出哪些变了。","Speichert vor jedem Lauf einen Stand und zeigt danach, was sich geändert hat.","Garde un instantané avant chaque exécution et montre ensuite ce qui a changé.","Salva un'istantanea prima di ogni esecuzione e mostra poi cosa è cambiato.","Guarda una instantánea antes de cada ejecución y muestra después qué cambió.");
+d("t3","German payroll payment deadlines as rules you can call from code.","德国工资相关付款截止日，写成代码能直接调用的规则。","Fristen für Lohnzahlungen in Deutschland als Regeln, die man aus Code aufrufen kann.","Les échéances de paiement de la paie allemande, en règles appelables depuis le code.","Le scadenze di pagamento delle buste paga tedesche come regole richiamabili dal codice.","Los plazos de pago de nóminas en Alemania como reglas que se llaman desde el código.");
+d("share_tool","Share your tool","分享你的工具","Eigenes Tool teilen","Partager votre outil","Condividi il tuo strumento","Comparte tu herramienta");
+d("events.sub","Reading sessions and interviews. All online unless noted.","共读会和访谈，没有特别说明的都在线上。","Lesekreis und Interviews. Alles online, wenn nicht anders angegeben.","Cercles de lecture et entretiens. Tout en ligne sauf mention contraire.","Gruppi di lettura e interviste. Tutto online salvo indicazione.","Clubes de lectura y entrevistas. Todo en línea salvo que se indique.");
+d("e1","Reading session #1","第一次共读会","Lesekreis #1","Cercle de lecture n°1","Gruppo di lettura n. 1","Club de lectura n.º 1");
+d("e1w","Date to be announced","时间待定","Termin folgt","Date à venir","Data da definire","Fecha por anunciar");
+d("e1d","The first session. After that, every two weeks.","第一场，之后每两周一次。","Das erste Treffen. Danach alle zwei Wochen.","La première séance. Ensuite, toutes les deux semaines.","Il primo incontro. Poi ogni due settimane.","La primera sesión. Después, cada dos semanas.");
+d("e2","Interview series","访谈系列","Interviewreihe","Série d'entretiens","Serie di interviste","Serie de entrevistas");
+d("e2w","Ongoing","进行中","Laufend","En cours","In corso","En curso");
+d("e2d","Know someone with a story worth telling? Recommend them.","认识有故事的人？推荐给我们。","Du kennst jemanden mit einer guten Geschichte? Empfiehl die Person.","Vous connaissez quelqu'un qui a une histoire à raconter ? Recommandez-le.","Conosci qualcuno con una storia da raccontare? Segnalacelo.","¿Conoces a alguien con una buena historia? Recomiéndalo.");
+d("recommend_guest","Recommend a guest","推荐访谈对象","Gast empfehlen","Recommander un invité","Segnala un ospite","Recomendar un invitado");
+d("me.sub","Edit your card and choose up to five badges to show. Only you and the management team see your full record.","改你的名片，挑最多 5 枚徽章公开。完整记录只有你自己和管理团队看得到。","Bearbeite deine Karte und wähle bis zu fünf Abzeichen. Deinen vollständigen Verlauf sehen nur du und das Orga-Team.","Modifiez votre fiche et choisissez jusqu'à cinq badges à afficher. Seuls vous et l'équipe d'organisation voyez votre historique complet.","Modifica la tua scheda e scegli fino a cinque badge da mostrare. Lo storico completo lo vedete solo tu e il team di gestione.","Edita tu ficha y elige hasta cinco insignias. Tu historial completo solo lo ves tú y el equipo de gestión.");
+d("me.note","Sign-in arrives with the backend. For now, changes are saved only in this browser.","登录功能要等后台接上。现在改的内容只存在这个浏览器里。","Die Anmeldung kommt mit dem Backend. Bis dahin werden Änderungen nur in diesem Browser gespeichert.","La connexion arrivera avec le backend. En attendant, les modifications restent dans ce navigateur.","L'accesso arriverà con il backend. Per ora le modifiche restano in questo browser.","El inicio de sesión llegará con el backend. Por ahora, los cambios se guardan solo en este navegador.");
+d("f_name","Name","名字","Name","Nom","Nome","Nombre");
+d("f_headline","Headline","一句话介绍","Kurzprofil","Accroche","Titolo","Titular");
+d("f_skills","Skills (comma-separated)","擅长（用逗号分开）","Skills (durch Komma getrennt)","Compétences (séparées par des virgules)","Competenze (separate da virgole)","Habilidades (separadas por comas)");
+d("pick","Badges to show · {n}/5","公开的徽章 · {n}/5","Angezeigte Abzeichen · {n}/5","Badges affichés · {n}/5","Badge mostrati · {n}/5","Insignias visibles · {n}/5");
+d("pick_hint","These are the badges you have earned. Tap to show or hide.","下面是你已经获得的徽章，点一下就能公开或收起。","Das sind deine verdienten Abzeichen. Tippe zum Ein- oder Ausblenden.","Voici les badges que vous avez obtenus. Touchez pour les afficher ou les masquer.","Questi sono i badge che hai ottenuto. Tocca per mostrarli o nasconderli.","Estas son las insignias que has ganado. Toca para mostrarlas u ocultarlas.");
+d("max5","You can show up to five. Hide one first.","最多公开 5 枚，先收起一枚。","Höchstens fünf. Blende zuerst eines aus.","Cinq au maximum. Masquez-en un d'abord.","Al massimo cinque. Nascondine prima uno.","Máximo cinco. Oculta una primero.");
+d("save","Save","保存","Speichern","Enregistrer","Salva","Guardar");
+d("saved","Saved in this browser","已存在这个浏览器里","In diesem Browser gespeichert","Enregistré dans ce navigateur","Salvato in questo browser","Guardado en este navegador");
+d("preview","Preview","预览","Vorschau","Aperçu","Anteprima","Vista previa");
+d("join.sub","Start small. Each of these counts as a contribution and is credited to you.","从小事开始。下面每一件都算贡献，都会记在你名下。","Fang klein an. Jeder dieser Schritte zählt als Beitrag und wird dir angerechnet.","Commencez petit. Chacune de ces actions compte comme contribution et vous est créditée.","Inizia in piccolo. Ognuna di queste azioni conta come contributo e ti viene riconosciuta.","Empieza poco a poco. Cada una de estas acciones cuenta como contribución y se te reconoce.");
+d("j1","Recommend an interview guest","推荐一位访谈对象","Einen Interviewgast empfehlen","Recommander un invité","Segnalare un ospite per un'intervista","Recomendar a alguien para una entrevista");
+d("j2","Report a wall you hit","报告你撞到的一堵墙","Eine Mauer melden, gegen die du gelaufen bist","Signaler un mur rencontré","Segnalare un muro incontrato","Reportar un muro con el que chocaste");
+d("j3","Write or fix a case","写一篇案例，或者补全一篇","Einen Fall schreiben oder verbessern","Écrire ou corriger un cas","Scrivere o correggere un caso","Escribir o corregir un caso");
+d("j4","Recommend an article for a reading session","给共读会推荐一篇文章","Einen Artikel für den Lesekreis vorschlagen","Proposer un article pour le cercle de lecture","Proporre un articolo per il gruppo di lettura","Proponer un artículo para el club de lectura");
+d("j5","Translate a case summary","翻译一篇案例摘要","Eine Fallzusammenfassung übersetzen","Traduire le résumé d'un cas","Tradurre il riassunto di un caso","Traducir el resumen de un caso");
+d("how_title","How recognition works","荣誉怎么算","So funktioniert Anerkennung","Comment fonctionne la reconnaissance","Come funziona il riconoscimento","Cómo funciona el reconocimiento");
+d("how_text","No points and no leaderboards. Every contribution is recorded, online or offline: cases, interviews, organising, sponsorship, introductions. You earn badges and choose up to five to show.","不打分，不排名。线上线下的贡献都会记下来：案例、访谈、组织活动、拉赞助、牵线搭桥。你会获得徽章，自己挑最多 5 枚公开。","Keine Punkte, keine Bestenlisten. Jeder Beitrag wird erfasst, online wie offline: Fälle, Interviews, Organisation, Sponsoring, Kontakte. Du verdienst Abzeichen und wählst bis zu fünf zum Zeigen.","Ni points ni classement. Chaque contribution est enregistrée, en ligne ou hors ligne : cas, entretiens, organisation, sponsoring, mises en relation. Vous obtenez des badges et en affichez jusqu'à cinq.","Niente punti, niente classifiche. Ogni contributo viene registrato, online e offline: casi, interviste, organizzazione, sponsor, contatti. Ottieni badge e ne scegli fino a cinque da mostrare.","Sin puntos ni clasificaciones. Se registra cada contribución, en línea o presencial: casos, entrevistas, organización, patrocinio, contactos. Ganas insignias y eliges hasta cinco para mostrar.");
+d("read_rules","Read the rules","看完整规则","Regeln lesen","Lire les règles","Leggi le regole","Leer las normas");
+d("go","Start →","去做 →","Los →","Commencer →","Inizia →","Empezar →");
+d("f.np","non-profit community","非营利社区","gemeinnützige Community","communauté à but non lucratif","community non profit","comunidad sin ánimo de lucro");
+d("l.gov","Governance","社区准则","Grundsätze","Gouvernance","Governance","Gobernanza");
+d("l.coc","Code of conduct","行为准则","Verhaltenskodex","Code de conduite","Codice di condotta","Código de conducta");
+d("l.rec","Recognition","荣誉规则","Anerkennung","Reconnaissance","Riconoscimento","Reconocimiento");
+d("l.priv","Privacy","隐私说明","Datenschutz","Confidentialité","Privacy","Privacidad");
+
+const PROMPT={"en": ["Explain Deploy@EU to me in 5 sentences, then tell me whether it fits me.\n\nThe facts: Deploy@EU is a non-profit community of people who deploy AI and automation inside European companies: forward-deployed engineers, in-house builders, consultants and the business owners who hire them. We publish real deployment cases (the problem, what was built, measured results, where it got stuck), track the walls that keep coming back (no API, GDPR, works councils, messy data), record interviews and hold a reading session every two weeks. Our goal: help European companies put AI to work by sharing what really happens in deployments, including what fails. No ads, no prices, no endorsements. Every contribution is credited by name, with badges instead of points.\nWebsite: https://deploy-eu.github.io/#about\nCases: https://github.com/deploy-eu/case-library", "About me: [one line about you]"], "zh": ["用 5 句话给我介绍 Deploy@EU，再告诉我它适不适合我。\n\n资料：Deploy@EU 是一个非营利社区，成员是在欧洲企业里落地 AI 和自动化的人：驻场工程师（FDE）、企业内部的搭建者、顾问，以及请他们的企业老板。社区公开真实的落地案例（问题是什么、搭了什么、实测结果、卡在哪里），统计反复出现的「墙」（没有接口、GDPR、职工委员会、数据太乱），做访谈，每两周办一次共读会。我们的目标：把落地的真实经过（包括失败）分享出来，帮欧洲企业把 AI 真正用起来。不打广告、不报价、不为任何公司背书。任何贡献都会署名，用徽章认可，不打分。\n网站：https://deploy-eu.github.io/#about\n案例库：https://github.com/deploy-eu/case-library", "我是：[用一句话介绍你自己]"], "de": ["Erkläre mir Deploy@EU in 5 Sätzen und sag mir dann, ob es zu mir passt.\n\nDie Fakten: Deploy@EU ist eine gemeinnützige Community von Menschen, die KI und Automatisierung in europäischen Unternehmen einsetzen: Forward Deployed Engineers, interne Entwickler, Berater und die Unternehmer, die sie beauftragen. Wir veröffentlichen echte Einsatzberichte (das Problem, die Lösung, gemessene Ergebnisse, wo es hakte), sammeln die wiederkehrenden „Mauern“ (keine API, DSGVO, Betriebsrat, unsaubere Daten), führen Interviews und treffen uns alle zwei Wochen zum Lesekreis. Unser Ziel: europäischen Unternehmen helfen, KI wirklich einzusetzen, indem wir teilen, was beim Einsatz tatsächlich passiert, auch das Scheitern. Keine Werbung, keine Preise, keine Empfehlungen. Jeder Beitrag wird namentlich anerkannt, mit Abzeichen statt Punkten.\nWebsite: https://deploy-eu.github.io/#about\nFälle: https://github.com/deploy-eu/case-library", "Über mich: [ein Satz über dich]"], "fr": ["Présente-moi Deploy@EU en 5 phrases, puis dis-moi si c'est fait pour moi.\n\nLes faits : Deploy@EU est une communauté à but non lucratif de personnes qui déploient l'IA et l'automatisation dans des entreprises européennes : forward-deployed engineers, équipes internes, consultants et les dirigeants qui les engagent. Nous publions de vrais cas de déploiement (le problème, la solution, les résultats mesurés, les blocages), recensons les « murs » récurrents (pas d'API, RGPD, comité d'entreprise, données en désordre), menons des entretiens et organisons un cercle de lecture toutes les deux semaines. Notre objectif : aider les entreprises européennes à mettre l'IA au travail en partageant ce qui se passe vraiment, échecs compris. Ni pub, ni prix, ni recommandation. Chaque contribution est créditée nominativement, avec des badges plutôt que des points.\nSite : https://deploy-eu.github.io/#about\nCas : https://github.com/deploy-eu/case-library", "Qui je suis : [une phrase sur toi]"], "it": ["Spiegami Deploy@EU in 5 frasi, poi dimmi se fa per me.\n\nI fatti: Deploy@EU è una community non profit di persone che portano IA e automazione nelle aziende europee: forward-deployed engineer, sviluppatori interni, consulenti e gli imprenditori che li ingaggiano. Pubblichiamo casi reali (il problema, cosa è stato costruito, risultati misurati, dove si è bloccato), raccogliamo i «muri» ricorrenti (niente API, GDPR, consiglio di fabbrica, dati disordinati), facciamo interviste e un gruppo di lettura ogni due settimane. Il nostro obiettivo: aiutare le aziende europee a mettere l'IA al lavoro condividendo cosa succede davvero, fallimenti compresi. Niente pubblicità, prezzi o sponsorizzazioni. Ogni contributo è riconosciuto con il nome, con badge invece di punti.\nSito: https://deploy-eu.github.io/#about\nCasi: https://github.com/deploy-eu/case-library", "Chi sono: [una frase su di te]"], "es": ["Explícame Deploy@EU en 5 frases y dime después si encaja conmigo.\n\nLos hechos: Deploy@EU es una comunidad sin ánimo de lucro de personas que implantan IA y automatización en empresas europeas: forward-deployed engineers, equipos internos, consultores y los empresarios que los contratan. Publicamos casos reales (el problema, lo construido, resultados medidos, dónde se atascó), registramos los «muros» que se repiten (sin API, RGPD, comité de empresa, datos desordenados), hacemos entrevistas y un club de lectura cada dos semanas. Nuestro objetivo: ayudar a las empresas europeas a poner la IA a trabajar compartiendo lo que pasa de verdad, fracasos incluidos. Sin anuncios, sin precios, sin recomendaciones. Cada contribución se reconoce con tu nombre, con insignias en lugar de puntos.\nWeb: https://deploy-eu.github.io/#about\nCasos: https://github.com/deploy-eu/case-library", "Sobre mí: [una frase sobre ti]"]};
+/* walls */
+const WALLS=[
+ ["no-api","--red","No API, or only manual exports","没有接口，或者只能手动导出","Keine API oder nur manuelle Exporte","Pas d'API, ou seulement des exports manuels","Nessuna API, o solo esportazioni manuali","Sin API, o solo exportaciones manuales"],
+ ["legacy-desktop","--orange","Old on-premise software operated through its interface","老旧的本地软件，只能操作界面","Alte On-Premise-Software, nur über die Oberfläche bedienbar","Vieux logiciel local piloté par son interface","Vecchio software on-premise usato tramite interfaccia","Software local antiguo que se maneja por su interfaz"],
+ ["data-quality","--yellow","Messy, inconsistent or missing data","数据乱、不一致或者缺失","Unsaubere, widersprüchliche oder fehlende Daten","Données en désordre, incohérentes ou manquantes","Dati disordinati, incoerenti o mancanti","Datos desordenados, incoherentes o incompletos"],
+ ["gdpr","--cyan","Data protection: consent, processors, data location","数据保护：授权、数据处理方、数据存放地","Datenschutz: Einwilligung, Auftragsverarbeiter, Speicherort","Protection des données : consentement, sous-traitants, localisation","Protezione dei dati: consenso, responsabili, localizzazione","Protección de datos: consentimiento, encargados, ubicación"],
+ ["ai-act","--blue","EU AI Act: risk class, transparency, documentation","欧盟 AI 法案：风险等级、透明度、文档","EU AI Act: Risikoklasse, Transparenz, Dokumentation","AI Act : classe de risque, transparence, documentation","AI Act: classe di rischio, trasparenza, documentazione","Ley de IA de la UE: nivel de riesgo, transparencia, documentación"],
+ ["works-council","--magenta","Works council involvement or agreement needed","需要职工委员会参与或同意","Betriebsrat muss eingebunden werden oder zustimmen","Le comité d'entreprise doit être consulté ou donner son accord","Serve il coinvolgimento o l'accordo del consiglio di fabbrica","Hace falta implicar al comité de empresa o su acuerdo"],
+ ["change-management","--pink","People did not adopt it, or the owner changed","大家不用，或者负责人换了","Niemand nutzt es, oder der Verantwortliche hat gewechselt","Personne ne l'a adopté, ou le responsable a changé","Le persone non l'hanno adottato, o il responsabile è cambiato","La gente no lo adoptó, o cambió el responsable"],
+ ["vendor-lock","--teal","The vendor blocks or charges for access","软件厂商封锁接口或者收费","Der Hersteller sperrt den Zugang oder lässt ihn sich bezahlen","L'éditeur bloque ou fait payer l'accès","Il fornitore blocca l'accesso o lo fa pagare","El proveedor bloquea o cobra el acceso"],
+ ["cost","--green","Running costs became a problem","运行成本成了问题","Laufende Kosten wurden zum Problem","Les coûts de fonctionnement sont devenus un problème","I costi di gestione sono diventati un problema","Los costes de operación se volvieron un problema"],
+ ["reliability","--orange","The automation broke silently or too often","自动化悄悄出错，或者坏得太频繁","Die Automatisierung fiel still oder zu oft aus","L'automatisation tombait en panne en silence ou trop souvent","L'automazione si rompeva in silenzio o troppo spesso","La automatización fallaba en silencio o demasiado a menudo"]
+];
+const wallColor=Object.fromEntries(WALLS.map(w=>[w[0],w[1]]));
+
+/* badges */
+const BADGES=[
+ ["first","🌟","First Contribution","--yellow","Your first confirmed contribution","第一次贡献被确认","Dein erster bestätigter Beitrag","Votre première contribution confirmée","Il tuo primo contributo confermato","Tu primera contribución confirmada"],
+ ["interview","🎙","Interview Pro","--pink","Hosted or conducted 3 interviews","主持或做过 3 场访谈","3 Interviews geführt oder moderiert","A mené ou animé 3 entretiens","Ha condotto 3 interviste","Ha realizado o moderado 3 entrevistas"],
+ ["guest","🪑","Featured Guest","--orange","Was an interview guest","当过访谈嘉宾","War Interviewgast","A été invité·e d'un entretien","È stato ospite di un'intervista","Fue invitado/a en una entrevista"],
+ ["author","📝","Case Author","--cyan","Had a case merged","有案例被收录","Ein Fall wurde aufgenommen","Un cas publié","Un caso pubblicato","Un caso publicado"],
+ ["featured","⭐","Featured Author","--yellow","Case of the quarter","案例被选为季度精选","Fall des Quartals","Cas du trimestre","Caso del trimestre","Caso del trimestre"],
+ ["reviewer","🔍","Case Reviewer","--blue","Reviews cases","负责审案例","Prüft Fälle","Relit les cas","Revisiona i casi","Revisa casos"],
+ ["editor","🎬","Video Editor","--red","Edited a published video","剪过一条已发布的视频","Hat ein veröffentlichtes Video geschnitten","A monté une vidéo publiée","Ha montato un video pubblicato","Editó un vídeo publicado"],
+ ["writer","✍️","Writer","--magenta","Published an article","发表过文章","Hat einen Artikel veröffentlicht","A publié un article","Ha pubblicato un articolo","Publicó un artículo"],
+ ["speaker","💡","Speaker","--yellow","Gave a talk at a session","在活动上做过分享","Hat einen Vortrag gehalten","A donné une intervention","Ha tenuto un intervento","Dio una charla"],
+ ["host","📚","Reading Host","--green","Hosted a reading session","主持过共读会","Hat einen Lesekreis geleitet","A animé un cercle de lecture","Ha guidato un gruppo di lettura","Moderó un club de lectura"],
+ ["ice","🧊","Icebreaker","--cyan","Organised the first of its kind","组织了某类活动的第一次","Hat etwas zum ersten Mal organisiert","A organisé une première","Ha organizzato una prima volta","Organizó algo por primera vez"],
+ ["backstage","🛠","Backstage Hero","--teal","Three months of behind-the-scenes work","幕后工作三个月","Drei Monate Arbeit hinter den Kulissen","Trois mois de travail en coulisses","Tre mesi di lavoro dietro le quinte","Tres meses de trabajo entre bastidores"],
+ ["mentor","🧭","Mentor","--green","Someone you mentored made a first contribution","带的新人做出了第一次贡献","Jemand, den du begleitet hast, hat erstmals beigetragen","Une personne que vous avez accompagnée a contribué","Una persona che hai seguito ha contribuito","Alguien a quien acompañaste contribuyó por primera vez"],
+ ["scout","🐎","Talent Scout","--orange","Someone you introduced made a contribution","介绍来的人做出了贡献","Jemand, den du vorgestellt hast, hat beigetragen","Une personne que vous avez présentée a contribué","Una persona che hai presentato ha contribuito","Alguien que presentaste contribuyó"],
+ ["bridge","🌉","Bridge Builder","--blue","Brought a company guest or exchange","牵来企业嘉宾或企业交流","Hat einen Unternehmensgast oder Austausch vermittelt","A fait venir une entreprise ou organisé un échange","Ha portato un'azienda ospite o uno scambio","Trajo una empresa invitada o un intercambio"],
+ ["sponsor","🤝","Sponsor Liaison","--magenta","Brought a sponsorship","拉来过赞助","Hat ein Sponsoring vermittelt","A apporté un sponsoring","Ha portato una sponsorizzazione","Consiguió un patrocinio"],
+ ["teammate","💎","Best Teammate","--cyan","Nominated by someone you worked with","被一起做事的人提名","Von jemandem aus dem Team nominiert","Nommé·e par un·e coéquipier·ère","Nominato da chi ha lavorato con te","Nominado por alguien con quien trabajaste"],
+ ["founding","🌱","Founding Member","--green","Founding management team","创始管理团队","Gründungsteam","Équipe fondatrice","Team fondatore","Equipo fundador"],
+ ["role","🎖","Role Holder","--pink","Holds or held a community role","担任或担任过社区职责","Hat eine Rolle inne oder hatte sie","Occupe ou a occupé un rôle","Ricopre o ha ricoperto un ruolo","Ocupa u ocupó un rol"]
+];
+const B=Object.fromEntries(BADGES.map(b=>[b[0],b]));
+
+/* fictional demo members */
+const MEMBERS=[];  // real profiles are added with each member's consent
+const ME_EARNED=["first","author","speaker","host","bridge","scout","writer"];
+
+const CASES=[{id:"example",fictional:true,title:"Drafting replies to price inquiries for a small importer",date:"2026-01",status:"pilot",country:"Germany",industry:"wholesale / trade",size:"10–49",systems:["Outlook","Excel price list","on-premise ERP without API"],tools:["Claude","Python"],walls:["legacy-desktop","no-api","data-quality"],summary:"A kitchen-appliance importer received about 40 price inquiries a week by email. An AI assistant now reads each inquiry, checks stock in an Excel export of the ERP, and drafts a quote for the salesperson to check and send.",url:"https://github.com/deploy-eu/case-library/blob/main/cases/_EXAMPLE_fictional.md"}];
+const REAL_CASES=CASES.filter(c=>!c.fictional);
+
+const CHAT=[
+ {who:"chloe",time:"18:02",lang:"fr",txt:"Idée pour le cercle de lecture : le retour d'expérience de Klarna sur son support IA. Qui est partant ?",tr:{en:"Reading session idea: Klarna's write-up on its AI support. Who's in?",zh:"共读会的想法：读 Klarna 讲他们 AI 客服的那篇复盘。谁来？",de:"Idee für den Lesekreis: Klarnas Erfahrungsbericht zu ihrem KI-Support. Wer ist dabei?",it:"Idea per il gruppo di lettura: il resoconto di Klarna sul suo supporto con IA. Chi c'è?",es:"Idea para el club de lectura: el informe de Klarna sobre su soporte con IA. ¿Quién se apunta?"}},
+ {who:"wei",time:"18:05",lang:"zh",txt:"我来。另外报告一堵墙：DATEV 导出又只有 PDF。",tr:{en:"I'm in. Also a wall report: DATEV export only as PDF, again.",de:"Bin dabei. Und eine Mauer-Meldung: DATEV-Export mal wieder nur als PDF.",fr:"Je viens. Et un mur à signaler : l'export DATEV, encore une fois uniquement en PDF.",it:"Ci sono. E segnalo un muro: l'export DATEV di nuovo solo in PDF.",es:"Me apunto. Y reporto un muro: la exportación de DATEV, otra vez solo en PDF."}},
+ {who:"marco",time:"18:07",lang:"it",txt:"Stesso muro qui con il software doganale. 😅",tr:{en:"Same wall here with customs software. 😅",zh:"我这边报关软件也是同一堵墙。😅",de:"Gleiche Mauer hier mit der Zollsoftware. 😅",fr:"Même mur ici avec le logiciel de douane. 😅",es:"El mismo muro aquí con el software de aduanas. 😅"}},
+ {who:"ana",time:"18:11",lang:"es",txt:"Pregunta de empresaria: ¿cómo medís el tiempo ahorrado sin adivinar?",tr:{en:"Owner question: how do you all measure time saved without guessing?",zh:"老板的问题：你们怎么量节省的时间，而不是靠猜？",de:"Frage aus Unternehmersicht: Wie messt ihr die gesparte Zeit, ohne zu raten?",fr:"Question de dirigeante : comment mesurez-vous le temps gagné sans deviner ?",it:"Domanda da imprenditrice: come misurate il tempo risparmiato senza tirare a indovinare?"}}
+];
+const LN={en:["English","Chinese","German","French","Italian","Spanish"],zh:["英语","中文","德语","法语","意大利语","西班牙语"],de:["Englisch","Chinesisch","Deutsch","Französisch","Italienisch","Spanisch"],fr:["anglais","chinois","allemand","français","italien","espagnol"],it:["inglese","cinese","tedesco","francese","italiano","spagnolo"],es:["inglés","chino","alemán","francés","italiano","español"]};
+const isTr=x=>x.tr&&x.lang&&x.lang!==lang&&x.tr[lang]&&!x.showOrig;
+const msgText=x=>isTr(x)?x.tr[lang]:x.txt;
+
+/* ---------- state ---------- */
+const store={get(k,f){try{const v=localStorage.getItem("deu."+k);return v==null?f:JSON.parse(v)}catch(e){return f}},set(k,v){try{localStorage.setItem("deu."+k,JSON.stringify(v))}catch(e){}}};
+let lang=store.get("lang",null)||(()=>{const n=(navigator.language||"en").slice(0,2);return L.includes(n)?n:"en"})();
+let chatLog=CHAT.slice();
+let dms={};
+let me=store.get("me",{name:"",city:"",hl:"",about:"",skills:"",show:["first","author","speaker"]});
+let memberFilter="", memberSkill="";
+let caseWall="";
+
+const t=(k,vars)=>{let s=(T[k]&&T[k][lang])||(T[k]&&T[k].en)||k;if(vars)for(const[a,b]of Object.entries(vars))s=s.replace("{"+a+"}",b);return s};
+const li=()=>L.indexOf(lang);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const ini=n=>n.split(/\s+/).map(x=>x[0]).join("").slice(0,2).toUpperCase();
+const av=(m,cls="",status=true)=>`<span class="av ${cls}" style="--c:var(${m.c})">${esc(ini(m.name))}${status?`<span class="st ${m.online?"":"off"}"></span>`:""}</span>`;
+const badge=id=>{const b=B[id];return b?`<span class="badge" style="--c:var(${b[3]})" title="${esc(b[4+li()])}"><span class="e">${b[1]}</span>${esc(b[2])}</span>`:""};
+const wtag=w=>`<span class="tag" style="--c:var(${wallColor[w]||"--blue"})">#${esc(w)}</span>`;
+const SKC=["--blue","--cyan","--magenta","--green","--orange","--pink","--teal","--yellow"];
+const stag=s=>{let h=0;for(const ch of s)h=(h*31+ch.charCodeAt(0))>>>0;return `<span class="tag" style="--c:var(${SKC[h%SKC.length]})">${esc(s)}</span>`};
+const prompt=cmd=>`<div class="prompt"><span class="p">~/deploy-eu</span> <span class="c">$ ${esc(cmd)}</span></div>`;
+const byId=id=>MEMBERS.find(m=>m.id===id);
+
+/* ---------- views ---------- */
+const NAV_EXTRA=["privacy","join"];
+const NAV=["home","about","cases","walls","events"];
+const V={};
+
+V.home=()=>{
+ const on=MEMBERS.filter(m=>m.online);
+ return `
+ <section class="hero">
+  <div class="hero-copy">
+   <div class="eyebrow"><span class="dot">●</span> ${t("home.eyebrow")}</div>
+   <h1>${esc(t("home.t1"))} <span class="grad">${esc(t("home.t2"))}</span></h1>
+   <p class="lead">${esc(t("home.sub"))}</p>
+   <div class="cta"><a class="btn primary" href="#join">${t("cta_join")} →</a><a class="btn" href="#cases">${t("cta_cases")}</a></div>
+  </div>
+  <div class="term" aria-label="${esc(t("ask_ai_t"))}">
+   <div class="term-bar"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i><span>prompt.txt</span></div>
+   <div style="padding:16px 18px 18px;display:flex;flex-direction:column;gap:12px">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap"><h3 style="color:var(--green)">&gt; ${t("ask_ai_t")}</h3><button class="btn small primary" data-copy="1">${t("copy")}</button></div>
+    <p style="margin:0;font-size:13px;color:var(--muted)">${esc(t("ask_ai_d"))}</p>
+<pre id="promptText" tabindex="0" style="margin:0;padding:14px;background:#0b0d14;border:1px solid var(--line);border-radius:8px;font:12.5px/1.65 var(--mono);color:var(--fg);white-space:pre-wrap;overflow-wrap:anywhere;max-height:300px;overflow-y:auto">${esc(PROMPT[lang][0])}
+
+<span class="t-y">${esc(PROMPT[lang][1])}</span></pre>
+   </div>
+  </div>
+ </section>
+
+ <section class="section">
+  <div class="card" style="--c:var(--magenta);display:flex;flex-direction:column;gap:12px;padding:28px">
+   <div class="eyebrow"><span class="dot">●</span> ${t("ab.mission_h")}</div>
+   <p style="margin:0;font:600 clamp(18px,2.2vw,24px)/1.45 var(--sans);color:var(--white);max-width:52ch">${esc(t("ab.mission"))}</p>
+   <p class="lead" style="font-size:15px">${esc(t("ab.why"))}</p>
+   <a href="#about" style="font:600 13px var(--mono)">${t("read_mission")}</a>
+  </div>
+ </section>
+ <section class="section">
+  <h2>${t("what_title")}</h2>
+  <div class="grid g4">
+   <a class="card hover feat" href="#cases" style="--c:var(--cyan);color:inherit;text-decoration:none"><span class="ic">./cases</span><h3>${t("nav.cases")}</h3><p>${esc(t("w_cases"))}</p></a>
+   <a class="card hover feat" href="#walls" style="--c:var(--red);color:inherit;text-decoration:none"><span class="ic">./walls</span><h3>${t("walls.title")}</h3><p>${esc(t("w_walls"))}</p></a>
+   <a class="card hover feat" href="#events" style="--c:var(--pink);color:inherit;text-decoration:none"><span class="ic">./interviews</span><h3>${t("interviews")}</h3><p>${esc(t("w_interviews"))}</p></a>
+   <a class="card hover feat" href="#events" style="--c:var(--green);color:inherit;text-decoration:none"><span class="ic">./reading</span><h3>${t("reading")}</h3><p>${esc(t("w_reading"))}</p></a>
+  </div>
+ </section>
+
+ <section class="section">
+  <div class="card strip" style="--c:var(--magenta)">
+   <div style="display:flex;flex-direction:column;gap:4px;min-width:0"><h3>${t("discord_t")}</h3><span class="muted" style="font-size:14px">${esc(t("discord_d"))}</span></div>
+   <span class="btn" aria-disabled="true" style="opacity:.7;cursor:default">Discord · ${t("coming")}</span>
+  </div>
+ </section>
+
+ <section class="section">
+  <div class="grid g2">
+   <div style="display:flex;flex-direction:column;gap:12px">
+    <div class="section-head"><h3 class="eyebrow">${t("latest_case")}</h3><a href="#cases" style="font:12px var(--mono)">${t("see_all")}</a></div>
+    ${caseCard(CASES[0])}
+   </div>
+   <div style="display:flex;flex-direction:column;gap:12px">
+    <div class="section-head"><h3 class="eyebrow">${t("next_event")}</h3><a href="#events" style="font:12px var(--mono)">${t("see_all")}</a></div>
+    ${eventCard("e1","e1w","e1d","--green")}
+    ${eventCard("e2","e2w","e2d","--pink")}
+   </div>
+  </div>
+ </section>
+
+ <section class="section">
+  <p class="muted" style="font:13px var(--mono);margin:0">// ${esc(t("rules_line"))}</p>
+ </section>`;
+};
+
+function eventCard(tk,wk,dk,c){return `<div class="card event" style="--c:var(${c})"><div class="when">${esc(t(wk))}</div><div><h3>${esc(t(tk))}</h3><p>${esc(t(dk))}</p></div></div>`}
+function memberCard(m){return `<a class="card hover mcard" href="#member-${m.id}" style="--c:var(${m.c});color:inherit;text-decoration:none">
+ <div class="top-row">${av(m,"md")}<div class="who"><b>${esc(m.name)}</b><span>${esc(m.city)} · ${m.online?t("online"):t("offline")}</span></div></div>
+ <p class="hl">${esc(m.hl)}</p>
+ <div class="badges">${m.show.map(badge).join("")}</div></a>`}
+function caseCard(c){return `<a class="card hover case" href="${c.url}" target="_blank" rel="noopener" style="--c:var(--cyan);color:inherit;text-decoration:none">
+ ${c.fictional?`<span class="flag">${t("fictional")}</span>`:""}
+ <h3>${esc(c.title)}</h3>
+ <div class="meta"><span>${esc(c.industry)}</span><span>${esc(c.country)}</span><span>${esc(c.size)}</span><span>${esc(c.status)}</span><span>${esc(c.date)}</span></div>
+ <p>${esc(c.summary)}</p>
+ <div class="tags">${c.walls.map(wtag).join("")}</div>
+ <span style="font:12px var(--mono);color:var(--cyan)">${t("read_full")} ↗</span></a>`}
+
+function chatMsg(x,i){
+ if(x.sys)return `<div class="msg sys"><div class="body"><div class="txt">${esc(x.txt)}</div></div></div>`;
+ const m=x.who==="me"?{name:me.name||t("you"),c:"--white",online:true}:byId(x.who);
+ return `<div class="msg">${av(m,"",false)}<div class="body"><div class="who" style="color:var(${m.c})">${esc(m.name)}<time>${x.time}</time></div><div class="txt">${esc(i==null?x.txt:msgText(x))}</div>${i!=null&&x.tr&&x.lang!==lang&&x.tr[lang]?`<button class="trl" data-orig="${i}">${isTr(x)?esc(t("tr_from",{lang:LN[lang][L.indexOf(x.lang)]}))+" · "+t("show_orig"):esc(t("orig_in",{lang:LN[lang][L.indexOf(x.lang)]}))+" · "+t("show_tr")}</button>`:""}</div></div>`;
+}
+
+V.members=()=>{
+ const skills=[...new Set(MEMBERS.flatMap(m=>m.skills))].sort();
+ const q=memberFilter.toLowerCase();
+ const list=MEMBERS.filter(m=>(!q||(m.name+" "+m.city+" "+m.skills.join(" ")).toLowerCase().includes(q))&&(!memberSkill||m.skills.includes(memberSkill)));
+ return `<div class="page-head">${prompt("ls ./members")}<h1>${t("nav.members")}</h1><p class="lead">${esc(t("members.sub"))}</p></div>
+ ${MEMBERS.length?"":"<!--"}<div class="toolbar"><input class="in" id="mSearch" value="${esc(memberFilter)}" placeholder="${esc(t("search_ph"))}" aria-label="${esc(t("search_ph"))}"></div>
+ <div class="tags" style="margin-bottom:20px">
+  <button class="tag ${memberSkill?"":"on"}" data-skill="" style="--c:var(--fg-2)">${t("all")}</button>
+  ${skills.map(s=>{let h=0;for(const ch of s)h=(h*31+ch.charCodeAt(0))>>>0;return `<button class="tag ${memberSkill===s?"on":""}" data-skill="${esc(s)}" style="--c:var(${SKC[h%SKC.length]})">${esc(s)}</button>`}).join("")}
+ </div>${MEMBERS.length?"":"-->"}
+ ${!MEMBERS.length?`<div class="empty"><span>${esc(t("members.empty"))}</span><a class="btn small" href="https://github.com/deploy-eu/case-library/blob/main/CONTRIBUTORS.md" target="_blank" rel="noopener">CONTRIBUTORS.md ↗</a></div>`:list.length?`<div class="grid g3">${list.map(memberCard).join("")}</div>`:`<div class="empty">${t("no_match")}</div>`}`;
+};
+
+V.member=id=>{
+ const m=byId(id);if(!m)return V.members();
+ return `<div class="page-head">${prompt("cat ./members/"+m.id+".yml")}<a href="#members" style="font:13px var(--mono)">← ${t("nav.members")}</a></div>
+ <div class="profile">
+  <div class="card pcard" style="--c:var(${m.c})"><div class="banner"></div><div class="inner">
+   ${av(m,"lg")}
+   <div><div style="font:700 22px var(--mono);color:var(--white)">${esc(m.name)}</div><div class="muted">${esc(m.hl)}</div></div>
+   <dl class="kv"><dt>${t("city")}</dt><dd>${esc(m.city)}</dd><dt>${t("member_since")}</dt><dd>${esc(m.since)}</dd><dt>Status</dt><dd style="color:var(${m.online?"--green":"--muted"})">● ${m.online?t("online"):t("offline")}</dd></dl>
+   <div class="acts" style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn small" data-dm="${m.id}">${t("message")}</button><button class="btn small" data-wave="${m.id}">${t("wave")}</button></div>
+  </div></div>
+  <div style="display:flex;flex-direction:column;gap:16px;min-width:0">
+   <div class="card" style="display:flex;flex-direction:column;gap:12px"><h3 class="eyebrow">${t("showcase")}</h3><div class="badges">${m.show.map(badge).join("")}</div></div>
+   <div class="card" style="display:flex;flex-direction:column;gap:10px"><h3 class="eyebrow">${t("about")}</h3><p style="margin:0">${esc(m.about)}</p></div>
+   <div class="card" style="display:flex;flex-direction:column;gap:12px"><h3 class="eyebrow">${t("skills")}</h3><div class="tags">${m.skills.map(stag).join("")}</div>
+    ${m.roles.length?`<h3 class="eyebrow" style="margin-top:6px">${t("roles")}</h3><div class="tags">${m.roles.map(r=>`<span class="tag" style="--c:var(--pink)">🎖 ${esc(r)}</span>`).join("")}</div>`:""}</div>
+   <div class="card" style="display:flex;flex-direction:column;gap:10px"><h3 class="eyebrow">${t("credited")}</h3><p class="muted" style="margin:0;font:13px var(--mono)">— ${t("coming")}</p></div>
+  </div>
+ </div>`;
+};
+
+V.cases=()=>{
+ const list=CASES.filter(c=>!caseWall||c.walls.includes(caseWall));
+ return `<div class="page-head">${prompt("ls ./cases")}<h1>${t("cases.title")}</h1><p class="lead">${esc(t("cases.sub"))}</p>
+  <div class="cta"><a class="btn primary small" href="https://github.com/deploy-eu/case-library/issues/new/choose" target="_blank" rel="noopener">+ ${t("submit_case")}</a><a class="btn small" href="https://github.com/deploy-eu/case-library" target="_blank" rel="noopener">GitHub ↗</a></div></div>
+ <div class="tags" style="margin-bottom:20px"><button class="tag ${caseWall?"":"on"}" data-wallf="" style="--c:var(--fg-2)">${t("all")}</button>${WALLS.map(w=>`<button class="tag ${caseWall===w[0]?"on":""}" data-wallf="${w[0]}" style="--c:var(${w[1]})">#${w[0]}</button>`).join("")}</div>
+ ${REAL_CASES.length?"":`<div class="empty" style="margin-bottom:20px"><span>${esc(t("cases.empty"))}</span><a class="btn small" href="https://github.com/deploy-eu/case-library/blob/main/cases/_TEMPLATE.md" target="_blank" rel="noopener">_TEMPLATE.md ↗</a></div>`}
+ <div class="grid g2">${list.map(caseCard).join("")}</div>`;
+};
+
+V.walls=()=>{
+ const counts=Object.fromEntries(WALLS.map(w=>[w[0],REAL_CASES.filter(c=>c.walls.includes(w[0])).length]));
+ const max=Math.max(1,...Object.values(counts));
+ return `<div class="page-head">${prompt("grep -h walls: cases/*.md | sort | uniq -c")}<h1>${t("walls.title")}</h1><p class="lead">${esc(t("walls.sub"))}</p>
+ <div class="cta"><a class="btn small" href="https://github.com/deploy-eu/case-library/issues/new?template=wall-report.yml" target="_blank" rel="noopener">+ ${t("report_wall")}</a></div></div>
+ <div class="grid g3">${WALLS.map(w=>`<div class="card wall" style="--c:var(${w[1]})"><span class="code">#${w[0]}</span><p>${esc(w[2+li()])}</p><div class="bar"><i style="width:${counts[w[0]]/max*100}%"></i></div><span class="cnt">${t("walls.count",{n:counts[w[0]]})}</span></div>`).join("")}</div>`;
+};
+
+V.articles=()=>`<div class="page-head">${prompt("ls ./articles ./interviews")}<h1>${t("articles.title")}</h1><p class="lead">${esc(t("articles.sub"))}</p></div>
+ <div class="grid g3">
+  ${[["a1","a1d","--green","./reading/notes"],["interviews","a2d","--pink","./interviews"],["a3","a3d","--magenta","./articles"]].map(([a,b,c,p])=>`<div class="card tool" style="--c:var(${c})"><code>${p}</code><h3>${esc(t(a))}</h3><p>${esc(t(b))}</p><span class="status">${t("coming")}</span></div>`).join("")}
+ </div>`;
+
+V.tools=()=>`<div class="page-head">${prompt("ls ./tools")}<h1>${t("nav.tools")}</h1><p class="lead">${esc(t("tools.sub"))}</p>
+ <div class="cta"><a class="btn small" href="https://github.com/deploy-eu" target="_blank" rel="noopener">+ ${t("share_tool")}</a></div></div>
+ <div class="grid g3">
+  ${[["datev-payslip-reader","t1","--cyan"],["snapshot-diff","t2","--magenta"],["de-payroll-deadlines","t3","--orange"]].map(([n,k,c])=>`<div class="card tool" style="--c:var(${c})"><code>${n}</code><p>${esc(t(k))}</p><div class="tags"><span class="tag" style="--c:var(--green)">MIT</span><span class="tag" style="--c:var(--blue)">Python</span></div><span class="status" style="--c:var(--yellow)">${t("planned")}</span></div>`).join("")}
+ </div>`;
+
+V.events=()=>`<div class="page-head">${prompt("cal ./events")}<h1>${t("nav.events")}</h1><p class="lead">${esc(t("events.sub"))}</p></div>
+ <div style="display:flex;flex-direction:column;gap:12px;max-width:820px">
+  ${eventCard("e1","e1w","e1d","--green")}
+  ${eventCard("e2","e2w","e2d","--pink")}
+  <div><a class="btn small" href="https://github.com/deploy-eu/case-library/issues/new?template=guest-recommendation.yml" target="_blank" rel="noopener">+ ${t("recommend_guest")}</a></div>
+ </div>`;
+
+V.about=()=>`<div class="page-head">${prompt("cat ./README.md")}<h1>${esc(t("ab.title"))}</h1></div>
+ <div style="display:flex;flex-direction:column;gap:56px;max-width:980px">
+  <section style="display:flex;flex-direction:column;gap:14px"><div class="eyebrow"><span class="dot">●</span> ${t("ab.mission_h")}</div>
+   <p style="margin:0;font:600 clamp(20px,2.4vw,26px)/1.45 var(--sans);color:var(--white);max-width:40ch;text-wrap:balance"><span class="grad">${esc(t("ab.mission"))}</span></p>
+   <p class="lead">${esc(t("ab.mission2"))}</p></section>
+  <section style="display:flex;flex-direction:column;gap:14px"><h2>${t("ab.why_h")}</h2><p class="lead">${esc(t("ab.why"))}</p>
+   <div class="tags">${["no-api","gdpr","ai-act","works-council","data-quality"].map(wtag).join("")}</div></section>
+  <section style="display:flex;flex-direction:column;gap:16px"><h2>${t("ab.value_h")}</h2>
+   <div class="grid g2">${[["v1t","v1","--cyan"],["v2t","v2","--orange"],["v3t","v3","--green"],["v4t","v4","--magenta"]].map(([a,b,c])=>`<div class="card feat" style="--c:var(${c})"><span class="ic">// ${esc(t(a))}</span><p style="font-size:15px;color:var(--fg)">${esc(t(b))}</p></div>`).join("")}</div></section>
+  <section style="display:flex;flex-direction:column;gap:16px"><h2>${t("ab.pr_h")}</h2>
+   <div class="grid g2">${["pr1","pr2","pr3","pr4","pr5","pr6"].map((k,i)=>`<div class="card" style="display:flex;gap:14px;align-items:flex-start"><span style="font:700 13px var(--mono);color:var(--green);flex:none">[✓]</span><p style="margin:0">${esc(t(k))}</p></div>`).join("")}</div></section>
+  <section style="display:flex;flex-direction:column;gap:14px"><h2>${t("ab.who_h")}</h2><p class="lead">${esc(t("ab.who"))}</p>
+   <div class="cta"><a class="btn small" href="https://github.com/deploy-eu/case-library/blob/main/GOVERNANCE.md" target="_blank" rel="noopener">${t("ab.full")} ↗</a><a class="btn primary small" href="#join">${t("cta_join")} →</a></div></section>
+ </div>`;
+V.privacy=()=>`<div class="page-head">${prompt("cat ./privacy.md")}<h1>${t("l.priv")}</h1></div>
+ <div class="card" style="max-width:760px;display:flex;flex-direction:column;gap:14px">${["p1","p2","p3"].map(k=>`<p style="margin:0">${esc(t(k))}</p>`).join("")}</div>`;
+V.join=()=>{
+ const items=[["j1","--pink","https://github.com/deploy-eu/case-library/issues/new?template=guest-recommendation.yml"],["j2","--red","https://github.com/deploy-eu/case-library/issues/new?template=wall-report.yml"],["j3","--cyan","https://github.com/deploy-eu/case-library/issues/new?template=case-submission.yml"],["j4","--green","https://github.com/deploy-eu/case-library/issues/new/choose"],["j5","--magenta","https://github.com/deploy-eu/case-library/blob/main/CONTRIBUTING.md"]];
+ return `<div class="page-head">${prompt("./join --as you")}<h1>Join <span class="grad">Deploy@EU</span></h1><p class="lead">${esc(t("join.sub"))}</p></div>
+ <div class="card strip" style="--c:var(--magenta);max-width:820px;margin-bottom:12px"><div style="display:flex;flex-direction:column;gap:4px;min-width:0"><h3>${t("discord_t")}</h3><span class="muted" style="font-size:14px">${esc(t("discord_d"))}</span></div><span class="btn small" aria-disabled="true" style="opacity:.7;cursor:default">Discord · ${t("coming")}</span></div>
+ <div class="steps" style="max-width:820px">${items.map(([k,c,u])=>`<div class="card step" style="--c:var(${c})"><div class="l"><span class="n"></span><h3>${esc(t(k))}</h3></div><a class="btn small" href="${u}" target="_blank" rel="noopener">${t("go")}</a></div>`).join("")}</div>
+ <section class="section" style="max-width:820px"><h2>${t("how_title")}</h2><p class="lead">${esc(t("how_text"))}</p>
+  <div class="badges">${BADGES.map(b=>badge(b[0])).join("")}</div>
+  <div><a class="btn small" href="https://github.com/deploy-eu/case-library/blob/main/RECOGNITION.md" target="_blank" rel="noopener">${t("read_rules")} ↗</a></div></section>`;
+};
+
+/* ---------- overlays ---------- */
+function openPop(id){
+ const m=byId(id);if(!m)return;
+ closePop();
+ const o=document.createElement("div");o.className="overlay";o.id="pop";
+ o.innerHTML=`<div class="pop" role="dialog" aria-modal="true" aria-label="${esc(m.name)}" style="--c:var(${m.c})">
+  <div class="banner"></div><button class="x" data-close aria-label="${t("close")}">✕</button>${av(m,"lg")}
+  <div class="in-pad">
+   <div><div class="name">${esc(m.name)}</div><div class="hl">${esc(m.hl)} · ${esc(m.city)}</div></div>
+   <div class="badges">${m.show.map(badge).join("")}</div>
+   <div class="sect"><h4>${t("about")}</h4><p>${esc(m.about)}</p></div>
+   <div class="sect"><h4>${t("skills")}</h4><div class="tags">${m.skills.map(stag).join("")}</div></div>
+   <div class="acts"><button class="btn primary small" data-dm="${m.id}">${t("message")}</button><button class="btn small" data-wave="${m.id}">${t("wave")}</button><a class="btn small" href="#member-${m.id}">${t("view_profile")}</a></div>
+  </div></div>`;
+ document.body.appendChild(o);
+ o.querySelector(".x").focus();
+}
+function closePop(){const p=document.getElementById("pop");if(p)p.remove()}
+function openDm(id){
+ const m=byId(id);if(!m)return;closePop();
+ let el=document.getElementById("dm");if(el)el.remove();
+ dms[id]=dms[id]||[];
+ el=document.createElement("div");el.className="dm";el.id="dm";el.style.setProperty("--c",`var(${m.c})`);
+ el.innerHTML=`<div class="chat-head"><div style="display:flex;gap:10px;align-items:center;min-width:0">${av(m,"",true)}<h3 style="font-size:14px">${esc(t("dm_with",{name:m.name}))}</h3></div><button class="btn small" data-closedm aria-label="${t("close")}">✕</button></div>
+  <div class="chat-log" id="dmLog">${dms[id].map(chatMsg).join("")}</div>
+  <form class="chat-form" id="dmForm" data-to="${id}"><input class="in" id="dmIn" autocomplete="off" placeholder="${esc(t("chat_ph"))}" aria-label="${esc(t("chat_ph"))}"><button class="btn small" type="submit">${t("send")}</button></form>
+  <div class="chat-note">${esc(t("local_note"))}</div>`;
+ document.body.appendChild(el);el.querySelector("#dmIn").focus();
+}
+function toast(msg){const o=document.querySelector(".toast");if(o)o.remove();const e=document.createElement("div");e.className="toast";e.textContent=msg;document.body.appendChild(e);setTimeout(()=>e.remove(),2200)}
+const now=()=>{const d=new Date();return String(d.getHours()).padStart(2,"0")+":"+String(d.getMinutes()).padStart(2,"0")};
+
+/* ---------- render ---------- */
+function applyStatic(){
+ document.documentElement.lang=lang==="zh"?"zh-CN":lang;
+ document.querySelectorAll("[data-t]").forEach(e=>e.textContent=t(e.dataset.t));
+ document.getElementById("lang").value=lang;
+}
+function render(){
+ const h=(location.hash||"#home").slice(1);
+ let route=h, html;
+ if(h.startsWith("member-")){route="members";html=V.member(h.slice(7))}
+ else if(V[h]){html=V[h]()}
+ else{route="home";html=V.home()}
+ document.getElementById("app").innerHTML=`<div class="wrap">${html}</div>`;
+ document.getElementById("mainNav").innerHTML=NAV.map(k=>`<a href="#${k}" class="${route===k?"on":""}">${t("nav."+k)}</a>`).join("");
+ const log=document.getElementById("chatLog");if(log)log.scrollTop=log.scrollHeight;
+ }
+function full(){applyStatic();render()}
+
+/* ---------- events ---------- */
+window.addEventListener("hashchange",()=>{closePop();document.getElementById("mainNav").classList.remove("open");render();window.scrollTo(0,0)});
+document.getElementById("lang").addEventListener("change",e=>{lang=e.target.value;store.set("lang",lang);full();const dm=document.getElementById("dm");if(dm)dm.remove()});
+document.getElementById("menuBtn").addEventListener("click",e=>{const n=document.getElementById("mainNav");n.classList.toggle("open");e.currentTarget.setAttribute("aria-expanded",n.classList.contains("open"))});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){closePop()}});
+document.addEventListener("click",e=>{
+ const g=s=>e.target.closest(s);
+ let x;
+ if(e.target.id==="pop"||g("[data-close]")){closePop();return}
+ if(x=g("[data-pop]")){openPop(x.dataset.pop);return}
+ if(x=g("[data-me]")){location.hash="me";return}
+ if(x=g("[data-dm]")){openDm(x.dataset.dm);return}
+ if(x=g("[data-closedm]")){document.getElementById("dm").remove();return}
+ if(x=g("[data-wave]")){const m=byId(x.dataset.wave);closePop();toast(t("waved",{name:m.name}));return}
+ if(x=g("[data-orig]")){const m=chatLog[+x.dataset.orig];m.showOrig=!m.showOrig;const log=document.getElementById("chatLog");const st=log.scrollTop;log.innerHTML=chatLog.map((y,k)=>chatMsg(y,k)).join("");log.scrollTop=st;return}
+ if(x=g("[data-copy]")){const txt=PROMPT[lang][0]+"\n\n"+PROMPT[lang][1];const pre=document.getElementById("promptText");
+  const sel=()=>{const r=document.createRange();r.selectNodeContents(pre);const w=getSelection();w.removeAllRanges();w.addRange(r)};
+  try{navigator.clipboard.writeText(txt).then(()=>toast(t("copied")),sel)}catch(err){sel()}return}
+ if(x=g("[data-skill]")){memberSkill=x.dataset.skill;render();return}
+ if(x=g("[data-wallf]")){caseWall=x.dataset.wallf;render();return}
+ if(x=g("[data-pick]")){
+  const id=x.dataset.pick;readMe();
+  if(me.show.includes(id))me.show=me.show.filter(v=>v!==id);
+  else if(me.show.length>=5){toast(t("max5"));return}
+  else me.show=[...me.show,id];
+  render();return}
+});
+document.addEventListener("input",e=>{
+ if(e.target.id==="mSearch"){memberFilter=e.target.value;const pos=e.target.selectionStart;render();const s=document.getElementById("mSearch");s.focus();s.setSelectionRange(pos,pos)}
+});
+function readMe(){const v=id=>{const el=document.getElementById(id);return el?el.value:undefined};if(v("meName")!==undefined){me={...me,name:v("meName"),city:v("meCity"),hl:v("meHl"),about:v("meAbout"),skills:v("meSkills")}}}
+document.addEventListener("submit",e=>{
+ e.preventDefault();
+ if(e.target.id==="chatForm"){const i=document.getElementById("chatIn");const v=i.value.trim();if(!v)return;chatLog.push({who:"me",time:now(),lang,txt:v});say("me",v);i.value="";const log=document.getElementById("chatLog");log.insertAdjacentHTML("beforeend",chatMsg(chatLog[chatLog.length-1],chatLog.length-1));log.scrollTop=log.scrollHeight}
+ if(e.target.id==="dmForm"){const to=e.target.dataset.to;const i=document.getElementById("dmIn");const v=i.value.trim();if(!v)return;dms[to].push({who:"me",time:now(),txt:v});i.value="";const log=document.getElementById("dmLog");log.insertAdjacentHTML("beforeend",chatMsg(dms[to][dms[to].length-1]));log.scrollTop=log.scrollHeight}
+ if(e.target.id==="meForm"){readMe();store.set("me",me);render();toast(t("saved"))}
+});
+
+full();
+</script>
+</body>
+</html>
