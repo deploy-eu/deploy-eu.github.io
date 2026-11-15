@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://deploy-eu.github.io/sitemap.xml

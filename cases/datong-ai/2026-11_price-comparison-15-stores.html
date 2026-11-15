@@ -1,0 +1,61 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Price and availability from 15 online stores in one table · Deploy@EU</title><meta name="description" content="An uploaded product list is searched across 15 online stores. Possible matches, prices and availability land in one table; the team confirms that variants really match before exporting."><link rel="canonical" href="https://deploy-eu.github.io/cases/datong-ai/2026-11_price-comparison-15-stores.html">
+<meta property="og:title" content="Price and availability from 15 online stores in one table"><meta property="og:description" content="An uploaded product list is searched across 15 online stores. Possible matches, prices and availability land in one table; the team confirms that variants really match before exporting."><meta property="og:image" content="https://deploy-eu.github.io/og.png">
+<style>body{margin:0;background:#08090e;color:#c0caf5;font:16px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}main{max-width:760px;margin:0 auto;padding:32px 16px 64px}
+a{color:#7dcfff}h1,h2,h3{color:#eef1ff;line-height:1.25}h1{font-size:28px}table{border-collapse:collapse;width:100%;display:block;overflow-x:auto}td,th{border:1px solid #2f3550;padding:6px 10px;text-align:left}
+pre{background:#10121a;border:1px solid #232838;padding:12px;overflow-x:auto}code{font-family:ui-monospace,Menlo,Consolas,monospace}blockquote{border-left:3px solid #bb9af7;margin:0;padding:4px 14px;color:#a9b1d6}
+.top{font:600 14px ui-monospace,Menlo,monospace;margin-bottom:24px}.meta{color:#6b74a0;font-size:14px}</style></head>
+<body><main><div class="top"><a href="https://deploy-eu.github.io/">deploy@eu</a> · <a href="https://deploy-eu.github.io/#cases">Cases</a></div>
+<p class="meta">live · retail / e-commerce · by DATONG AI</p><h1>Price and availability from 15 online stores in one table</h1>
+<blockquote>
+<p><strong>Disclosure:</strong> written by DATONG AI, the company of a Deploy@EU management team member. The community does not endorse any company. Based on the public case page linked below, published with the client's consent. <strong>Review by a second maintainer: pending.</strong></p>
+<p><strong>Summary:</strong> An uploaded product list is searched across 15 online stores. Possible matches, prices and availability land in one table; the team confirms that variants really match before exporting.</p>
+</blockquote>
+<h2>1. The business problem</h2>
+<p>Every store names products differently and shows variants differently. Searching by hand, copying prices and moving them into a spreadsheet took time, and it was easy to compare a different variant of the same product.</p>
+<h2>2. What was already there</h2>
+<p>Product lists in spreadsheets and the publicly visible pages of the stores.</p>
+<h2>3. What was built</h2>
+<pre><code>person uploads a list, enters a product or pastes links
+→ each store searched; possible matches by name, barcode and image (auto)
+→ price, currency and availability per store in one table (auto)
+→ person checks that variants match, exports CSV
+</code></pre>
+<ul>
+<li>Store and variant stay visible in every row so the team can check them.</li>
+<li>Whether two listings are the same product, and all assortment and price decisions, stay with people.</li>
+</ul>
+<h2>4. Results</h2>
+<table>
+<thead>
+<tr>
+<th>What</th>
+<th>Before</th>
+<th>After</th>
+<th>Measured or estimated?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Research for one product</td>
+<td>about 1 hour</td>
+<td>about 2 minutes</td>
+<td>reported by the project team; number of products measured not recorded</td>
+</tr>
+</tbody>
+</table>
+<h2>5. Where it got stuck</h2>
+<ul>
+<li><strong>Variants.</strong> Different sizes, colours or models of one product ended up in the same row unless the variant was checked before comparing prices.</li>
+<li><strong>Inconsistent names and links</strong> across stores made matching by name alone unreliable; barcode and image had to be added.</li>
+<li><strong>Trust in the table</strong> came only when source and result sat side by side in the same row.</li>
+</ul>
+<h2>6. What we would do differently</h2>
+<p>Record how many products were measured, so the time figure has a sample behind it.</p>
+<h2>7. Links</h2>
+<ul>
+<li>Public case page: https://datongai.de/en/projects/pricequest-price-comparison/</li>
+</ul>
+<hr />
+<p><sub>By submitting, the authors confirm that the case contains no personal data, no confidential client information, and that publishing it was agreed with whoever needed to agree. Licensed under CC BY 4.0.</sub></p>
+<p class="meta">Source: <a href="https://github.com/deploy-eu/case-library/blob/main/cases/datong-ai/2026-11_price-comparison-15-stores.md">https://github.com/deploy-eu/case-library/blob/main/cases/datong-ai/2026-11_price-comparison-15-stores.md</a> · Licensed CC BY 4.0</p></main></body></html>

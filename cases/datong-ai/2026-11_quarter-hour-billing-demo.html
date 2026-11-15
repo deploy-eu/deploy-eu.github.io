@@ -1,0 +1,74 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Quarter-hour billing for shared solar power: a rules-only demo · Deploy@EU</title><meta name="description" content="A demo for utilities: solar power shared among the sites of one legal entity is allocated and balanced for every quarter hour of a month. The calculation uses fixed rules only. It runs on simulated data; no utility has used it in operation."><link rel="canonical" href="https://deploy-eu.github.io/cases/datong-ai/2026-11_quarter-hour-billing-demo.html">
+<meta property="og:title" content="Quarter-hour billing for shared solar power: a rules-only demo"><meta property="og:description" content="A demo for utilities: solar power shared among the sites of one legal entity is allocated and balanced for every quarter hour of a month. The calculation uses fixed rules only. It runs on simulated data; no utility has used it in operation."><meta property="og:image" content="https://deploy-eu.github.io/og.png">
+<style>body{margin:0;background:#08090e;color:#c0caf5;font:16px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}main{max-width:760px;margin:0 auto;padding:32px 16px 64px}
+a{color:#7dcfff}h1,h2,h3{color:#eef1ff;line-height:1.25}h1{font-size:28px}table{border-collapse:collapse;width:100%;display:block;overflow-x:auto}td,th{border:1px solid #2f3550;padding:6px 10px;text-align:left}
+pre{background:#10121a;border:1px solid #232838;padding:12px;overflow-x:auto}code{font-family:ui-monospace,Menlo,Consolas,monospace}blockquote{border-left:3px solid #bb9af7;margin:0;padding:4px 14px;color:#a9b1d6}
+.top{font:600 14px ui-monospace,Menlo,monospace;margin-bottom:24px}.meta{color:#6b74a0;font-size:14px}</style></head>
+<body><main><div class="top"><a href="https://deploy-eu.github.io/">deploy@eu</a> · <a href="https://deploy-eu.github.io/#cases">Cases</a></div>
+<p class="meta">pilot · energy / utilities · Germany · by DATONG AI</p><h1>Quarter-hour billing for shared solar power: a rules-only demo</h1>
+<blockquote>
+<p><strong>Disclosure:</strong> written by DATONG AI, the company of a Deploy@EU management team member. The community does not endorse any company. Based on the public case page linked below, published with the client's consent. <strong>Review by a second maintainer: pending.</strong></p>
+<p><strong>Summary:</strong> A demo for utilities: solar power shared among the sites of one legal entity is allocated and balanced for every quarter hour of a month. The calculation uses fixed rules only. It runs on simulated data; no utility has used it in operation.</p>
+</blockquote>
+<h2>1. The business problem</h2>
+<p>A customer with several sites, some generating solar power and some consuming it, wants the power shared among its own sites and billed per quarter hour. Many utilities have no ready process for this, so requests are declined or left open.</p>
+<h2>2. What was already there</h2>
+<p>Nothing at a client. The demo assumes 15-minute readings per site and a billing system that can import a CSV file.</p>
+<h2>3. What was built</h2>
+<pre><code>readings for all sites (simulated from weather and load profiles) → person chooses one of three allocation rules
+→ distribution between sites per quarter hour, 96 values a day (rules)
+→ balance check: generation = self-consumption + sharing + grid feed-in (auto)
+→ monthly figures → billing table as CSV → person checks and passes it on
+</code></pre>
+<ul>
+<li><strong>No AI in the calculation.</strong> The same readings and rule must give the same bill every time, and an auditor must be able to trace each amount.</li>
+<li>Only the billing sub-ledger is covered. Money flows, the supplier role, market communication and the customer relationship stay with the utility.</li>
+</ul>
+<h2>4. Results</h2>
+<table>
+<thead>
+<tr>
+<th>What</th>
+<th>Before</th>
+<th>After</th>
+<th>Measured or estimated?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Balance difference over a full month (96 × 31 quarter hours)</td>
+<td></td>
+<td>0</td>
+<td>measured on simulated data</td>
+</tr>
+<tr>
+<td>Allocation rules running end to end</td>
+<td></td>
+<td>3 of 3</td>
+<td>demo test</td>
+</tr>
+<tr>
+<td>Errors found by sentence-by-sentence checking in one AI-drafted technical article</td>
+<td></td>
+<td>22</td>
+<td>counted</td>
+</tr>
+</tbody>
+</table>
+<h2>5. Where it got stuck</h2>
+<ul>
+<li><strong>A regulatory change made the first legal model unworkable.</strong> The demo had to be repositioned: it now targets utilities and covers only the sub-ledger, with no money flowing through it.</li>
+<li><strong>AI-drafted text contained plausible errors.</strong> In the fourth technical article a person found 22, and only by checking every sentence.</li>
+<li><strong>Simulation proves the arithmetic, not the usefulness.</strong> Without real meter readings from a utility, nobody knows whether it holds up in daily work.</li>
+<li>Database access rights had to be reviewed and tightened before the demo was shown.</li>
+</ul>
+<h2>6. What we would do differently</h2>
+<p>Find a utility willing to provide one month of real readings before building the second version.</p>
+<h2>7. Links</h2>
+<ul>
+<li>Public case page: https://datongai.de/en/projects/utility-billing-demo/</li>
+</ul>
+<hr />
+<p><sub>By submitting, the authors confirm that the case contains no personal data, no confidential client information, and that publishing it was agreed with whoever needed to agree. Licensed under CC BY 4.0.</sub></p>
+<p class="meta">Source: <a href="https://github.com/deploy-eu/case-library/blob/main/cases/datong-ai/2026-11_quarter-hour-billing-demo.md">https://github.com/deploy-eu/case-library/blob/main/cases/datong-ai/2026-11_quarter-hour-billing-demo.md</a> · Licensed CC BY 4.0</p></main></body></html>

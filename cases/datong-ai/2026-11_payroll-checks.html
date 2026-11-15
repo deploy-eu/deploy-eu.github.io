@@ -1,0 +1,84 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Monthly payroll checks for client companies · Deploy@EU</title><meta name="description" content="A service provider runs monthly payroll for client companies. The chain around the tax advisor&#x27;s payslips (reminders, filing, two-way reconciliation, cost breakdown, draft payment instruction) now runs automatically; staff approve two drafts per client."><link rel="canonical" href="https://deploy-eu.github.io/cases/datong-ai/2026-11_payroll-checks.html">
+<meta property="og:title" content="Monthly payroll checks for client companies"><meta property="og:description" content="A service provider runs monthly payroll for client companies. The chain around the tax advisor&#x27;s payslips (reminders, filing, two-way reconciliation, cost breakdown, draft payment instruction) now runs automatically; staff approve two drafts per client."><meta property="og:image" content="https://deploy-eu.github.io/og.png">
+<style>body{margin:0;background:#08090e;color:#c0caf5;font:16px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}main{max-width:760px;margin:0 auto;padding:32px 16px 64px}
+a{color:#7dcfff}h1,h2,h3{color:#eef1ff;line-height:1.25}h1{font-size:28px}table{border-collapse:collapse;width:100%;display:block;overflow-x:auto}td,th{border:1px solid #2f3550;padding:6px 10px;text-align:left}
+pre{background:#10121a;border:1px solid #232838;padding:12px;overflow-x:auto}code{font-family:ui-monospace,Menlo,Consolas,monospace}blockquote{border-left:3px solid #bb9af7;margin:0;padding:4px 14px;color:#a9b1d6}
+.top{font:600 14px ui-monospace,Menlo,monospace;margin-bottom:24px}.meta{color:#6b74a0;font-size:14px}</style></head>
+<body><main><div class="top"><a href="https://deploy-eu.github.io/">deploy@eu</a> · <a href="https://deploy-eu.github.io/#cases">Cases</a></div>
+<p class="meta">live · business services / payroll · Germany · by DATONG AI</p><h1>Monthly payroll checks for client companies</h1>
+<blockquote>
+<p><strong>Disclosure:</strong> written by DATONG AI, the company of a Deploy@EU management team member. The community does not endorse any company. Based on the public case page linked below, published with the client's consent. <strong>Review by a second maintainer: pending.</strong></p>
+<p><strong>Summary:</strong> A service provider runs monthly payroll for client companies. The chain around the tax advisor's payslips (reminders, filing, two-way reconciliation, cost breakdown, draft payment instruction) now runs automatically; staff approve two drafts per client.</p>
+</blockquote>
+<h2>1. The business problem</h2>
+<p>For every client company and month the payroll team reminded HR, collected changes, forwarded them to the tax advisor, waited for payslips, checked them, and wrote a cost breakdown and payment instruction. Whether every reported change had been applied depended on individual attention, and each new client added the same amount of work.</p>
+<h2>2. What was already there</h2>
+<p>A shared mailbox, a project board, cloud storage. Payslips arrive from the tax advisor as PDF files; there is no interface to the payroll software.</p>
+<h2>3. What was built</h2>
+<pre><code>reminder to HR (auto, from the 10th, in the client's language) → replies read and filed (auto)
+→ email to tax advisor (AI draft, person edits and sends) → late-payslip reminder (auto)
+→ payslips recognised, matched to client and month (auto)
+→ two-way reconciliation by fixed rules (auto) → cost breakdown (auto)
+→ payment instruction (draft, person checks 3 points and approves)
+</code></pre>
+<ul>
+<li><strong>Rules, not a model, do the numbers.</strong> No language model reads the payslips: they are converted to text on servers in Germany and checked by fixed rules. Reported changes must appear on the payslip, and payslip changes must have been reported.</li>
+<li><strong>Anything unclear</strong> (wrong month, unknown sender, unreadable file) goes to a separate folder with the reason. The system does not guess.</li>
+<li><strong>Draft versus sent</strong> versions of every outgoing email are stored and compared, so the team sees how often drafts were used unchanged.</li>
+<li>Everything runs in the client's own accounts. An NDA and a data processing agreement are signed; employees' bank details appear in no automated step.</li>
+</ul>
+<h2>4. Results</h2>
+<table>
+<thead>
+<tr>
+<th>What</th>
+<th>Before</th>
+<th>After</th>
+<th>Measured or estimated?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tasks done by hand per client company per month</td>
+<td>9</td>
+<td>2</td>
+<td>counted</td>
+</tr>
+<tr>
+<td>Team time per employee per month</td>
+<td>about 40 min</td>
+<td>about 16–20 min</td>
+<td>estimated</td>
+</tr>
+<tr>
+<td>Client companies served</td>
+<td>5 at launch</td>
+<td>more than 10</td>
+<td>counted</td>
+</tr>
+<tr>
+<td>Time saved overall</td>
+<td></td>
+<td></td>
+<td>not measured yet</td>
+</tr>
+</tbody>
+</table>
+<h2>5. Where it got stuck</h2>
+<ul>
+<li><strong>No interface to the payroll software.</strong> Payslips only exist as PDFs from the tax advisor, so the whole check works on extracted text.</li>
+<li><strong>Real writing varies.</strong> HR departments answer in their own words and formats. Prescribing exact wording to people only moved the problem; the system had to cope with how people actually write.</li>
+<li><strong>Fixing mid-run unsettled the team.</strong> Small problems during the first live month were collected and fixed together afterwards.</li>
+<li><strong>A mailbox migration</strong> during operation: the process was rebuilt as a copy, tested fully, then switched over in about 15 minutes.</li>
+<li><strong>Scope was limited on purpose:</strong> the target was the roughly 70% standard cases; special cases stay with people.</li>
+</ul>
+<h2>6. What we would do differently</h2>
+<p>Collect a list of the real reply formats from HR before building, and agree from day one that fixes come in batches after each monthly run.</p>
+<h2>7. Links</h2>
+<ul>
+<li>Public case page: https://datongai.de/en/projects/payroll-checks/</li>
+</ul>
+<hr />
+<p><sub>By submitting, the authors confirm that the case contains no personal data, no confidential client information, and that publishing it was agreed with whoever needed to agree. Licensed under CC BY 4.0.</sub></p>
+<p class="meta">Source: <a href="https://github.com/deploy-eu/case-library/blob/main/cases/datong-ai/2026-11_payroll-checks.md">https://github.com/deploy-eu/case-library/blob/main/cases/datong-ai/2026-11_payroll-checks.md</a> · Licensed CC BY 4.0</p></main></body></html>

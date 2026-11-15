@@ -1,44 +1,56 @@
 # Deploy@EU
 
-> A non-profit community of people who deploy AI and automation inside European companies: forward-deployed engineers (FDEs), in-house builders, consultants, and the business owners who hire them.
-
-## Goal
-Help European companies put AI to work by sharing what really happens in deployments: what worked, what it cost, and what failed. At the core are the people who do the deployment work; around them the community connects business owners, newcomers to the field and partners.
-
-## Why it exists
-Most AI stories are demos and sales pitches. Honest reports from the field are missing. In Europe the obstacles are specific: old software without an API, GDPR, the EU AI Act, works councils, many languages. Every team hits the same walls alone; the community wants each wall to be hit only once.
+> A non-profit community about how European companies really put AI to work, told by the people who did it: business owners, AI leads, forward-deployed engineers (FDEs), in-house builders and consultants.
 
 ## What the community does
-- Case library: real deployment cases (the problem, existing systems, what was built, measured results, where it got stuck, what to do differently). Reviewed for consent, privacy, honest numbers and no advertising.
-- Walls: recurring obstacles tagged across cases: no-api, legacy-desktop, data-quality, gdpr, ai-act, works-council, change-management, vendor-lock, cost, reliability.
-- Interviews with practitioners and business owners.
-- Reading sessions every two weeks: one article, one hour, honest discussion.
-- Home base for chat and events: Discord (being set up).
+- In-depth interviews (the core): one-to-one conversations with business owners, AI leads and practitioners. Real experience, not methodology: what went wrong, how teams pushed back, what changed, whether it paid off. Published as video, podcast and clips.
+- Reading sessions every two weeks: one or two recent articles, one hour, honest discussion.
+- Open case library on GitHub: written deployment cases (the problem, what was built, measured results, where it got stuck). Each case is tagged with the "walls" it hit: no-api, legacy-desktop, data-quality, gdpr, ai-act, works-council, change-management, vendor-lock, cost, reliability.
+- Topics the community keeps coming back to: where AI transformation goes wrong, employee resistance, redesigning workflows, explaining ROI to owners and investors in five minutes, what really changed after AI.
+
+## Goal
+Help European companies put AI to work by sharing what really happens: what worked, what it cost, what failed. At the core are the people who do the work; around them the community connects business owners, newcomers to the field and partners.
 
 ## Who it is for
-- Practitioners: learn from others' cases and walls, find peers across Europe, build a public, reviewed portfolio under their own name.
-- Business owners: see what AI deployments look like at similar companies, with measured numbers and honest failures, before spending money; talk to people who have done it without being sold to.
-- Newcomers: a way into the field through real cases, reading sessions and a guided first contribution.
+- Business owners: hear from companies like yours before you spend money; talk to people who have done it without being sold to.
+- Practitioners: learn from others' experience, find peers across Europe, build a public portfolio under your own name (pseudonyms are fine).
+- Newcomers: a way into the field through interviews, reading sessions and a guided first contribution.
 - Partners and sponsors: support a neutral, practitioner-led space; sponsors are credited at the events they support.
 
 ## Principles
-- Non-profit. No membership fees. The community's own talks and courses are free.
+- Non-profit. No membership fees. Talks and courses are free.
 - Money the community receives is used only for the community.
 - The community endorses no company, including sponsors and members' own businesses, and takes no commission.
 - Honest numbers: measured results are marked as measured, estimates as estimates.
 - No personal or client data; cases are published only with the consent of whoever needs to agree.
-- Every contribution counts, online or offline, recognised with badges, not points or rankings. Members choose up to five badges to show.
-- Run by a small management team; being on it is a responsibility, not a power.
+- Every contribution counts, online or offline, recognised with badges, not points or rankings.
 
 ## How to join or contribute
-First contributions: recommend an interview guest, report a wall you hit, write or fix a case, recommend an article for a reading session, translate a case summary.
+- Chat and events: Discord (being set up).
+- Write a case or member profile with your AI: https://deploy-eu.github.io/write-a-case.txt
+- Be interviewed, recommend a guest, report a wall, or volunteer for an open role: https://github.com/deploy-eu/case-library/issues/new/choose
 
 ## Links
 - Website: https://deploy-eu.github.io
 - About: https://deploy-eu.github.io/#about
 - Case library: https://github.com/deploy-eu/case-library
-- Contributing: https://github.com/deploy-eu/case-library/blob/main/CONTRIBUTING.md
 - Principles: https://github.com/deploy-eu/case-library/blob/main/GOVERNANCE.md
 - Recognition: https://github.com/deploy-eu/case-library/blob/main/RECOGNITION.md
 
 Languages on the website: English, Chinese, German, French, Italian, Spanish.
+
+<!-- AUTO:START (generated 2026-11-15 from the case library; do not edit by hand) -->
+## Cases (9)
+- [Trend forecast for style elements with short, gappy data](https://deploy-eu.github.io/cases/datong-ai/2026-11_fashion-trend-forecast.html) by DATONG AI: A fashion retailer forecasts how style elements develop from online buzz and search volume. The model borrows information from related elements; specialists decide what enters range planning. Accepted by the client.
+- [Reading HVAC tenders: equipment list and first bid assessment](https://deploy-eu.github.io/cases/datong-ai/2026-11_hvac-tender-review.html) by DATONG AI: Drawings and specifications become an equipment list linked to the drawing, with suggestions from the company's own range and a first assessment. Drawing recognition is in use at the client; selection and assessment are a finished demo.
+- [Assigning incoming letters to tenant companies: a prototype](https://deploy-eu.github.io/cases/datong-ai/2026-11_incoming-mail-prototype.html) by DATONG AI: A business centre receives mail for several hundred tenant companies. A prototype reads scanned letters and suggests the tenant; a person confirms every assignment. It was tested with real sample letters and handed to the client's IT.
+- [AI back office for a small pearl jewellery brand](https://deploy-eu.github.io/cases/datong-ai/2026-11_jewellery-back-office.html) by DATONG AI: The owner sells in live streams and chats. She now forwards a screenshot after each sale; an assistant records order, payment, shipping and stock, and asks whenever an amount is unclear.
+- [Monthly payroll checks for client companies](https://deploy-eu.github.io/cases/datong-ai/2026-11_payroll-checks.html) by DATONG AI: A service provider runs monthly payroll for client companies. The chain around the tax advisor's payslips (reminders, filing, two-way reconciliation, cost breakdown, draft payment instruction) now runs automatically; staff approve two drafts per client.
+- [Price and availability from 15 online stores in one table](https://deploy-eu.github.io/cases/datong-ai/2026-11_price-comparison-15-stores.html) by DATONG AI: An uploaded product list is searched across 15 online stores. Possible matches, prices and availability land in one table; the team confirms that variants really match before exporting.
+- [Quarter-hour billing for shared solar power: a rules-only demo](https://deploy-eu.github.io/cases/datong-ai/2026-11_quarter-hour-billing-demo.html) by DATONG AI: A demo for utilities: solar power shared among the sites of one legal entity is allocated and balanced for every quarter hour of a month. The calculation uses fixed rules only. It runs on simulated data; no utility has used it in operation.
+- [A key account manager's AI setup with a second-agent check](https://deploy-eu.github.io/cases/datong-ai/2026-11_sales-ai-setup.html) by DATONG AI: One key account manager runs customer files, email drafts, reports and CRM preparation through an AI assistant. A second agent checks every draft before he sees it; he sends, saves and sets prices himself.
+- [Four-way document matching for commodity orders](https://deploy-eu.github.io/cases/datong-ai/2026-11_trade-document-matching.html) by DATONG AI: Contracts, invoices, shipping documents and payment records arrive through different channels. They are now collected, read and matched per order by fixed rules; staff resolve the flagged mismatches.
+
+## Member profiles (1)
+- [Abuzhabilaohan](https://deploy-eu.github.io/members/abuzhabilaohan.html): Founding maintainer of Deploy@EU; builds AI automation for small and mid-sized companies at DATONG AI
+<!-- AUTO:END -->

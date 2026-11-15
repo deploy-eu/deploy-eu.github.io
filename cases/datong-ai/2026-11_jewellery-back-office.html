@@ -1,0 +1,76 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI back office for a small pearl jewellery brand · Deploy@EU</title><meta name="description" content="The owner sells in live streams and chats. She now forwards a screenshot after each sale; an assistant records order, payment, shipping and stock, and asks whenever an amount is unclear."><link rel="canonical" href="https://deploy-eu.github.io/cases/datong-ai/2026-11_jewellery-back-office.html">
+<meta property="og:title" content="AI back office for a small pearl jewellery brand"><meta property="og:description" content="The owner sells in live streams and chats. She now forwards a screenshot after each sale; an assistant records order, payment, shipping and stock, and asks whenever an amount is unclear."><meta property="og:image" content="https://deploy-eu.github.io/og.png">
+<style>body{margin:0;background:#08090e;color:#c0caf5;font:16px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}main{max-width:760px;margin:0 auto;padding:32px 16px 64px}
+a{color:#7dcfff}h1,h2,h3{color:#eef1ff;line-height:1.25}h1{font-size:28px}table{border-collapse:collapse;width:100%;display:block;overflow-x:auto}td,th{border:1px solid #2f3550;padding:6px 10px;text-align:left}
+pre{background:#10121a;border:1px solid #232838;padding:12px;overflow-x:auto}code{font-family:ui-monospace,Menlo,Consolas,monospace}blockquote{border-left:3px solid #bb9af7;margin:0;padding:4px 14px;color:#a9b1d6}
+.top{font:600 14px ui-monospace,Menlo,monospace;margin-bottom:24px}.meta{color:#6b74a0;font-size:14px}</style></head>
+<body><main><div class="top"><a href="https://deploy-eu.github.io/">deploy@eu</a> · <a href="https://deploy-eu.github.io/#cases">Cases</a></div>
+<p class="meta">live · jewellery / direct sales via social media · by DATONG AI</p><h1>AI back office for a small pearl jewellery brand</h1>
+<blockquote>
+<p><strong>Disclosure:</strong> written by DATONG AI, the company of a Deploy@EU management team member. The community does not endorse any company. Based on the public case page linked below, published with the client's consent. <strong>Review by a second maintainer: pending.</strong></p>
+<p><strong>Summary:</strong> The owner sells in live streams and chats. She now forwards a screenshot after each sale; an assistant records order, payment, shipping and stock, and asks whenever an amount is unclear.</p>
+</blockquote>
+<h2>1. The business problem</h2>
+<p>Every sale depended on the owner: typing the order from the chat, finding the payment, passing on the address, updating stock, informing the customer. Information was spread over chats, screenshots and several spreadsheets, and she often checked the same thing twice.</p>
+<h2>2. What was already there</h2>
+<p>Chats, screenshots, several spreadsheets (one shared with a business partner) and an online shop. The owner did not want to learn a new program or fill in forms.</p>
+<h2>3. What was built</h2>
+<pre><code>sale → owner forwards chat screenshot → AI creates customer, order, items; prices by her rules; deducts stock
+→ payment arrives → AI matches it; if unclear it asks and enters nothing
+→ AI drafts the customer message from her templates → she reads and sends it herself
+→ every morning 07:30: list of what ships today, what is open, what is nearly sold out; nightly backup
+</code></pre>
+<ul>
+<li><strong>Money:</strong> the assistant never guesses. Unclear amounts are queried.</li>
+<li><strong>Item recognition:</strong> each item has one number; the owner's, supplier's and customers' names are attached as aliases. New names are matched to similar entries and confirmed once.</li>
+<li><strong>Add-ons:</strong> highlight clips from live streams (AI finds 30–60 second passages, a person reviews and publishes), a monthly analysis of public posts in the industry, and shop images set to one uniform background.</li>
+<li>Rules and prices change only on her instruction, and every change is logged. The sheet shared with the partner syncs only after she confirms.</li>
+</ul>
+<h2>4. Results</h2>
+<table>
+<thead>
+<tr>
+<th>What</th>
+<th>Before</th>
+<th>After</th>
+<th>Measured or estimated?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Steps the owner does by hand, whole process</td>
+<td>33</td>
+<td>16</td>
+<td>estimated (owner's own count)</td>
+</tr>
+<tr>
+<td>Errors in amounts, final test round</td>
+<td></td>
+<td>0</td>
+<td>measured</td>
+</tr>
+<tr>
+<td>Background colour difference, first 10 shop images</td>
+<td>visibly different</td>
+<td>at most 1 on a 0–255 scale</td>
+<td>measured</td>
+</tr>
+</tbody>
+</table>
+<h2>5. Where it got stuck</h2>
+<ul>
+<li><strong>Same item, three names.</strong> The owner, the supplier and customers each named the same pearl differently, so orders could not be matched to stock until every item got one number with aliases.</li>
+<li><strong>A form would not have been used.</strong> The first idea, rebuilding the spreadsheets digitally, was dropped; the input had to stay screenshots and voice messages.</li>
+<li><strong>Three test rounds</strong> with real screenshots and special cases were needed before amounts were error-free.</li>
+<li><strong>Background brightness was a judgement call.</strong> Near-white backgrounds, common for jewellery, made white pearls lose their outline; a slightly darker grey was chosen.</li>
+</ul>
+<h2>6. What we would do differently</h2>
+<p>Start from the result the owner needs, not from her existing spreadsheets. That decision came after the first design, and it would have saved a round.</p>
+<h2>7. Links</h2>
+<ul>
+<li>Public case page: https://datongai.de/en/projects/jewellery-back-office/</li>
+</ul>
+<hr />
+<p><sub>By submitting, the authors confirm that the case contains no personal data, no confidential client information, and that publishing it was agreed with whoever needed to agree. Licensed under CC BY 4.0.</sub></p>
+<p class="meta">Source: <a href="https://github.com/deploy-eu/case-library/blob/main/cases/datong-ai/2026-11_jewellery-back-office.md">https://github.com/deploy-eu/case-library/blob/main/cases/datong-ai/2026-11_jewellery-back-office.md</a> · Licensed CC BY 4.0</p></main></body></html>

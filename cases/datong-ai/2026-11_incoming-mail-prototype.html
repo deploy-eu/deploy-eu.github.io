@@ -1,0 +1,65 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Assigning incoming letters to tenant companies: a prototype · Deploy@EU</title><meta name="description" content="A business centre receives mail for several hundred tenant companies. A prototype reads scanned letters and suggests the tenant; a person confirms every assignment. It was tested with real sample letters and handed to the client&#x27;s IT."><link rel="canonical" href="https://deploy-eu.github.io/cases/datong-ai/2026-11_incoming-mail-prototype.html">
+<meta property="og:title" content="Assigning incoming letters to tenant companies: a prototype"><meta property="og:description" content="A business centre receives mail for several hundred tenant companies. A prototype reads scanned letters and suggests the tenant; a person confirms every assignment. It was tested with real sample letters and handed to the client&#x27;s IT."><meta property="og:image" content="https://deploy-eu.github.io/og.png">
+<style>body{margin:0;background:#08090e;color:#c0caf5;font:16px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}main{max-width:760px;margin:0 auto;padding:32px 16px 64px}
+a{color:#7dcfff}h1,h2,h3{color:#eef1ff;line-height:1.25}h1{font-size:28px}table{border-collapse:collapse;width:100%;display:block;overflow-x:auto}td,th{border:1px solid #2f3550;padding:6px 10px;text-align:left}
+pre{background:#10121a;border:1px solid #232838;padding:12px;overflow-x:auto}code{font-family:ui-monospace,Menlo,Consolas,monospace}blockquote{border-left:3px solid #bb9af7;margin:0;padding:4px 14px;color:#a9b1d6}
+.top{font:600 14px ui-monospace,Menlo,monospace;margin-bottom:24px}.meta{color:#6b74a0;font-size:14px}</style></head>
+<body><main><div class="top"><a href="https://deploy-eu.github.io/">deploy@eu</a> · <a href="https://deploy-eu.github.io/#cases">Cases</a></div>
+<p class="meta">pilot · business centre / office services · Germany · by DATONG AI</p><h1>Assigning incoming letters to tenant companies: a prototype</h1>
+<blockquote>
+<p><strong>Disclosure:</strong> written by DATONG AI, the company of a Deploy@EU management team member. The community does not endorse any company. Based on the public case page linked below, published with the client's consent. <strong>Review by a second maintainer: pending.</strong></p>
+<p><strong>Summary:</strong> A business centre receives mail for several hundred tenant companies. A prototype reads scanned letters and suggests the tenant; a person confirms every assignment. It was tested with real sample letters and handed to the client's IT.</p>
+</blockquote>
+<h2>1. The business problem</h2>
+<p>All tenant mail arrives in one place. Each letter must be looked at, assigned to the right company and passed on. Several hundred companies have similar names, and a wrong assignment is embarrassing for the centre.</p>
+<h2>2. What was already there</h2>
+<p>Paper mail, a scanner and the list of tenant companies.</p>
+<h2>3. What was built</h2>
+<pre><code>person scans the letter → sender, recipient and letter type recognised (AI)
+→ tenant company suggested by entity matching (auto) → person confirms or corrects on a review page
+</code></pre>
+<ul>
+<li>An evaluation with letters whose correct answer was known counts how often the suggestion is right.</li>
+<li>The prototype is not in production. The client's IT is developing it further.</li>
+</ul>
+<h2>4. Results</h2>
+<table>
+<thead>
+<tr>
+<th>What</th>
+<th>Before</th>
+<th>After</th>
+<th>Measured or estimated?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Assignment accuracy</td>
+<td></td>
+<td>evaluated, figure not published</td>
+<td>measured, not disclosed</td>
+</tr>
+<tr>
+<td>Time saved</td>
+<td></td>
+<td></td>
+<td>none: not in live operation</td>
+</tr>
+</tbody>
+</table>
+<h2>5. Where it got stuck</h2>
+<ul>
+<li><strong>Similar company names.</strong> Among several hundred tenants many names differ only slightly, which is the core difficulty of the matching.</li>
+<li><strong>The decision needed evidence.</strong> The client wanted to know whether sorting can be automated reliably before funding a full system, so the work stopped at a measured prototype.</li>
+<li><strong>Hand-over instead of roll-out:</strong> the client's own IT continues the build, so the prototype had to be documented for someone else.</li>
+</ul>
+<h2>6. What we would do differently</h2>
+<p>Publish the accuracy figure with the client's agreement; a prototype case is much more useful with its number.</p>
+<h2>7. Links</h2>
+<ul>
+<li>Public case page: https://datongai.de/en/projects/incoming-mail/</li>
+</ul>
+<hr />
+<p><sub>By submitting, the authors confirm that the case contains no personal data, no confidential client information, and that publishing it was agreed with whoever needed to agree. Licensed under CC BY 4.0.</sub></p>
+<p class="meta">Source: <a href="https://github.com/deploy-eu/case-library/blob/main/cases/datong-ai/2026-11_incoming-mail-prototype.md">https://github.com/deploy-eu/case-library/blob/main/cases/datong-ai/2026-11_incoming-mail-prototype.md</a> · Licensed CC BY 4.0</p></main></body></html>

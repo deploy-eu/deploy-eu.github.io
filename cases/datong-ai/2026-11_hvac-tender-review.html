@@ -1,0 +1,69 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Reading HVAC tenders: equipment list and first bid assessment · Deploy@EU</title><meta name="description" content="Drawings and specifications become an equipment list linked to the drawing, with suggestions from the company&#x27;s own range and a first assessment. Drawing recognition is in use at the client; selection and assessment are a finished demo."><link rel="canonical" href="https://deploy-eu.github.io/cases/datong-ai/2026-11_hvac-tender-review.html">
+<meta property="og:title" content="Reading HVAC tenders: equipment list and first bid assessment"><meta property="og:description" content="Drawings and specifications become an equipment list linked to the drawing, with suggestions from the company&#x27;s own range and a first assessment. Drawing recognition is in use at the client; selection and assessment are a finished demo."><meta property="og:image" content="https://deploy-eu.github.io/og.png">
+<style>body{margin:0;background:#08090e;color:#c0caf5;font:16px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}main{max-width:760px;margin:0 auto;padding:32px 16px 64px}
+a{color:#7dcfff}h1,h2,h3{color:#eef1ff;line-height:1.25}h1{font-size:28px}table{border-collapse:collapse;width:100%;display:block;overflow-x:auto}td,th{border:1px solid #2f3550;padding:6px 10px;text-align:left}
+pre{background:#10121a;border:1px solid #232838;padding:12px;overflow-x:auto}code{font-family:ui-monospace,Menlo,Consolas,monospace}blockquote{border-left:3px solid #bb9af7;margin:0;padding:4px 14px;color:#a9b1d6}
+.top{font:600 14px ui-monospace,Menlo,monospace;margin-bottom:24px}.meta{color:#6b74a0;font-size:14px}</style></head>
+<body><main><div class="top"><a href="https://deploy-eu.github.io/">deploy@eu</a> · <a href="https://deploy-eu.github.io/#cases">Cases</a></div>
+<p class="meta">pilot · building services / HVAC · by DATONG AI</p><h1>Reading HVAC tenders: equipment list and first bid assessment</h1>
+<blockquote>
+<p><strong>Disclosure:</strong> written by DATONG AI, the company of a Deploy@EU management team member. The community does not endorse any company. Based on the public case page linked below, published with the client's consent. <strong>Review by a second maintainer: pending.</strong></p>
+<p><strong>Summary:</strong> Drawings and specifications become an equipment list linked to the drawing, with suggestions from the company's own range and a first assessment. Drawing recognition is in use at the client; selection and assessment are a finished demo.</p>
+</blockquote>
+<h2>1. The business problem</h2>
+<p>Engineers and sales engineers read every drawing, marked and counted equipment by hand, and compared it with the specification and their own range. A missed unit led to a wrong bid.</p>
+<h2>2. What was already there</h2>
+<p>Tender drawings and specifications from many design offices, the company's product range, territory rules and technical documents.</p>
+<h2>3. What was built</h2>
+<pre><code>person uploads drawings and specification, confirms document types
+→ AI reads equipment type, tag, quantity, technical values; keeps drawing location and page
+→ AI suggests equipment from the range, with sources, and lists open questions
+→ short report with a score (auto) → engineers confirm quantities and selection
+→ project team decides on bidding and price
+</code></pre>
+<ul>
+<li>Every statement can be traced to paragraph, table, value and page.</li>
+<li>The score only helps decide how much more time to invest. Costing and bid writing are still being developed.</li>
+</ul>
+<h2>4. Results</h2>
+<table>
+<thead>
+<tr>
+<th>What</th>
+<th>Before</th>
+<th>After</th>
+<th>Measured or estimated?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>First assessment of a tender</td>
+<td>3–5 days (client's estimate)</td>
+<td>about 20 min plus engineer review</td>
+<td>reported in a project presentation; not measured under the same conditions</td>
+</tr>
+<tr>
+<td>Equipment correctly recognised on drawings</td>
+<td>about 70%</td>
+<td>over 90%</td>
+<td>reported; sample and test standard not documented</td>
+</tr>
+</tbody>
+</table>
+<h2>5. Where it got stuck</h2>
+<ul>
+<li><strong>Every design office draws differently.</strong> The same equipment appears with different symbols and labels.</li>
+<li><strong>A list without locations could not be corrected.</strong> Each line had to link back to its place on the drawing before engineers could check it.</li>
+<li><strong>Technically suitable was not enough.</strong> A unit must also be in the company's range and sales territory.</li>
+<li><strong>Two different times were mixed up:</strong> time to a first assessment and time to a finished bid, which also includes review, costing and approval.</li>
+</ul>
+<h2>6. What we would do differently</h2>
+<p>Record the two times separately from the first day, and define the test sample for recognition accuracy so the figures can be compared.</p>
+<h2>7. Links</h2>
+<ul>
+<li>Public case page: https://datongai.de/en/projects/hvac-tender-review/</li>
+</ul>
+<hr />
+<p><sub>By submitting, the authors confirm that the case contains no personal data, no confidential client information, and that publishing it was agreed with whoever needed to agree. Licensed under CC BY 4.0.</sub></p>
+<p class="meta">Source: <a href="https://github.com/deploy-eu/case-library/blob/main/cases/datong-ai/2026-11_hvac-tender-review.md">https://github.com/deploy-eu/case-library/blob/main/cases/datong-ai/2026-11_hvac-tender-review.md</a> · Licensed CC BY 4.0</p></main></body></html>

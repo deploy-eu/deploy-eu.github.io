@@ -1,0 +1,61 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Trend forecast for style elements with short, gappy data · Deploy@EU</title><meta name="description" content="A fashion retailer forecasts how style elements develop from online buzz and search volume. The model borrows information from related elements; specialists decide what enters range planning. Accepted by the client."><link rel="canonical" href="https://deploy-eu.github.io/cases/datong-ai/2026-11_fashion-trend-forecast.html">
+<meta property="og:title" content="Trend forecast for style elements with short, gappy data"><meta property="og:description" content="A fashion retailer forecasts how style elements develop from online buzz and search volume. The model borrows information from related elements; specialists decide what enters range planning. Accepted by the client."><meta property="og:image" content="https://deploy-eu.github.io/og.png">
+<style>body{margin:0;background:#08090e;color:#c0caf5;font:16px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}main{max-width:760px;margin:0 auto;padding:32px 16px 64px}
+a{color:#7dcfff}h1,h2,h3{color:#eef1ff;line-height:1.25}h1{font-size:28px}table{border-collapse:collapse;width:100%;display:block;overflow-x:auto}td,th{border:1px solid #2f3550;padding:6px 10px;text-align:left}
+pre{background:#10121a;border:1px solid #232838;padding:12px;overflow-x:auto}code{font-family:ui-monospace,Menlo,Consolas,monospace}blockquote{border-left:3px solid #bb9af7;margin:0;padding:4px 14px;color:#a9b1d6}
+.top{font:600 14px ui-monospace,Menlo,monospace;margin-bottom:24px}.meta{color:#6b74a0;font-size:14px}</style></head>
+<body><main><div class="top"><a href="https://deploy-eu.github.io/">deploy@eu</a> · <a href="https://deploy-eu.github.io/#cases">Cases</a></div>
+<p class="meta">live · retail / fashion · by DATONG AI</p><h1>Trend forecast for style elements with short, gappy data</h1>
+<blockquote>
+<p><strong>Disclosure:</strong> written by DATONG AI, the company of a Deploy@EU management team member. The community does not endorse any company. Based on the public case page linked below, published with the client's consent. <strong>Review by a second maintainer: pending.</strong></p>
+<p><strong>Summary:</strong> A fashion retailer forecasts how style elements develop from online buzz and search volume. The model borrows information from related elements; specialists decide what enters range planning. Accepted by the client.</p>
+</blockquote>
+<h2>1. The business problem</h2>
+<p>Many style elements, but only monthly values for each. Search data had gaps and sudden jumps, so one element's history alone said little about its direction, and similar styles were hard to compare.</p>
+<h2>2. What was already there</h2>
+<p>Monthly online buzz and search volume series. No data about individual customers.</p>
+<h2>3. What was built</h2>
+<pre><code>buzz and search data prepared by the same rules, gaps marked (auto)
+→ model estimates the trend, drawing on related elements (AI)
+→ forecasts for elements and style groups in a dashboard (auto)
+→ specialists review against business context and decide (person)
+</code></pre>
+<ul>
+<li>Several forecasting models were compared for short, medium and long horizons.</li>
+<li>The client received a retrainable model, the tested model set and the dashboard.</li>
+</ul>
+<h2>4. Results</h2>
+<table>
+<thead>
+<tr>
+<th>What</th>
+<th>Before</th>
+<th>After</th>
+<th>Measured or estimated?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Direction of a trend called correctly</td>
+<td>60%</td>
+<td>85%</td>
+<td>reported in project documents; sample and method not documented</td>
+</tr>
+</tbody>
+</table>
+<h2>5. Where it got stuck</h2>
+<ul>
+<li><strong>Too few data points per series.</strong> With monthly values and gaps, single-series forecasting did not work; the missing information had to come from related series.</li>
+<li><strong>Definitions first:</strong> what counts as an element, which period matters, how gaps are handled.</li>
+<li><strong>Quality depends on the horizon.</strong> It had to be measured for exactly the period the planning decisions are made for.</li>
+</ul>
+<h2>6. What we would do differently</h2>
+<p>Document the evaluation sample and method alongside the result, so the accuracy figures can be checked later.</p>
+<h2>7. Links</h2>
+<ul>
+<li>Public case page: https://datongai.de/en/projects/fashion-trend-forecast/</li>
+</ul>
+<hr />
+<p><sub>By submitting, the authors confirm that the case contains no personal data, no confidential client information, and that publishing it was agreed with whoever needed to agree. Licensed under CC BY 4.0.</sub></p>
+<p class="meta">Source: <a href="https://github.com/deploy-eu/case-library/blob/main/cases/datong-ai/2026-11_fashion-trend-forecast.md">https://github.com/deploy-eu/case-library/blob/main/cases/datong-ai/2026-11_fashion-trend-forecast.md</a> · Licensed CC BY 4.0</p></main></body></html>

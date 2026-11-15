@@ -1,0 +1,77 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>A key account manager&#x27;s AI setup with a second-agent check · Deploy@EU</title><meta name="description" content="One key account manager runs customer files, email drafts, reports and CRM preparation through an AI assistant. A second agent checks every draft before he sees it; he sends, saves and sets prices himself."><link rel="canonical" href="https://deploy-eu.github.io/cases/datong-ai/2026-11_sales-ai-setup.html">
+<meta property="og:title" content="A key account manager&#x27;s AI setup with a second-agent check"><meta property="og:description" content="One key account manager runs customer files, email drafts, reports and CRM preparation through an AI assistant. A second agent checks every draft before he sees it; he sends, saves and sets prices himself."><meta property="og:image" content="https://deploy-eu.github.io/og.png">
+<style>body{margin:0;background:#08090e;color:#c0caf5;font:16px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}main{max-width:760px;margin:0 auto;padding:32px 16px 64px}
+a{color:#7dcfff}h1,h2,h3{color:#eef1ff;line-height:1.25}h1{font-size:28px}table{border-collapse:collapse;width:100%;display:block;overflow-x:auto}td,th{border:1px solid #2f3550;padding:6px 10px;text-align:left}
+pre{background:#10121a;border:1px solid #232838;padding:12px;overflow-x:auto}code{font-family:ui-monospace,Menlo,Consolas,monospace}blockquote{border-left:3px solid #bb9af7;margin:0;padding:4px 14px;color:#a9b1d6}
+.top{font:600 14px ui-monospace,Menlo,monospace;margin-bottom:24px}.meta{color:#6b74a0;font-size:14px}</style></head>
+<body><main><div class="top"><a href="https://deploy-eu.github.io/">deploy@eu</a> · <a href="https://deploy-eu.github.io/#cases">Cases</a></div>
+<p class="meta">live · manufacturing / B2B sales · by DATONG AI</p><h1>A key account manager's AI setup with a second-agent check</h1>
+<blockquote>
+<p><strong>Disclosure:</strong> written by DATONG AI, the company of a Deploy@EU management team member. The community does not endorse any company. Based on the public case page linked below, published with the client's consent. <strong>Review by a second maintainer: pending.</strong></p>
+<p><strong>Summary:</strong> One key account manager runs customer files, email drafts, reports and CRM preparation through an AI assistant. A second agent checks every draft before he sees it; he sends, saves and sets prices himself.</p>
+</blockquote>
+<h2>1. The business problem</h2>
+<p>Contacts, history, commitments and next steps for each business customer were spread over emails and the CRM, so follow-ups slipped. Emails in two languages could each carry a wrong fact, a wrong tone or an unwarranted promise. On top came a weekly report, a stock and price list for one customer, and CRM upkeep.</p>
+<h2>2. What was already there</h2>
+<p>Mailbox, chat, calendar, spreadsheets and a CRM. Saving to the CRM stays a manual click.</p>
+<h2>3. What was built</h2>
+<pre><code>06:12 follow-up drafts for unanswered first contacts (max 8 a day) → 06:52 morning report to himself
+→ during the day: AI sorts new mail and chat into &quot;act / info / ignore&quot;
+→ draft reply in the original thread, with translation → second agent checks facts against sources and tone
+→ he edits and says &quot;send&quot; → CRM fields prepared by AI, he clicks save, AI reads back what was saved
+→ every two days: stock and price list rebuilt by written rules and read back
+</code></pre>
+<ul>
+<li><strong>13 tasks:</strong> 4 run on a schedule, 8 are prepared by the AI, 1 stays entirely with the person.</li>
+<li><strong>Only two things run fully automatically:</strong> the morning report (to himself) and the price list (prices by fixed rules).</li>
+<li>Customer files have version history and are backed up before every change.</li>
+<li>A dashboard brings together tasks, commitments with deadlines, meetings and new messages.</li>
+</ul>
+<h2>4. Results</h2>
+<table>
+<thead>
+<tr>
+<th>What</th>
+<th>Before</th>
+<th>After</th>
+<th>Measured or estimated?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Problems caught by the second check before sending, about three weeks</td>
+<td></td>
+<td>about 95</td>
+<td>counted from the change log, ±5</td>
+</tr>
+<tr>
+<td>Of these: facts or sources / tone / commitments not in the source</td>
+<td></td>
+<td>about 60% / 30% / 10%</td>
+<td>estimated</td>
+</tr>
+<tr>
+<td>Time saved</td>
+<td></td>
+<td></td>
+<td>not measured</td>
+</tr>
+</tbody>
+</table>
+<h2>5. Where it got stuck</h2>
+<ul>
+<li><strong>Rules in the prompt did not hold.</strong> Each correction was logged and added to the assistant's rules. Three kinds of error stopped; others came back despite a rule until they were turned into a fixed handbook.</li>
+<li><strong>Mechanical checks moved out of the model.</strong> Whether a commitment exists, a source is cited or an email was really sent is now checked by a script.</li>
+<li><strong>A near miss:</strong> a customer deadline was overwritten with a "check next time" note and almost passed. Commitments got their own column with a mandatory deadline the same day.</li>
+<li>The weekly report brief needed seven versions.</li>
+</ul>
+<h2>6. What we would do differently</h2>
+<p>Put everything that can be checked mechanically into scripts from the start, and give commitments a mandatory deadline before the first near miss.</p>
+<h2>7. Links</h2>
+<ul>
+<li>Public case page: https://datongai.de/en/projects/sales-ai-setup/</li>
+</ul>
+<hr />
+<p><sub>By submitting, the authors confirm that the case contains no personal data, no confidential client information, and that publishing it was agreed with whoever needed to agree. Licensed under CC BY 4.0.</sub></p>
+<p class="meta">Source: <a href="https://github.com/deploy-eu/case-library/blob/main/cases/datong-ai/2026-11_sales-ai-setup.md">https://github.com/deploy-eu/case-library/blob/main/cases/datong-ai/2026-11_sales-ai-setup.md</a> · Licensed CC BY 4.0</p></main></body></html>
