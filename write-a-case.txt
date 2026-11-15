@@ -48,6 +48,8 @@ Pick wall tags only from this list: no-api, legacy-desktop, data-quality, gdpr, 
 
 Name the file cases/<github-handle or short-name>/YYYY-MM_short-title.md.
 
+The website shows case cards in six languages. Add these front-matter fields with short translations of the title, the one-line summary and the industry: title_zh, summary_zh, industry_zh, title_de, summary_de, industry_de, title_fr, summary_fr, industry_fr, title_it, summary_it, industry_it, title_es, summary_es, industry_es.
+
 ## Step 3. Check before you hand over
 Go through these five points and tell the person what you changed or what is still missing:
 1. Consent: whoever needed to agree has agreed.
