@@ -28,7 +28,7 @@ Help European companies put AI to work by sharing what really happens: what work
 ## How to join or contribute
 - Chat and events: Discord (being set up).
 - Write a case or member profile with your AI: https://deploy-eu.github.io/write-a-case.txt
-- Be interviewed, recommend a guest, report a wall, or volunteer for an open role: https://github.com/deploy-eu/case-library/issues/new/choose
+- Be interviewed, recommend a guest or report a wall: https://github.com/deploy-eu/case-library/issues/new/choose
 
 ## Links
 - Website: https://deploy-eu.github.io
