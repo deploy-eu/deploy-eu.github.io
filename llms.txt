@@ -1,0 +1,44 @@
+# Deploy@EU
+
+> A non-profit community of people who deploy AI and automation inside European companies: forward-deployed engineers (FDEs), in-house builders, consultants, and the business owners who hire them.
+
+## Goal
+Help European companies put AI to work by sharing what really happens in deployments: what worked, what it cost, and what failed. At the core are the people who do the deployment work; around them the community connects business owners, newcomers to the field and partners.
+
+## Why it exists
+Most AI stories are demos and sales pitches. Honest reports from the field are missing. In Europe the obstacles are specific: old software without an API, GDPR, the EU AI Act, works councils, many languages. Every team hits the same walls alone; the community wants each wall to be hit only once.
+
+## What the community does
+- Case library: real deployment cases (the problem, existing systems, what was built, measured results, where it got stuck, what to do differently). Reviewed for consent, privacy, honest numbers and no advertising.
+- Walls: recurring obstacles tagged across cases: no-api, legacy-desktop, data-quality, gdpr, ai-act, works-council, change-management, vendor-lock, cost, reliability.
+- Interviews with practitioners and business owners.
+- Reading sessions every two weeks: one article, one hour, honest discussion.
+- Home base for chat and events: Discord (being set up).
+
+## Who it is for
+- Practitioners: learn from others' cases and walls, find peers across Europe, build a public, reviewed portfolio under their own name.
+- Business owners: see what AI deployments look like at similar companies, with measured numbers and honest failures, before spending money; talk to people who have done it without being sold to.
+- Newcomers: a way into the field through real cases, reading sessions and a guided first contribution.
+- Partners and sponsors: support a neutral, practitioner-led space; sponsors are credited at the events they support.
+
+## Principles
+- Non-profit. No membership fees. The community's own talks and courses are free.
+- Money the community receives is used only for the community.
+- The community endorses no company, including sponsors and members' own businesses, and takes no commission.
+- Honest numbers: measured results are marked as measured, estimates as estimates.
+- No personal or client data; cases are published only with the consent of whoever needs to agree.
+- Every contribution counts, online or offline, recognised with badges, not points or rankings. Members choose up to five badges to show.
+- Run by a small management team; being on it is a responsibility, not a power.
+
+## How to join or contribute
+First contributions: recommend an interview guest, report a wall you hit, write or fix a case, recommend an article for a reading session, translate a case summary.
+
+## Links
+- Website: https://deploy-eu.github.io
+- About: https://deploy-eu.github.io/#about
+- Case library: https://github.com/deploy-eu/case-library
+- Contributing: https://github.com/deploy-eu/case-library/blob/main/CONTRIBUTING.md
+- Principles: https://github.com/deploy-eu/case-library/blob/main/GOVERNANCE.md
+- Recognition: https://github.com/deploy-eu/case-library/blob/main/RECOGNITION.md
+
+Languages on the website: English, Chinese, German, French, Italian, Spanish.
